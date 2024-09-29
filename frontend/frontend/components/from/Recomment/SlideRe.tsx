@@ -26,7 +26,7 @@ const SlideRe = ({slide} : Props) => {
         >
         <CarouselContent>
             {slide.map((item, index) => (
-            <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/6 ">
+            <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/6 h-72">
                 <CardProduct pharmacy={item} />
             </CarouselItem>
             ))}

@@ -1,3 +1,5 @@
+import { PrImage } from "@/components/from/Toppr/PrImage";
+import PrSlide from "@/components/from/Toppr/PrSlide";
 
 interface Props {
     children : React.ReactNode;
@@ -7,7 +9,17 @@ const UserLayout = ({children}: Props) => {
 
     return (
         <>
-        {children}
+        <div className="w-full">
+            <div className="w-full px-10 flex justify-center mt-2 ">
+                <PrSlide pr={PrImage}/>
+            </div>
+            <div className="w-full">
+                {children}
+            </div>
+            
+            
+        </div>
+        
         </>
     )
 }

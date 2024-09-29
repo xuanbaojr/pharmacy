@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image";
 import anh from "@/assets/image/gach.png"
+import anh2 from "@/assets/image/anhho.jpg"
 
 export interface pharmacy {
     image : StaticImageData,
@@ -18,7 +19,7 @@ export const Pharmacy : pharmacy[] = [
         price : 2,
     },
     {
-        image : anh,
+        image : anh2,
         alt : " asdad",
         name : 'thuoc 1',
         sale : 1,
@@ -39,7 +40,7 @@ export const Pharmacy : pharmacy[] = [
         price : 2,
     },
     {
-        image : anh,
+        image : anh2,
         alt : " asdad",
         name : 'thuoc 1',
         sale : 1,

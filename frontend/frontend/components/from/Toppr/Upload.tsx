@@ -9,7 +9,7 @@ const Upload = () => {
 
     return (
         <>
-        <div className="">
+        <div className="bg-black">
             <Image src={logo} alt="asdas" />
         </div>
         

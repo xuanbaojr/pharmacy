@@ -12,7 +12,11 @@ const TopPr = () => {
         <div className="w-full mx-2 px-2 py-1 flex justify-between gap-10">
             <Upload />
 
-            <PrSlide pr={PrImage}/>
+            <div className="w-2/3">
+                <PrSlide pr={PrImage}/>
+            </div>
+
+            
         </div>
         
         </>

@@ -29,7 +29,7 @@ const PrSlide = ({pr} : Props) => {
                 //   delay: 10000,
                 // }),
               ]}
-            className="w-2/3 rounded-xl bg-slate-100 p-1"
+            className="w-full rounded-xl bg-slate-100 p-1"
         >
         <CarouselContent>
             {pr.map((item, index) => (
