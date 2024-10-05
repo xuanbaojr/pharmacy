@@ -1,19 +1,19 @@
 from fastapi import FastAPI, File, UploadFile
 import uuid
 
-from OCR.predict import ocr
+from OCR.CRNN.predict import predict_text
 
 image_dir = "images/"
 app = FastAPI()
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
-    file.filename = f"{image_dir}{uuid.uuid4()}.jpg"
+    file.filename = "img_01.png"
     contents = await file.read()
 
-    with open(f"{file.filename}", "wb") as f:
+    with open(f"{image_dir}{file.filename}", "wb") as f:
         f.write(contents)
     
-    text = ocr(file.filename)
+    text = predict_text(file.filename)
 
     return {"filename": text}
