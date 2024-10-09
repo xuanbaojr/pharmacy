@@ -1,5 +1,5 @@
 'use client'
-import { MenuItem } from "@/contants/MenuContants";
+import { MenuItem } from "@/components/shared/topbar/menu/MenuContants";
 import { usePathname } from "next/navigation";
 import MenuItemLink from "./MenuItem";
 

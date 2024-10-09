@@ -6,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-import { pharmacy } from "./testRecomment"
+import { pharmacy } from "../../card/product/DataProduct"
 import CardProduct from "@/components/card/product/CardProduct"
 interface Props {
     slide : pharmacy[]

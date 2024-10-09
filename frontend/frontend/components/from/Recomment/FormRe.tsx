@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SlideRe from "./SlideRe";
-import { Pharmacy } from "./testRecomment";
+import { Pharmacy } from "../../card/product/DataProduct";
 import { FiChevronsRight } from "react-icons/fi";
 
 interface Props {

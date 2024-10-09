@@ -1,5 +1,5 @@
 
-import { pharmacy } from "@/components/from/Recomment/testRecomment";
+import { pharmacy } from "@/components/card/product/DataProduct";
 import { convertComment } from "@/utils/comment";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ const CardProduct = ({pharmacy} : Props) => {
     return (
         <>
         
-        <div className="flex justify-center h-full rounded-lg">
+        <div className="flex justify-center h-full border shadow-lg">
             <Link href={"/"} className="flex-col ">
             <div className="flex-col w-full h-full">
                 <div className="flex h-2/3  bg-white items-center justify-center border shadow-sm">

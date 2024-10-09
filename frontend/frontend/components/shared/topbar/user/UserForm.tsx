@@ -1,4 +1,4 @@
-import { UserItem } from "@/contants/userContants";
+import { UserItem } from "@/components/shared/topbar/user/userContants";
 import UserItemLink from "./UserItem";
 
 interface Props {

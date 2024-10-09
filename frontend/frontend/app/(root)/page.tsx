@@ -1,7 +1,5 @@
 import SlideCategori from "@/components/card/Categori/ListCategori";
 import FormRe from "@/components/from/Recomment/FormRe";
-import SlideRe from "@/components/from/Recomment/SlideRe";
-import { Pharmacy } from "@/components/from/Recomment/testRecomment";
 import TopPr from "@/components/from/Toppr/TopPr";
 
 interface Porps {

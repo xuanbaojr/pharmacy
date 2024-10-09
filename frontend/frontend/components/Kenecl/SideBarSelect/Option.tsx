@@ -13,6 +13,10 @@ export const ListOptionSelect : OptionSelect[] = [
         name : "1"
     },
     {
+        option : (value) => <CategoriSelect value={value} />,
+        name : "1"
+    },
+    {
         option : (value) => <PriceSelect value={value} />,
         name : "2"
     }

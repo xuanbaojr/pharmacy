@@ -1,5 +1,6 @@
-import SideBar from "@/components/from/SideBarSelect/SideBar";
-import TopBar from "@/components/from/TopbarSelect/Topbar";
+import TopBar from "@/components/Kenecl/TopbarSelect/Topbar";
+import SideBar from "@/components/Kenecl/SideBarSelect/SideBar";
+import GridProduct from "@/components/card/product/GridProduct";
 
 
 interface Props {
@@ -19,8 +20,9 @@ const ShopPage = () => {
                     <TopBar />
                 </div>
                 {/* prodcut here */}
-                <div>
-
+                <div className=" px-2 ">
+                    <GridProduct />
+                    
                 </div>
             </div>
 

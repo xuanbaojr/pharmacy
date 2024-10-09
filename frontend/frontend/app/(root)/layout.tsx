@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Children } from "react";
 import { Inter } from "next/font/google";
-import TopBar from "@/components/shared/Topbar";
+import TopBar from "@/components/shared/topbar/Topbar";
 import "../globals.css"
 
 interface Props {
@@ -17,7 +17,7 @@ const RootLayout = ({children}: Props) => {
 
     return (
         <html lang="en">
-            <body className={`${inter.className} `}>
+            <body className={`${inter.className} bg-[#F5F5F5]`}>
                 <div className="w-full">
                     <TopBar />
                 </div>

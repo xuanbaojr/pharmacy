@@ -24,7 +24,6 @@ const Categori = ({categoriItem} : Props) => {
                     </div>
                 </div>
                 </Link>
-
             </div>
         </div>
         </>

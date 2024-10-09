@@ -1,5 +1,5 @@
 
-import { MenuItem } from "@/contants/MenuContants";
+import { MenuItem } from "@/components/shared/topbar/menu/MenuContants";
 import Link from "next/link";
 
 interface Props {
