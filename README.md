@@ -1,7 +1,10 @@
+  
 
   
 
 # Welcome to Pharmacy web!
+
+  
 
   
 
@@ -13,7 +16,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 # Chức năng chính
+
+  
 
   
 
@@ -21,7 +28,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 ### Role 1: Người bệnh
+
+  
 
   
 
@@ -29,7 +40,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 - Xem thông tin thuốc, đặt hàng
+
+  
 
   
 
@@ -37,7 +52,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 - Kiểm tra tình trạng đơn hàng
+
+  
 
   
 
@@ -45,7 +64,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 - Đăng thông tin thuốc
+
+  
 
   
 
@@ -53,7 +76,11 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 - Thông báo đơn hàng
+
+  
 
   
 
@@ -63,11 +90,17 @@ Dự án mục đích tối ưu quy trình mua thuốc tự động theo yêu c�
 
   
 
+  
+
 ## Luồng thứ hai:
 
   
 
+  
+
 ### Role 1: Người bệnh
+
+  
 
   
 
@@ -77,7 +110,11 @@ Sau khi khám ở bệnh viện bất kì, người bệnh nhận được phi�
 
   
 
+  
+
 ## Chức năng bổ sung
+
+  
 
   
 
@@ -85,7 +122,11 @@ Sau khi khám ở bệnh viện bất kì, người bệnh nhận được phi�
 
   
 
+  
+
 - Recommend các bài viết liên quan đến bệnh dựa vào thuốc mà bệnh nhân tìm
+
+  
 
   
 
@@ -93,23 +134,42 @@ Sau khi khám ở bệnh viện bất kì, người bệnh nhận được phi�
 
   
 
+  
+
 # Hướng dẫn cài đặt
+
+  
 
 ## Mô hình
 
+  
+
 1. Cài đặt Miniconda tại [đây](https://docs.anaconda.com/miniconda/miniconda-install/)
-
-2. Chạy mô hình
+2. Download và  weights của mô hình tại [đây](https://drive.google.com/drive/u/0/folders/1_3EfyH1VI-LbMO5bQo2ZNltItVCPMtHx), thêm vào thư mục weights tương ứng
 
   
+
+3. Chạy mô hình
+
   
+
 	``` cd model ```
+
 	```conda create -n pharmacy ```
+
+	  
 
 	```pip install -r requirements.txt ```
 
+	  
+
 	```fastapi dev main.py```
+  
 
   
 
-Kiểm tra mô hình đã chạy đúng hay chưa tại http://localhost:8000/docs
+	Kiểm tra mô hình đã chạy đúng hay chưa tại http://localhost:8000/docs
+
+
+4. Demo
+	Kết quả mô hình xem tại [đây](https://drive.google.com/drive/u/0/folders/17q8cqpbBewHvsQ5e7LI0UT4-poGgn2hw) 
