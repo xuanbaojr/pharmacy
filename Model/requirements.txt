@@ -1,0 +1,5 @@
+fastapi[standard]
+tensorflow
+numpy
+matplotlib
+ultralytics
