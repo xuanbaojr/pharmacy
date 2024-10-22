@@ -16,8 +16,6 @@ const UserLayout = ({children}: Props) => {
             <div className="w-full mt-2">
                 {children}
             </div>
-            
-            
         </div>
         
         </>

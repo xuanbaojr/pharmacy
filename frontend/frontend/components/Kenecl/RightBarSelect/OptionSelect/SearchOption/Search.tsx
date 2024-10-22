@@ -19,9 +19,9 @@ const Search = ({value} : Props) => {
             <div className="text-xl px-2 my-2 border-b-2 border-black py-1">
                 <span>Tìm kiến bài báo</span>
             </div>
-            <div className="w-full bg-[#d9d9d9] rounded-full mt-4 flex justify-center">
+            <div className="w-full bg-[#cccccc] rounded-full mt-4 flex justify-center">
                 <Input placeholder="tim kiem .. " 
-                    className="bg-[#d9d9d9] flex-grow rounded-l-full border-none outline-none text-sm pl-4 py-4" 
+                    className="bg-[#cccccc] flex-grow rounded-l-full border-none outline-none text-sm pl-4 py-4" 
                 />
                 <Button className="rounded-r-full border-none outline-none cursor-pointer px-4 py-3 hover:bg-[#FDAB04]/80">
                     <FaSearch className="h-4 w-4"/>

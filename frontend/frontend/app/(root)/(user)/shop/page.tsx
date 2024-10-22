@@ -20,7 +20,7 @@ const ShopPage = () => {
                     <TopBar />
                 </div>
                 {/* prodcut here */}
-                <div className=" px-2 ">
+                <div className=" px-2 mt-1">
                     <GridProduct />
                     
                 </div>

@@ -12,7 +12,7 @@ const FormRe = ({name} : Props) => {
 
     return (
         <>
-        <div className="flex-col rounded-lg  my-4 mx-4 ">
+        <div className="flex-col rounded-lg  my-4 mx-4 bg-white">
             {/* top view */}
             <div className="flex justify-between px-4 pt-2">
                 <span className="text-lg font-semibold">

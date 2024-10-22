@@ -18,6 +18,6 @@ export const UserContants : UserItem[] = [
     },
     {
         icon : <FiShoppingCart size={24}/>,
-        link : ".",
+        link : "/cart",
     }
 ]

@@ -20,6 +20,6 @@ export const MenuContants : MenuItem[] = [
     },
     {
         label : "Liên hệ",
-        link : "contact"
+        link : "/contact"
     }
 ]

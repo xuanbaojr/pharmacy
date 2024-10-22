@@ -10,7 +10,7 @@ const GridProduct = () => {
     return (
         <>
         <div className="w-full p-2 ">
-            <div className="grid grid-cols-5 gap-5"> 
+            <div className="grid grid-cols-5 gap-3"> 
                 {
                     Pharmacy.map((item,index) => {
                         return (

@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { form } from "./defineContact"
 import { z } from "zod"
 import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -37,8 +36,8 @@ const FormContact = () => {
         console.log(values)
       }
     return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+    <Form {...form} >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 px-6">
         <div className="">
             <span className="text-2xl font-semibold">Phản hồi với chúng tôi</span>
         </div>
@@ -51,7 +50,7 @@ const FormContact = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Họ tên" {...field} />
+                <Input placeholder="Họ tên" className=" rounded-xl px-4 py-6" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,7 +62,7 @@ const FormContact = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="email của bạn" {...field} />
+                <Input placeholder="email của bạn" className=" rounded-xl px-4 py-6" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,7 +74,7 @@ const FormContact = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="Vấn đề của bạn" {...field} />
+                <Textarea placeholder="Vấn đề của bạn" className=" rounded-xl px-4 py-6 line-clamp-6"{...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -83,7 +82,7 @@ const FormContact = () => {
         />
 
 
-        <Button className="bg-blue-500 rounded-full" type="submit">liên hệ    {'->'} </Button>
+        <Button className="bg-blue-600 rounded-full text-white hover:bg-blue-400 hover:border" type="submit">liên hệ    {'  ->'} </Button>
       </form>
     </Form>
 

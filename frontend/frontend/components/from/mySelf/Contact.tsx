@@ -10,7 +10,7 @@ const Contact = ({contact} : Props) => {
     return (
         <>
         <div className="flex gap-6 items-start">
-            <div className="p-4 border  rounded-full">
+            <div className="p-4 border rounded-full  hover:animate-wiggle">
                 {contact.icon}
             </div>
             <div className=" space-y-2 ">

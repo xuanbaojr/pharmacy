@@ -16,7 +16,7 @@ const TopBar = () => {
 
     return (
         <>
-        <div className="w-full bg-slate-300 rounded-lg flex p-2 justify-between">
+        <div className="w-full bg-[#e1e5f2] rounded-lg flex p-2 justify-between">
             {/* option */}
             <div className="pl-5 ">
                 <InSort />
@@ -40,17 +40,17 @@ const InSort = () => {
     return (
         <>
         <div className="flex w-full gap-4 items-center">
-            <div className="mr-5 ">
+            <div className="mr-5 font-semibold">
                 <span> Sắp xếp theo</span>
             </div>
 
             <div>
-                <Button className="bg-blue-100">
+                <Button className="bg-blue-300">
                     Phổ biến
                 </Button>
             </div>
             <div>
-                <Button className="bg-blue-100">
+                <Button className="bg-blue-300">
                     Mới nhất
                 </Button>
             </div>
@@ -58,9 +58,9 @@ const InSort = () => {
             <div>
             <Select>
             <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
+                <SelectValue placeholder="Theme" className="bg-blue-300" />
             </SelectTrigger>
-            <SelectContent className="bg-white">
+            <SelectContent className="bg-blue-500">
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>
                 <SelectItem value="system">System</SelectItem>
