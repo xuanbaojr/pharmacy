@@ -1,4 +1,4 @@
-import anh1 from "@/assets/image/555.jpg"
+import anh1 from "@/assets/image/Mond.png"
 import { StaticImageData } from "next/image"
 
 export interface pharmacy {
@@ -44,27 +44,29 @@ export const listOrder : (pharmacy | prescription) [] = [
         price : 312,
         quantity : 1
     },
-    // {
-    //     image : anh1,
-    //     description: "mota6",
-    //     price : 123,
-    //     quantity : 1
-    // },
-    //  {
-    //     name :"anh7",
-    //     pharmacy : [
-    //         {
-    //             image : anh1,
-    //             description: "mota5",
-    //             price : 123,
-    //             quantity : 1
-    //         },{
-    //             image : anh1,
-    //             description: "mota6",
-    //             price : 23,
-    //             quantity : 1
-    //         }
-    //     ],
-    //     guide : "day la huong dan "
-    // }
+    {
+        image : anh1,
+        description: "mota6",
+        price : 123,
+        quantity : 1
+    },
+     {
+        name :"anh7",
+        pharmacy : [
+            {
+                image : anh1,
+                description: "mota5",
+                price : 123,
+                quantity : 1
+            },{
+                image : anh1,
+                description: "mota6",
+                price : 23,
+                quantity : 1
+            }
+        ],
+        guide : "day la huong dan "
+    }
 ]
+
+
