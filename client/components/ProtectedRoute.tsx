@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      toast.error('Bạn phải đăng nhập để sử dụng chức năng này!', toastOptions);
+      toast.warn('Bạn phải đăng nhập để sử dụng chức năng này!', toastOptions);
       setTimeout(() => {
         router.push('/login');
       }, toastOptions.autoClose); 
