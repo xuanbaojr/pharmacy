@@ -53,3 +53,20 @@ docs/_build/
 *.pth
 *.jpg
 *.png
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Specific files in obj folder
+**/obj/**/*.exe
+**/obj/**/*.dll
+**/obj/**/*.pdb
+**/obj/**/*.cache
+**/obj/**/*.txt
+**/obj/**/*.json
+**/obj/**/*.cs
+**/obj/**/*.editorconfig
+**/obj/**/project.assets.json
+**/obj/**/project.nuget.cache
+/api/obj

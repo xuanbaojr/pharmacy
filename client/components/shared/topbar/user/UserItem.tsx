@@ -1,3 +1,4 @@
+"use client";  
 import { UserItem } from "@/components/shared/topbar/user/userContants";
 import Link from "next/link";
 

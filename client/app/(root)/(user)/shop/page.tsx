@@ -14,6 +14,7 @@ const ShopPage = () => {
         <div className="flex gap-5 mt-3 px-10 rounded-lg">
             <div className="w-1/6">
                 <SideBar />
+
             </div>
             <div className="w-5/6">
                 <div>

@@ -1,11 +1,10 @@
-
+import ProtectedRoute from '@/components/ProtectedRoute';
 const CartLayout = ({children} : {children : React.ReactNode}) => {
 
     return (
-        <>
-        {children}
-        
-        </>
+        <ProtectedRoute>
+            {children}
+        </ProtectedRoute>
     )
 }
 
