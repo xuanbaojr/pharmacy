@@ -51,3 +51,6 @@ docs/_build/
 
 *.h5
 *.pt
+*.pth
+*.jpg
+*.png
