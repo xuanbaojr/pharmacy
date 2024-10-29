@@ -1,6 +1,6 @@
-import logo1 from "@/assets/pr/spoderArt.png"
-import logo2 from "@/assets/pr/anh nen logo.png"
-import logo3 from "@/assets/pr/giày.png"
+import logo1 from "@/assets/pr/anh-qc-thumb.jpg"
+import logo3 from "@/assets/pr/y-tuong-quang-cao-ngoai-troi-unique-ooh-36-e1632182975358.jpg"
+import logo2 from "@/assets/pr/chup-anh-thuoc-om-02.jpg"
 import { StaticImageData } from "next/image";
 
 export interface image {
@@ -10,11 +10,11 @@ export interface image {
 
 export const PrImage : image[] = [
     {
-        image : logo1,
+        image : logo2,
         alt : "12",
     },
     {
-        image : logo2,
+        image : logo1,
         alt : " 12 ",
     },
     {

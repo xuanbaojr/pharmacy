@@ -147,14 +147,14 @@ const CartContain = ({cart} : Props) => {
         cartState.map((item, index) => {
             if ('pharmacy' in item) { // la prescription
                 const allPharmacyChecked = item.pharmacy.every(ph => ph.check);
-                if (allPharmacyChecked) list +=  item.name + "{" 
+                if (allPharmacyChecked) list +=  item.name + "," 
                 else {
                     item.pharmacy.map((ph, index) => {
-                        if(ph.check) list +=  ph.description + "{"
+                        if(ph.check) list +=  ph.description + ","
                     })
                 }
             } else { // la phamacy
-                if (item.check) list +=  item.description + "{" 
+                if (item.check) list +=  item.description + "," 
             }
         })
         return list
@@ -210,7 +210,7 @@ const CartContain = ({cart} : Props) => {
                 
             </div>
             {/* bottom */}
-            <div className=" grid grid-cols-10 sticky bottom-0 bg-slate-500 px-4 py-8 mt-10 rounded-sm">
+            <div className=" grid grid-cols-10 sticky bottom-0 bg-slate-500 px-4 py-6 mt-10 rounded-sm">
                 <div className="col-span-6 grid grid-cols-10">
                     <div className="col-span-1 flex items-center justify-center">
                         <Checkbox 
