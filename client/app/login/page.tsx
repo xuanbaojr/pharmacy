@@ -28,7 +28,6 @@ const LoginPage = () => {
       {   
           const { token, userName } = response.data;
           localStorage.setItem('Username', userName);
-          localStorage.setItem('Token', token);
           authLogin(token);
           toast.success("Đăng nhập thành công!", toastOptions);
           setTimeout(() => {

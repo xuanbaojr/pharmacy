@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yS8/chUC3bs=",
+  "dgSpecHash": "2siY+3V9mgI=",
   "success": true,
-  "projectFilePath": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy\\pharmacy.csproj",
+  "projectFilePath": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,5 +1,5 @@
 "use client";   
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoPersonOutline, IoHeartOutline } from 'react-icons/io5';
 import { FiShoppingCart } from 'react-icons/fi';
 import { useAuth } from '@/hooks/AuthContext';
@@ -11,9 +11,16 @@ export interface UserItem {
 }
 
 const UserIconWithClick = () => {
-    const userName = localStorage.getItem('Username');
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { isAuthenticated, token, logout } = useAuth();
+    const [userName, setUsername] = useState("");
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedUserName = localStorage.getItem('Username');
+            setUsername(storedUserName || "");
+        }
+    }, []);
     const username = token ? userName : "";
 
     const handleIconClick = () => {

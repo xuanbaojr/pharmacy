@@ -4612,11 +4612,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy\\pharmacy.csproj",
+      "projectUniqueName": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy.csproj",
       "projectName": "pharmacy",
-      "projectPath": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy\\pharmacy.csproj",
+      "projectPath": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\BTL-Pharmacy\\pharmacy\\api\\pharmacy\\obj\\",
+      "outputPath": "D:\\BTL-Pharmacy\\pharmacy\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
