@@ -8,7 +8,6 @@ interface Props {
 
 const UserForm = ({user} : Props) => {
     return (
-        <>
         <div className="flex justify-evenly gap-7">
             {
                 user.map((item) => {
@@ -17,9 +16,7 @@ const UserForm = ({user} : Props) => {
                     )
                 })
             }
-
         </div>
-        </>
     )
 }
 

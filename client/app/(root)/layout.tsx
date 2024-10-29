@@ -26,8 +26,8 @@ const RootLayout = ({ children }: Props) => {
                     <div className="w-full">
                         <TopBar />
                     </div>
-                    {children}
                     <ToastContainer />
+                    {children}
                     <div>
                         <BottomBar />
                     </div>

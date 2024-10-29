@@ -25,13 +25,17 @@ const LoginPage = () => {
     try {
       const response = await login({ UserName: username, Password: password });
       if(response.status === 200)
-      { 
-          authLogin();
+      {   
+          const { token, userName } = response.data;
+          localStorage.setItem('Username', userName);
+          localStorage.setItem('Token', token);
+          authLogin(token);
           toast.success("Đăng nhập thành công!", toastOptions);
           setTimeout(() => {
              router.push('/');
           }, toastOptions.autoClose); 
         }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Đăng nhập thất bại!", toastOptions);
     }
