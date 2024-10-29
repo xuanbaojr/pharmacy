@@ -1,11 +1,12 @@
 from fastapi import FastAPI, File, UploadFile
 import uuid
-
+import os
 from tools.pill_predict import pill_predict
 from tools.pre_predict import pre_predict
 
 
 image_dir = "images/"
+os.makedirs(image_dir, exist_ok=True)
 app = FastAPI()
 
 @app.post("/upload")
@@ -19,9 +20,24 @@ async def upload_file(file: UploadFile = File(...)):
     img_path = f"{file.filename}"
     detected_string = pre_predict(img_path)
 
-    print("detected_string:", detected_string)
-
-    return {"filename": detected_string}
+    detected_string = [
+                        {
+                            "quantity": "28",
+                            "drugname": "RENAPRIL",
+                            "usage": [
+                            "Sáng 1 viên",
+                            "Tối 1 viên"
+                            ]
+                        },
+                        {
+                            "drugname": "NOVOXIM",
+                            "quantity": "20",
+                            "usage": [
+                                "Tối 1 viên"
+                            ]
+                        }
+                    ]
+    return detected_string
 
 # @app.get("/upload")
 # async def upload_file(file: UploadFile = File(...)):
