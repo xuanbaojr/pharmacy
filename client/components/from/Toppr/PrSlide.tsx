@@ -29,14 +29,14 @@ const PrSlide = ({pr} : Props) => {
                 //   delay: 10000,
                 // }),
               ]}
-            className="w-full rounded-xl bg-slate-100 p-1"
+            className="w-full rounded-2xl bg-slate-100 "
         >
-        <CarouselContent>
+        <CarouselContent className="rounded-2xl">
             {pr.map((item, index) => (
             <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/1">
-                <div className="p-1 ">
-                    <div className="flex items-center justify-center p-6">
-                        <Image src={item.image} alt="anh" width={160} />
+                <div className="w-full overflow-hidden">
+                    <div className="flex items-center justify-center h-48 w-full overflow-hidden rounded-2xl">
+                        <Image src={item.image} alt="anh" className=" object-cover w-full rounded-2xl" />
                     </div>
                 </div>
             </CarouselItem>
