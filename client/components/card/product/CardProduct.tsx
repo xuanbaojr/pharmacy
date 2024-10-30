@@ -13,14 +13,14 @@ const CardProduct = ({pharmacy} : Props) => {
     return (
         <>
         
-        <div className="flex justify-center h-full ">
-            <Link href={`/phamacy/${pharmacy.sale}`} className="flex-col  hover:border hover:rounded-3xl hover:shadow-2xl ">
-            <div className="flex-col w-full h-full bg-[#edf2fb] rounded-3xl">
-                <div className="bg-[#cccccc] flex h-2/3 items-center justify-center rounded-3xl overflow-hidden border shadow-sm">
+        <div className="flex justify-center h-full bg-white ">
+            <Link href={`/phamacy/${pharmacy.sale}`} className="flex-col  hover:border hover:shadow-2xl ">
+            <div className="flex-col w-full h-full  ">
+                <div className=" flex h-2/3 items-center justify-center  overflow-hidden border shadow-sm">
                     <Image src={pharmacy.image} alt={pharmacy.alt} className="object-cover h-full  " />
                 </div>
                 {/*  */}
-                <div className=" grid grid-rows-4 h-1/3 p-1.5 rounded-b-3xl">
+                <div className=" grid grid-rows-4 h-1/3 p-1.5 ">
                     
                     {/* ten san pham */}
                     <div className=" row-span-2 text-left font-medium text-lg text-wrap line-clamp-2">

@@ -8,7 +8,7 @@ const SideBar = () => {
 
     return (
         <>
-        <div className="w-full bg-[#e1e5f2] mr-4 px-2 py-1 rounded-lg">
+        <div className="w-full  mr-4 px-2 py-1 rounded-lg">
             {
                 ListOptionSelect.map((item, index) => {
                     return (

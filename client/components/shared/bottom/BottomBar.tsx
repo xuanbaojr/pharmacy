@@ -7,8 +7,8 @@ interface Props {
 const BottomBar = () => {
 
     return (
-        <div className="mt-4 bg-slate-100 shadow-sm">
-            <div className="mx-32 py-4 px-2 ">
+        <div className="mt-4 bg-white shadow-sm">
+            <div className="mx-32 pt-4 px-2 ">
             <div className="grid grid-cols-5 ">
                 <div className="">
                     <div className="text-sm font-semibold py-1 mb-1">
@@ -74,7 +74,7 @@ const BottomBar = () => {
                 </div>
 
             </div>
-            <div className="border-t flex gap-3 justify-evenly border-slate-300 mt-3 p-3 ">
+            <div className="border-t flex gap-3 justify-evenly border-slate-300 mt-3 p-1 ">
                 <div className="">
                     2024 pharmacy
                 </div>
@@ -83,10 +83,28 @@ const BottomBar = () => {
                 </div>
             </div>
             </div>
-{/* under  */}
-            <div className="bg-slate-200">
+            {/* under  */}
+            <div className="bg-[#F7F7F7] flex justify-between items-center text-xs font-light text-[#828282] px-32 py-2">
                 <div>
-
+                    Bản quyền © 2024 thuộc về Công ty Cổ phần Bệnh viện Đa khoa Quốc tế Vinmec
+                </div>
+                <div className="flex ">
+                    <div className="px-1.5">
+                        <a>Điều khoản sử dụng</a>
+                    </div>
+                    <div className=" border-l border-[#828282] px-1.5">
+                        <a>Chính sách bảo mật</a>
+                    </div>
+                    <div className=" border-l border-[#828282] px-1.5">
+                        <a>Chính sách bảo vệ dữ liệu cá nhân
+                        </a>
+                    </div>
+                    <div className=" border-l border-[#828282] px-1.5">
+                        GR Privacy
+                    </div>
+                    <div className=" border-l border-[#828282] px-1.5">
+                        GR Terms
+                    </div>
                 </div>
             </div>
         </div>

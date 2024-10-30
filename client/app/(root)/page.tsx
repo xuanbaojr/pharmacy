@@ -10,7 +10,7 @@ const RootPage = () => {
 
     return (
         <>
-        <div className="mt-2 p-2">
+        <div className="mt-2 p-2 " >
 
             <div className="w-full px-5">
                 <TopPr />

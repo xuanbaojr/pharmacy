@@ -9,8 +9,8 @@ interface Props {
 const CheckoutAddress = () => {
 
     return (
-        <div className="grid grid-rows-2 px-4 py-1 rounded-md bg-slate-100">
-            <div className=" text-xl font-semibold text-orange-300 flex items-center gap-4">
+        <div className="grid grid-rows-2 px-4 py-2 rounded-md bg-white">
+            <div className=" text-xl font-semibold text-[#0076C0] flex items-center gap-4">
                 <FaLocationDot />
                 Địa chỉ người nhận
             </div>
@@ -28,7 +28,7 @@ const CheckoutAddress = () => {
                     <div className="border border-orange-500 text-orange-500 text-xs px-0.5">mặc định </div>
                 </div>
                 <div className="flex items-center justify-center">
-                    <Button>Thay dổi</Button>
+                    <Button>Thay đổi</Button>
                 </div>
             </div>
         </div>

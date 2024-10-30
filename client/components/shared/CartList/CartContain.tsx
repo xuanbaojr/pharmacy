@@ -164,7 +164,7 @@ const CartContain = ({cart} : Props) => {
         <div>
 
             {/* top */}
-            <div className="grid grid-cols-10 py-2 px-4 bg-slate-400 rounded-lg text-lg mb-5"> 
+            <div className="grid grid-cols-10 py-2 px-4 bg-slate-300 rounded-lg text-lg mb-5"> 
                 <div className="col-span-6 grid grid-cols-10">
                     <div className="col-span-1 text-center">
                         <Checkbox 
@@ -210,7 +210,7 @@ const CartContain = ({cart} : Props) => {
                 
             </div>
             {/* bottom */}
-            <div className=" grid grid-cols-10 sticky bottom-0 bg-slate-500 px-4 py-6 mt-10 rounded-sm">
+            <div className=" grid grid-cols-10 sticky bottom-0 bg-slate-300 px-4 py-6 mt-10 rounded-sm">
                 <div className="col-span-6 grid grid-cols-10">
                     <div className="col-span-1 flex items-center justify-center">
                         <Checkbox 

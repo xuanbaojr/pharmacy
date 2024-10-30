@@ -18,7 +18,7 @@ const RootLayout = ({children}: Props) => {
 
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-white`}>
+            <body className={`${inter.className} bg-[#F7F7F7]`}>
                 <div className="w-full">
                     <TopBar />
                 </div>
