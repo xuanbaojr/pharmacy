@@ -1,4 +1,4 @@
-import { ListOptionSelect } from "./Option"
+import { mainWindow } from "@/manager/MainWindow"
 
 
 interface Props {
@@ -11,13 +11,16 @@ const RightBar = () => {
         <>
         <div className="w-full  px-2 py-1 rounded-lg">
         {
-            ListOptionSelect.map((item, index) => {
+            mainWindow.getRightBar().map((item, index) => {
                 return (
                     <div key={index} className="my-4 ">
-                        {item.option("ad")}
+                        {item.getDes()}
                     </div>
                 )
             })
+        }
+        {
+            mainWindow.getLeR()
         }
         </div>
         </>

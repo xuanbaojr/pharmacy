@@ -1,5 +1,5 @@
 import GridArticle from "@/components/card/Article/GridArticle"
-import RightBar from "@/components/Kenecl/RightBarSelect/RightBar"
+import RightBar from "@/components/Kenecl/RightBar"
 
 interface Props {
 

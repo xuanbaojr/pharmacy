@@ -1,15 +1,10 @@
 'use server'
 import fs from 'fs';
 import path from 'path';
-import { IPlugin } from './plugin/IPlugin';
+import { RPlugin } from "./plugin/RPlugin";
 
-// const pluginRootDir = '@/manager/plugin'; // Đường dẫn đến thư mục chứa các plugin
-interface Props {
-
-}
-
-const  MainManager = (dir: string): IPlugin[] => {
-    const plugins: IPlugin[] = [];
+const LoadRPlugin = (dir: string): RPlugin[] => {
+    const plugins: RPlugin[] = [];
 
     // Đọc tất cả các thư mục trong thư mục gốc
     const folders = fs.readdirSync(dir).filter(file => 
@@ -23,13 +18,13 @@ const  MainManager = (dir: string): IPlugin[] => {
         fs.readdirSync(folderPath).forEach(file => {
             if (file === "index.tsx") {
             //     // Nhập tệp plugin
-                const pluginModule : any =  require(`../Plugin/sidebar/${folder}/index.tsx`)
+                const pluginModule : any =  require(`../Plugin/rightbar/${folder}/index.tsx`)
                 
             //     // // Kiểm tra xem có lớp nào kế thừa từ Plugin không
                 for (const key in pluginModule) {
                     const PluginClass = pluginModule[key];
                     if (typeof PluginClass === 'function' && 
-                        PluginClass.prototype instanceof IPlugin) {
+                        PluginClass.prototype instanceof RPlugin) {
                         // Tạo thể hiện của plugin và thêm vào danh sách
                         plugins.push(new PluginClass());
                     }
@@ -43,4 +38,4 @@ const  MainManager = (dir: string): IPlugin[] => {
     return plugins;
 }
 
-export default MainManager
+export default LoadRPlugin

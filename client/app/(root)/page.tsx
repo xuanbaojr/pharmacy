@@ -15,7 +15,6 @@ const RootPage = () => {
             <div className="w-full px-5">
                 <TopPr />
             </div>
-            
 
             <div className="flex justify-center my-4 mx-2 px-10">
                 <SlideCategori />
