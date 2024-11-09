@@ -18,6 +18,7 @@ namespace pharmacy.Data
         }
 
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
