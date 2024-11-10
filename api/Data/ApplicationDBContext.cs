@@ -19,6 +19,10 @@ namespace pharmacy.Data
 
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Wishlist> Wishlist { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
