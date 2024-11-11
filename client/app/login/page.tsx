@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from '@/hooks/AuthContext';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { successReponse } from "@/api/handle-response";
 
 const LoginPage = () => {
   const [visible, setVisible] = useState(false);
@@ -24,6 +25,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await login({ UserName: username, Password: password });
+      await successReponse(response);
       if(response.status === 200)
       {   
           const { token, userName } = response.data;
