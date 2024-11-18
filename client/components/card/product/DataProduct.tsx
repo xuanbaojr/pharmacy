@@ -16,6 +16,7 @@ import kent from "@/assets/image/kent.jpg"
 
 
 export interface pharmacy {
+    id : string,
     image : StaticImageData,
     alt : string,
     name : string,
@@ -23,96 +24,97 @@ export interface pharmacy {
     price : number,
 }
 
-export const Pharmacy : pharmacy[] = [
-    {
-        image : threenumber,
-        alt : "555",
-        name : 'Thuốc 3 số (Thuốc lá 555) asd asd asd asd f dfgas asd ',
-        sale : '1',
-        price : 26.000,
-    },
-    {
-        image : blackCaptain,
-        alt : " Thuốc lá Captain Black",
-        name : 'Captain Black classic 8 aroma',
-        sale : '2',
-        price : 120.000,
-    },
-    {
-        alt : "Thuốc lá Blue Seal",
-        image : blueseal,
-        name : 'Thuốc lá Blue Seal',
-        sale : '3',
-        price : 20.000 ,
-    },
-    {
-        alt : "Thuốc lá Camel",
-        image : camel,
-        name : 'Thuốc lá Camel',
-        sale : '4',
-        price : 45.000,
-    },
-    {
-        image : craven,
-        alt : "Thuốc lá con mèo (Thuốc lá Craven)",
-        name : 'Thuốc lá con mèo (Thuốc lá Craven)',
-        sale : '5',
-        price : 20.000,
-    },
-    {
-        image : dunhill,
-        alt : "Thuốc lá Dunhill",
-        name : 'Thuốc lá Dunhill',
-        sale : '6',
-        price : 550.000,
-    },
-    {
-        image : esse,
-        alt : "Thuốc lá Esse",
-        name : 'Thuốc lá Esse',
-        sale : '7',
-        price : 30.000,
-    },
-    {
-        image : kent,
-        alt : "Thuốc lá Kent",
-        name : 'Thuốc lá Kent',
-        sale : '8',
-        price :  20.000,
-    },
-    {
-        image : marlboro,
-        alt : "Thuốc lá Marlboro",
-        name : 'Thuốc lá Marlboro',
-        sale : '9',
-        price : 20.000,
-    },
-    {
-        image : mond,
-        alt : "Thuốc lá thơm (Thuốc lá Mond)",
-        name : 'Thuốc lá thơm (Thuốc lá Mond)',
-        sale : '10',
-        price : 90.000,
-    },
-    {
-        image : richmond,
-        alt : "Thuốc lá Richmond",
-        name : 'Thuốc lá Richmond',
-        sale : '11',
-        price : 45.000,
-    },
-    {
-        image : villiger,
-        alt : "Thuốc lá 7 màu",
-        name : 'Thuốc lá 7 màu',
-        sale : '12',
-        price : 180.000,
-    }
-]
+// export const Pharmacy : pharmacy[] = [
+//     {
+//         image : threenumber,
+//         alt : "555",
+//         name : 'Thuốc 3 số (Thuốc lá 555) asd asd asd asd f dfgas asd ',
+//         sale : '1',
+//         price : 26.000,
+//     },
+//     {
+//         image : blackCaptain,
+//         alt : " Thuốc lá Captain Black",
+//         name : 'Captain Black classic 8 aroma',
+//         sale : '2',
+//         price : 120.000,
+//     },
+//     {
+//         alt : "Thuốc lá Blue Seal",
+//         image : blueseal,
+//         name : 'Thuốc lá Blue Seal',
+//         sale : '3',
+//         price : 20.000 ,
+//     },
+//     {
+//         alt : "Thuốc lá Camel",
+//         image : camel,
+//         name : 'Thuốc lá Camel',
+//         sale : '4',
+//         price : 45.000,
+//     },
+//     {
+//         image : craven,
+//         alt : "Thuốc lá con mèo (Thuốc lá Craven)",
+//         name : 'Thuốc lá con mèo (Thuốc lá Craven)',
+//         sale : '5',
+//         price : 20.000,
+//     },
+//     {
+//         image : dunhill,
+//         alt : "Thuốc lá Dunhill",
+//         name : 'Thuốc lá Dunhill',
+//         sale : '6',
+//         price : 550.000,
+//     },
+//     {
+//         image : esse,
+//         alt : "Thuốc lá Esse",
+//         name : 'Thuốc lá Esse',
+//         sale : '7',
+//         price : 30.000,
+//     },
+//     {
+//         image : kent,
+//         alt : "Thuốc lá Kent",
+//         name : 'Thuốc lá Kent',
+//         sale : '8',
+//         price :  20.000,
+//     },
+//     {
+//         image : marlboro,
+//         alt : "Thuốc lá Marlboro",
+//         name : 'Thuốc lá Marlboro',
+//         sale : '9',
+//         price : 20.000,
+//     },
+//     {
+//         image : mond,
+//         alt : "Thuốc lá thơm (Thuốc lá Mond)",
+//         name : 'Thuốc lá thơm (Thuốc lá Mond)',
+//         sale : '10',
+//         price : 90.000,
+//     },
+//     {
+//         image : richmond,
+//         alt : "Thuốc lá Richmond",
+//         name : 'Thuốc lá Richmond',
+//         sale : '11',
+//         price : 45.000,
+//     },
+//     {
+//         image : villiger,
+//         alt : "Thuốc lá 7 màu",
+//         name : 'Thuốc lá 7 màu',
+//         sale : '12',
+//         price : 180.000,
+//     }
+// ]
 
-export const convertPharmacy = (data : any[]) : pharmacy[] => {
+export const convertPharmacyList = (data : any[]) : pharmacy[] => {
     const da : pharmacy[] = data.map((item : any )=> {
         return {
+            id : item.id,
             image : item.id,
             alt : item.alt,
             name : item.name,
@@ -120,6 +122,19 @@ export const convertPharmacy = (data : any[]) : pharmacy[] => {
             price : 1,
         }
     })
+
+    return data
+}
+export const convertPharmacy = (data : any) : pharmacy => {
+    const da : pharmacy = {
+            id : data.id,
+            image : data.id,
+            alt : data.alt,
+            name : data.name,
+            sale : data.sale,
+            price : 1,
+        }
+    
 
     return data
 }

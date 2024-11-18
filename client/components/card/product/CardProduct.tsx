@@ -1,4 +1,3 @@
-
 import { pharmacy } from "@/components/card/product/DataProduct";
 import { convertComment } from "@/utils/comment";
 import Image from "next/image";
@@ -14,7 +13,7 @@ const CardProduct = ({pharmacy} : Props) => {
         <>
         {/* phẩmcy.['sale'] */}
         <div className="flex justify-center h-full bg-white ">
-            <Link href={`/phamacy/${pharmacy.sale}`} className="flex-col  hover:border hover:shadow-2xl ">
+            <Link href={`/phamacy/${pharmacy.id}`} className="flex-col  hover:border hover:shadow-2xl ">
             <div className="flex-col w-full h-full  ">
                 <div className=" flex h-2/3 items-center justify-center  overflow-hidden border shadow-sm">
                     <Image src={pharmacy.image} alt={pharmacy.alt} className="object-cover h-full  " />
@@ -45,9 +44,6 @@ const CardProduct = ({pharmacy} : Props) => {
             </div>
             </Link>
         </div>
-
-
-        
         </>
     )
 }

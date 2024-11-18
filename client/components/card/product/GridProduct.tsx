@@ -1,7 +1,7 @@
 
 import instance from "@/utils/axios"
 import CardProduct from "./CardProduct"
-import { convertPharmacy, pharmacy, Pharmacy } from "./DataProduct"
+import { convertPharmacyList, pharmacy } from "./DataProduct"
 
 interface Props {
 
@@ -9,7 +9,7 @@ interface Props {
 
 const GridProduct = async() => {
     const data  = await instance.get(`/api/RMD01`)
-    const newdata : pharmacy[] = convertPharmacy(data.data);
+    const newdata : pharmacy[] = convertPharmacyList(data.data);
 
     return (
         <>

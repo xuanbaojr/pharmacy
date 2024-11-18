@@ -1,5 +1,6 @@
-import { Pharmacy } from "@/components/card/product/DataProduct";
+import { convertPharmacy } from "@/components/card/product/DataProduct";
 import ViewProduct from "@/components/card/ViewProduct/ViewProduct"
+import instance from "@/utils/axios";
 
 interface Props {
 
@@ -7,8 +8,9 @@ interface Props {
 }
 
 
-const ProductPage = ({ params }: { params: { id: string } }) => {
-    const product = Pharmacy.find(item=> item.sale === params.id);
+const ProductPage = async ({ params }: { params: { id: string } }) => {
+    const data = await instance.get(`/api/RMD01/${params.id}`);
+    const product = await convertPharmacy(data.data)
     if(!product) return;
 
 
