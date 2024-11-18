@@ -109,3 +109,17 @@ export const Pharmacy : pharmacy[] = [
         price : 180.000,
     }
 ]
+
+export const convertPharmacy = (data : any[]) : pharmacy[] => {
+    const da : pharmacy[] = data.map((item : any )=> {
+        return {
+            image : item.id,
+            alt : item.alt,
+            name : item.name,
+            sale : item.sale,
+            price : 1,
+        }
+    })
+
+    return data
+}

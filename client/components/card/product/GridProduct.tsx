@@ -1,18 +1,22 @@
+
+import instance from "@/utils/axios"
 import CardProduct from "./CardProduct"
-import { Pharmacy } from "./DataProduct"
+import { convertPharmacy, pharmacy, Pharmacy } from "./DataProduct"
 
 interface Props {
 
 }
 
-const GridProduct = () => {
+const GridProduct = async() => {
+    const data  = await instance.get(`/api/RMD01`)
+    const newdata : pharmacy[] = convertPharmacy(data.data);
 
     return (
         <>
         <div className="w-full p-2 ">
             <div className="grid grid-cols-5 gap-3"> 
                 {
-                    Pharmacy.map((item,index) => {
+                    newdata.map((item,index) => {
                         return (
                             <CardProduct key={index} pharmacy={item} />
                         )

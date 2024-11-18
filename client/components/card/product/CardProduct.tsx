@@ -12,7 +12,7 @@ const CardProduct = ({pharmacy} : Props) => {
 
     return (
         <>
-        
+        {/* phẩmcy.['sale'] */}
         <div className="flex justify-center h-full bg-white ">
             <Link href={`/phamacy/${pharmacy.sale}`} className="flex-col  hover:border hover:shadow-2xl ">
             <div className="flex-col w-full h-full  ">

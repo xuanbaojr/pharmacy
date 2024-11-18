@@ -10,7 +10,6 @@ interface Props {
 
 const  MainManager = (dir: string): IPlugin[] => {
     const plugins: IPlugin[] = [];
-
     // Đọc tất cả các thư mục trong thư mục gốc
     const folders = fs.readdirSync(dir).filter(file => 
         fs.statSync(path.join(dir, file)).isDirectory()
@@ -18,7 +17,7 @@ const  MainManager = (dir: string): IPlugin[] => {
     // Duyệt qua từng thư mục
     folders.forEach(folder => {
         const folderPath = path.join(dir, folder);
-
+    
         // Đọc tất cả các tệp trong thư mục
         fs.readdirSync(folderPath).forEach(file => {
             if (file === "index.tsx") {
