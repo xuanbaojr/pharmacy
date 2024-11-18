@@ -26,11 +26,12 @@ namespace pharmacy.Controllers.Medicine
             {
                 var medicines = _context.Medicines.Select(m => new
                 {
-                    Id = m.MedicineID,
+                    id = m.MedicineID,
                     name = m.Name,
                     stock = m.Stock,
                     price = m.Price,
                     specification = m.Specification,
+                    mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault()
                 }).ToList();
 
                 _res.Status = StatusCodes.Status200OK.ToString();
@@ -70,6 +71,10 @@ namespace pharmacy.Controllers.Medicine
                     contraindication = m.Contraindication,
                     country = m.Country,
                     intendedFor = m.IntendedFor,
+                    images = _context.Images.Where(i => i.MedicineID == m.MedicineID).Select(i => new
+                    {
+                        i.Url,
+                    }).ToList()
                 }).FirstOrDefault();
                 if (medicine == null)
                 {
@@ -143,6 +148,5 @@ namespace pharmacy.Controllers.Medicine
                 return StatusCode(500, _res);
             }
         }
-
     }
 }

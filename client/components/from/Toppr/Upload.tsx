@@ -1,7 +1,7 @@
 import { IoArrowForward } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/image/home1.png";
+import logo from "@/public/assets/image/home1.png";
 
 const Upload = () => {
   return (

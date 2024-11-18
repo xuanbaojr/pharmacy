@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
-import img from "@/assets/image/login.png";
+import img from "@/public/assets/image/login.png";
 import { login } from "@/api/account";
 import { useRouter } from "next/navigation";
 import { useAuth } from '@/hooks/AuthContext';
@@ -28,7 +28,7 @@ const LoginPage = () => {
       await successReponse(response);
       if(response.status === 200)
       {   
-          const { token, userName } = response.data;
+          const { token, userName } = response.data.data;
           localStorage.setItem('Username', userName);
           authLogin(token);
           toast.success("Đăng nhập thành công!", toastOptions);

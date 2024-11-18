@@ -1,6 +1,7 @@
 import TopBar from "@/components/Kenecl/TopbarSelect/Topbar";
 import SideBar from "@/components/Kenecl/SideBarSelect/SideBar";
 import GridProduct from "@/components/card/product/GridProduct";
+import { getMedicine } from "@/api/medicine";
 
 
 interface Props {

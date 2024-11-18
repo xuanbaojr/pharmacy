@@ -21,6 +21,7 @@ namespace pharmacy.Models
         public string? Country { get; set; }
         public string? Specification { get; set; }
         public string? IntendedFor { get; set; }
+        public string? Json { get; set; }
         public string? FlexCol1 { get; set; }
         public string? FlexCol2 { get; set; }
         public string? FlexCol3 { get; set; }

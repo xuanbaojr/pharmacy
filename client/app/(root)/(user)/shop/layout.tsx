@@ -1,4 +1,3 @@
-import ProtectedRoute from '@/components/ProtectedRoute';
 
 interface Props {
     children : React.ReactNode;
@@ -7,9 +6,9 @@ interface Props {
 const ShopLayout = ({children}: Props) => {
 
     return (
-        <ProtectedRoute>
+        <>    
             {children}
-        </ProtectedRoute>
+        </>
     )
 }
 

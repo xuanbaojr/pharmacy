@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import img from "@/assets/image/login.png";
+import img from "@/public/assets/image/login.png";
 import  Link  from "next/link";
 import { register } from "@/api/account";
 import { useRouter } from "next/navigation";

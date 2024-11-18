@@ -1,4 +1,4 @@
-export const  URL = 'https://localhost:7029';
+export const  URL = 'http://pharmacy.com';
 
 export const RAW_JSON = {
     'Content-Type': 'application/json',
@@ -7,4 +7,5 @@ export const RAW_JSON = {
 
 export const LOGIN = '/api/account/login';
 export const REGISTER = '/api/account/register';
+export const GET_MEDICINE = '/api/RMD01';
 

@@ -22,10 +22,10 @@ const RootPage = () => {
             </div>
 
             <div className="w-full px-20  rounded-lg">
-                <FormRe name="Ưu Đãi"/>
+                {/* <FormRe name="Ưu Đãi"/> */}
             </div>
             <div className="w-full px-20  rounded-lg" >
-                <FormRe name="Phổ biến"/>
+                {/* <FormRe name="Phổ biến"/> */}
             </div>
 
             
