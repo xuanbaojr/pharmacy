@@ -173,3 +173,6 @@ Sau khi khám ở bệnh viện bất kì, người bệnh nhận được phi�
 
 4. Demo
 	Kết quả mô hình xem tại [đây](https://drive.google.com/drive/u/0/folders/17q8cqpbBewHvsQ5e7LI0UT4-poGgn2hw) 
+
+
+Link google docs: https://docs.google.com/document/d/1BJUBd4-zIw21jZYrJs7KtnSwb2UyWCufBy-JLrdSCtA/edit?usp=sharing
