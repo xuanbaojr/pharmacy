@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from '@/assets/image/logo.png'
+import logo from '@/public/assets/image/logo.png'
 import Link from "next/link";
 
 interface Props {

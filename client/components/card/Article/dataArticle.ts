@@ -1,8 +1,8 @@
 import { StaticImageData } from "next/image";
-import anh1 from "@/assets/article/blog-1.jpg"
-import anh2 from "@/assets/article/blog-2.jpg"
-import anh3 from "@/assets/article/blog-3.jpg"
-import anh4 from "@/assets/article/blog-4.jpg"
+import anh1 from "@/public/assets/article/blog-1.jpg"
+import anh2 from "@/public/assets/article/blog-2.jpg"
+import anh3 from "@/public/assets/article/blog-3.jpg"
+import anh4 from "@/public/assets/article/blog-4.jpg"
 
 export interface Article {
     image : StaticImageData,

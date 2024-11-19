@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image"
-import anh from "@/assets/image/logo.png"
+import anh from "@/public/assets/image/logo.png"
 
 import { ListArticle } from '@/components/card/Article/dataArticle'
 import EmblaCarousel from '@/components/test/test'

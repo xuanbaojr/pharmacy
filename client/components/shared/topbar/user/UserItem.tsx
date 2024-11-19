@@ -1,5 +1,5 @@
+"use client";  
 import { UserItem } from "@/components/shared/topbar/user/userContants";
-import Link from "next/link";
 
 interface Props {
     item : UserItem;
@@ -7,16 +7,10 @@ interface Props {
 
 const UserItemLink = ({item} : Props) => {
     return (
-        <>
         <div className="flex items-center justify-center">
-            <Link href={item.link} >
-                {item.icon}
-            </Link>
-
+            {item.icon}
         </div>
-        </>
     )
 }
 
 export default UserItemLink;
-

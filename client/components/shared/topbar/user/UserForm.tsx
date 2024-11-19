@@ -1,3 +1,4 @@
+"use client";  
 import { UserItem } from "@/components/shared/topbar/user/userContants";
 import UserItemLink from "./UserItem";
 
@@ -7,7 +8,6 @@ interface Props {
 
 const UserForm = ({user} : Props) => {
     return (
-        <>
         <div className="flex justify-evenly gap-7">
             {
                 user.map((item) => {
@@ -16,9 +16,7 @@ const UserForm = ({user} : Props) => {
                     )
                 })
             }
-
         </div>
-        </>
     )
 }
 

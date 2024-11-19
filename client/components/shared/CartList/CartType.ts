@@ -1,4 +1,4 @@
-import anh1 from "@/assets/image/Mond.png"
+import anh1 from "@/public/assets/image/Mond.png"
 import { StaticImageData } from "next/image"
 
 export interface pharmacy {

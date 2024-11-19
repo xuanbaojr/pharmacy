@@ -6,8 +6,8 @@ interface Props {
 const ShopLayout = ({children}: Props) => {
 
     return (
-        <>
-        {children}
+        <>    
+            {children}
         </>
     )
 }

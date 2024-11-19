@@ -1,16 +1,19 @@
-
-import instance from "@/utils/axios"
+import { Button } from "@/components/ui/button"
 import CardProduct from "./CardProduct"
+import { Pharmacy } from "./DataProduct"
 import { convertPharmacyList, pharmacy } from "./DataProduct"
+import { getMedicine } from "@/api/medicine"
+
 
 interface Props {
 
 }
 
-const GridProduct = async() => {
-    const data  = await instance.get(`/api/RMD01`)
-    const newdata : pharmacy[] = convertPharmacyList(data.data);
-
+const GridProduct = async () =>  {
+    
+    const res : any = await getMedicine();
+    const newdata : pharmacy[] = convertPharmacyList(res.data.data);
+    
     return (
         <>
         <div className="w-full p-2 ">
@@ -23,7 +26,6 @@ const GridProduct = async() => {
                     })
                 }
             </div>
-
         </div>
         
         </>
