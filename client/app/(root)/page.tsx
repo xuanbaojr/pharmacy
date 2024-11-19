@@ -10,12 +10,11 @@ const RootPage = () => {
 
     return (
         <>
-        <div className="mt-2 p-2">
+        <div className="mt-2 p-2 " >
 
             <div className="w-full px-5">
                 <TopPr />
             </div>
-            
 
             <div className="flex justify-center my-4 mx-2 px-10">
                 <SlideCategori />

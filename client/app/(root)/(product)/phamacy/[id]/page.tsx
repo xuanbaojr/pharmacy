@@ -1,7 +1,9 @@
+
 import { getMedicineDetail } from "@/api/medicine";
 import { convertPharmacy} from "@/components/card/product/DataProduct";
 import ViewProduct from "@/components/card/ViewProduct/ViewProduct";
 import testJson from '@/utils/testJson.json'; 
+
 
 interface Props {}
 
@@ -12,6 +14,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
     if (!productData) return;
 
     const data = await getMedicineDetail(params.id);
+
     const product = await convertPharmacy(data.data)
     if(!product) return;
     return (

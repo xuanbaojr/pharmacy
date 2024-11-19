@@ -1,5 +1,5 @@
-import TopBar from "@/components/Kenecl/TopbarSelect/Topbar";
-import SideBar from "@/components/Kenecl/SideBarSelect/SideBar";
+import TopBar from "@/components/Kenecl/Topbar";
+import SideBar from "@/components/Kenecl/SideBar";
 import GridProduct from "@/components/card/product/GridProduct";
 import { getMedicine } from "@/api/medicine";
 

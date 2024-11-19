@@ -16,7 +16,7 @@ const TopBar = () => {
 
     return (
         <>
-        <div className="w-full bg-[#e1e5f2] rounded-lg flex p-2 justify-between">
+        <div className="w-full  rounded-lg flex p-2 justify-between">
             {/* option */}
             <div className="pl-5 ">
                 <InSort />

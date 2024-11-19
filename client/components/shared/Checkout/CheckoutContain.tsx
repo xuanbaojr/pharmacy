@@ -1,18 +1,21 @@
+import { cart } from "../CartList/CartType"
 import CheckoutAddress from "./CheckoutAddress"
+import CheckoutList from "./checkoutprod/CheckoutList"
+import CheckoutPay from "./CheckoutPay"
 
 
 interface Props {
-
+    listOrder : cart
 }
 
-const CheckoutContain = () => {
+const CheckoutContain = ({listOrder} : Props) => {
 
     return (
-        <div>
+        <div className=" space-y-4">
             <CheckoutAddress />
 
-            
-
+            <CheckoutList list={listOrder}/>
+            <CheckoutPay />
 
         </div>
     )
