@@ -16,12 +16,13 @@ import { StaticImageData } from "next/image";
 
 
 export interface pharmacy {
-    id : string,
+    id : number,
     image : string,
     alt : string,
     name : string,
     sale : string,
     price : number,
+    specification: string,
 }
 
 // export const Pharmacy : pharmacy[] = [
@@ -118,7 +119,7 @@ export const convertPharmacyList = (data : any[]) : pharmacy[] => {
             image : item.mainImage,
             alt : item.alt,
             name : item.name,
-            sale : item.sale,
+            specification : item.specification,
             price : item.price,
         }
     })
