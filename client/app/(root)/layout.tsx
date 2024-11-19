@@ -6,6 +6,9 @@ import BottomBar from "@/components/shared/bottom/BottomBar";
 import { AuthProvider } from '@/hooks/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MainManager from "@/manager/MainManager";
+import { mainWindow } from "@/manager/MainWindow";
+import LoadRPlugin from "@/manager/LoadRPlugin";
 
 interface Props {
     children: React.ReactNode;
@@ -16,7 +19,19 @@ export const metadata: Metadata = {
     description: 'A Next.js 13 Meta Threads Application',
 };
 
+
 const inter = Inter({ subsets: ["latin"] });
+
+const pluginsidebar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/sidebar'; // Đường dẫn đến thư mục chứa các plugin
+const pluginrightbar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/rightbar'; // Đường dẫn đến thư mục chứa các plugin
+
+
+const sideBar = MainManager(pluginsidebar);
+const rightBar = LoadRPlugin(pluginrightbar)
+
+mainWindow.loadPlugin(sideBar, rightBar)
+
+
 
 const RootLayout = ({ children }: Props) => {
     return (
@@ -27,6 +42,7 @@ const RootLayout = ({ children }: Props) => {
                         <TopBar />
                     </div>
                     <ToastContainer />
+
                     {children}
                     <div>
                         <BottomBar />

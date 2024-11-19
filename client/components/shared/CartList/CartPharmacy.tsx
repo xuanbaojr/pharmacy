@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { pharmacy } from "./CartType";
 import { useEffect, useState } from "react";
 import Quantity from "./option/quantityy";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PharmacyState } from "./CartState";
@@ -34,7 +34,7 @@ const CartPharmacy = ({pharmacy,name,  change, updateBill} : Props) => {
    
 
     return (
-        <div className="border shadow-sm px-4 py-2 grid grid-cols-10 rounded-lg ">
+        <div className="border shadow-sm px-4 py-2 grid grid-cols-10 bg-white rounded-lg ">
             <div className="col-span-6 grid grid-cols-10 ">
                 <div className="col-span-1 flex justify-center items-center">
                     <Checkbox checked={pharmacy.check} onCheckedChange={() => {change(pharmacy.description, name )}} className="border-slate-500"/>
@@ -61,7 +61,7 @@ const CartPharmacy = ({pharmacy,name,  change, updateBill} : Props) => {
 
                 <div className="col-span-1 flex justify-center items-center">
                     <Button>
-                        <MdDeleteOutline className="h-5 w-5" color="red" />
+                        <MdDelete  className="h-5 w-5" color="red" />
                     </Button>
                     
                 </div>

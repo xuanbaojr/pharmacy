@@ -8,7 +8,6 @@ interface Props {
 }
 
 const ViewProduct = ({product} : Props) => {
-
     return (
         <>
         <div className="w-full flex gap-5 px-2 py-4 ">
@@ -18,8 +17,6 @@ const ViewProduct = ({product} : Props) => {
             <div className="w-3/5">
                 <InforProduct product={product}/>
             </div>
-            
-
 
         </div>
         </>
