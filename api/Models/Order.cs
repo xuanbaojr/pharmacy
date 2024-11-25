@@ -11,9 +11,12 @@ namespace pharmacy.Models
         public string? Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public string? ShippingAddress { get; set; }
-        public string? FlexCol2 { get; set; }
-        public string? FlexCol3 { get; set; }
-        public string? FlexCol4 { get; set; }
-        public string? FlexCol5 { get; set; }
+        public Boolean IsBuy { get; set; }
+        public string? Orderer { get; set; }
+        public string? Consignee { get; set; }
+        public string? OrderPhoneNum { get; set; }
+        public string? ReceivePhoneNum { get; set; }
+        public string? Note { get; set; }
+        public string? PaymentMethod { get; set; }
     }
 }
