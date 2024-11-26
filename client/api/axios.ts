@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 const axiosClient = axios.create({
-    baseURL: 'http://pharmacy.com',
+    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
@@ -9,7 +9,7 @@ const axiosClient = axios.create({
 });
 
 export const axiosQbert = axios.create({
-    baseURL: 'http://pharmacy.com',
+    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',

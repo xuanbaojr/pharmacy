@@ -4,6 +4,7 @@ import anh from "@/public/assets/image/logo.png"
 import { ListArticle } from '@/components/card/Article/dataArticle'
 import EmblaCarousel from '@/components/test/test'
 import { EmblaOptionsType } from 'embla-carousel'
+import { ImageUrl } from "./ViewDataProduct"
 
 
 const OPTIONS: EmblaOptionsType = {}
@@ -12,13 +13,11 @@ const OPTIONS: EmblaOptionsType = {}
 
 
 interface Props {
-    image : string | StaticImageData 
+    image : ImageUrl[]
 }
 
 const ImageProduct = ({image} : Props) => {
-    const ListImage : (string | StaticImageData)[] = [
-        image, image, image, image ,image, image 
-    ]
+    const ListImage : ImageUrl[] = image
     const SLIDES = Array.from(Array(ListImage.length).keys())
 
     return (

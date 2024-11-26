@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
+import { ImageUrl } from '../card/ViewProduct/ViewDataProduct'
 
 type PropType = {
   selected: boolean
-  image: string | StaticImageData
+  image: ImageUrl
   onClick: () => void
 }
 
@@ -21,7 +22,7 @@ export const Thumb: React.FC<PropType> = (props) => {
         onClick={onClick}
         className=" h-24 bg-transparent cursor-pointer border-0 p-0 m-0 flex items-center justify-center"
       >
-        <Image  src={image} alt="as " className="object-cover h-full"/> 
+        <Image  src={image} width={100} height={80} alt="as " className="object-cover h-full"/> 
       </Button>
     </div>
   )

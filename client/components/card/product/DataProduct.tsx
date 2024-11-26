@@ -22,94 +22,9 @@ export interface pharmacy {
     name : string,
     sale : string,
     price : number,
+
 }
 
-// export const Pharmacy : pharmacy[] = [
-//     {
-//         image : threenumber,
-//         alt : "555",
-//         name : 'Thuốc 3 số (Thuốc lá 555) asd asd asd asd f dfgas asd ',
-//         sale : '1',
-//         price : 26.000,
-//     },
-//     {
-//         image : blackCaptain,
-//         alt : " Thuốc lá Captain Black",
-//         name : 'Captain Black classic 8 aroma',
-//         sale : '2',
-//         price : 120.000,
-//     },
-//     {
-//         alt : "Thuốc lá Blue Seal",
-//         image : blueseal,
-//         name : 'Thuốc lá Blue Seal',
-//         sale : '3',
-//         price : 20.000 ,
-//     },
-//     {
-//         alt : "Thuốc lá Camel",
-//         image : camel,
-//         name : 'Thuốc lá Camel',
-//         sale : '4',
-//         price : 45.000,
-//     },
-//     {
-//         image : craven,
-//         alt : "Thuốc lá con mèo (Thuốc lá Craven)",
-//         name : 'Thuốc lá con mèo (Thuốc lá Craven)',
-//         sale : '5',
-//         price : 20.000,
-//     },
-//     {
-//         image : dunhill,
-//         alt : "Thuốc lá Dunhill",
-//         name : 'Thuốc lá Dunhill',
-//         sale : '6',
-//         price : 550.000,
-//     },
-//     {
-//         image : esse,
-//         alt : "Thuốc lá Esse",
-//         name : 'Thuốc lá Esse',
-//         sale : '7',
-//         price : 30.000,
-//     },
-//     {
-//         image : kent,
-//         alt : "Thuốc lá Kent",
-//         name : 'Thuốc lá Kent',
-//         sale : '8',
-//         price :  20.000,
-//     },
-//     {
-//         image : marlboro,
-//         alt : "Thuốc lá Marlboro",
-//         name : 'Thuốc lá Marlboro',
-//         sale : '9',
-//         price : 20.000,
-//     },
-//     {
-//         image : mond,
-//         alt : "Thuốc lá thơm (Thuốc lá Mond)",
-//         name : 'Thuốc lá thơm (Thuốc lá Mond)',
-//         sale : '10',
-//         price : 90.000,
-//     },
-//     {
-//         image : richmond,
-//         alt : "Thuốc lá Richmond",
-//         name : 'Thuốc lá Richmond',
-//         sale : '11',
-//         price : 45.000,
-//     },
-//     {
-//         image : villiger,
-//         alt : "Thuốc lá 7 màu",
-//         name : 'Thuốc lá 7 màu',
-//         sale : '12',
-//         price : 180.000,
-//     }
-// ]
 
 export const convertPharmacyList = (data : any[]) : pharmacy[] => {
     const da : pharmacy[] = data.map((item : any )=> {
@@ -118,8 +33,9 @@ export const convertPharmacyList = (data : any[]) : pharmacy[] => {
             image : item.mainImage,
             alt : item.alt,
             name : item.name,
-            sale : item.sale,
+            sale : item.numberOfSale,
             price : item.price,
+
         }
     })
 
