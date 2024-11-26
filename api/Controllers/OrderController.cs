@@ -81,6 +81,13 @@ namespace pharmacy.Controllers
                         return NotFound(_res);
                     }
 
+                    if (medicine.Stock < item.Quantity)
+                    {
+                        _res.Status = StatusCodes.Status400BadRequest.ToString();
+                        _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "Not enough stock for medicine.", string.Empty));
+                        return BadRequest(_res);
+                    }
+
                     var orderItem = new OrderItem
                     {
                         OrderID = order.OrderID,
@@ -90,6 +97,8 @@ namespace pharmacy.Controllers
                     };
 
                     totalAmount += orderItem.Price;
+
+                    medicine.Stock -= item.Quantity;
 
                     _context.OrderItems.Add(orderItem);
                 }

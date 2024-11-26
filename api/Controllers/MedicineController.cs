@@ -31,7 +31,8 @@ namespace pharmacy.Controllers.Medicine
                     stock = m.Stock,
                     price = m.Price,
                     specification = m.Specification,
-                    mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault()
+                    mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
+                    numberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
                 }).ToList();
 
                 _res.Status = StatusCodes.Status200OK.ToString();
@@ -74,7 +75,8 @@ namespace pharmacy.Controllers.Medicine
                     images = _context.Images.Where(i => i.MedicineID == m.MedicineID).Select(i => new
                     {
                         i.Url,
-                    }).ToList()
+                    }).ToList(),
+                    numberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
                 }).FirstOrDefault();
                 if (medicine == null)
                 {
@@ -128,7 +130,8 @@ namespace pharmacy.Controllers.Medicine
                     Name = m.Name,
                     Price = m.Price,
                     Stock = m.Stock,
-                    Specification = m.Specification
+                    Specification = m.Specification,
+                    NumberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
                 }).ToList();
 
                 _res.Status = StatusCodes.Status200OK.ToString();

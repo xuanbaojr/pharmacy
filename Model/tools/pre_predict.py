@@ -22,22 +22,18 @@ yolo_model = YOLO(yolo_weights)
 
 drugname_path = os.path.join(current_dir, "..", "data", "drugnames.txt")
 
-char_list = [
-    ' ', "'", '(', ')', '+', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', ';', 'A', 'B', 'C', 'D', 'E', 'F',
-    'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
-    'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z', 'Â', 'Ã', 'Ê', 'Í', 'Đ', 'Ư', 'Ạ', 'Ầ',
-    'Ế', 'Ệ', 'Ố', 'ố', 'Ộ', 'Ỡ'
-]
+char_list = [' ', '#', "'", '(', ')', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'Â', 'Ã', 'Ê', 'Í', 'Ô', 'à', 'á', 'â', 'ã', 'è', 'é', 'ê', 'ì', 'í', 'ò', 'ó', 'ô', 'õ', 'ù', 'ú', 'ý', 'ă', 'Đ', 'đ', 'ĩ', 'ũ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ạ', 'ạ', 'ả', 'ấ', 'Ầ', 'ầ', 'ẩ', 'ậ', 'ắ', 'ằ', 'ẵ', 'ặ', 'ẻ', 'ẽ', 'Ế', 'ế', 'ề', 'ể', 'ễ', 'Ệ', 'ệ', 'ỉ', 'ị', 'ọ', 'ỏ', 'Ố', 'ố', 'ồ', 'ổ', 'ỗ', 'Ộ', 'ộ', 'ớ', 'ờ', 'ở', 'Ỡ', 'ỡ', 'ợ', 'ụ', 'ủ', 'Ứ', 'ứ', 'ừ', 'ử', 'ữ', 'ự', 'ỳ', 'ỵ', 'ỷ', 'ỹ']
 
 def preprocess_img(detected_image):
-    """Preprocess image for OCR prediction."""
-    height, width = detected_image.shape
-    img = cv2.resize(detected_image, (int(118 / height * width), 118))
-    img = np.pad(img, ((0, 0), (0, max(0, 2522 - img.shape[1]))), 'median')
-    img = cv2.GaussianBlur(img, (5, 5), 0)
-    img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 4)
-    img = np.expand_dims(img, axis=2) / 255.0
-    return img
+        height, width = detected_image.shape
+        img = cv2.resize(detected_image,(int(118/height*width),118))
+        height, width = img.shape
+        img = np.pad(img, ((0,0), (0, 2522 - width)), 'median')
+        img = cv2.GaussianBlur(img, (5,5), 0)
+        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 4)
+        img = img / 255.0
+        img = np.expand_dims(img, axis = 2)
+        return img
 
 def get_accuracy(pred_text):
     drugname_data = pd.read_csv(drugname_path, on_bad_lines='skip')
@@ -110,7 +106,7 @@ def pre_predict(im):
                 y_preds.append(dict)
                 dict = {}
 
-    plt.show()
+    # plt.show()
     return y_preds
 
 if __name__ == "__main__":

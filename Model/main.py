@@ -3,13 +3,26 @@ import uuid
 import os
 from tools.pill_predict import pill_predict
 from tools.pre_predict import pre_predict
+from fastapi.middleware.cors import CORSMiddleware
 
 
 image_dir = "images/"
 os.makedirs(image_dir, exist_ok=True)
 app = FastAPI()
 
-@app.post("/upload")
+app.add_middleware(
+    CORSMiddleware, # https://fastapi.tiangolo.com/tutorial/cors/
+    allow_origins=['*'], # wildcard to allow all, more here - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+    allow_credentials=True, # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
+    allow_methods=['*'], # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods
+    allow_headers=['*'], # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
+)
+
+@app.get("/")
+async def hello_world():
+    return {"hello:": "world !"}
+
+@app.post("/prescription")
 async def upload_file(file: UploadFile = File(...)):
     file.filename = "img_01.jpg"
     contents = await file.read()
@@ -39,19 +52,20 @@ async def upload_file(file: UploadFile = File(...)):
                     ]
     return detected_string
 
-# @app.get("/upload")
-# async def upload_file(file: UploadFile = File(...)):
-#     file.filename = "img_01.png"
-#     contents = await file.read()
+# import nest_asyncio
+# from pyngrok import ngrok
+# import uvicorn
 
-#     with open(f"{image_dir}{file.filename}", "wb") as f:
-#         f.write(contents)
-    
-#     img_path = f"{image_dir}{file.filename}"
-#     yolo_checkpoint_path = "OCR/detection/weights/drugname_detection.pt"
-    
-#     yolo_predictor = Yolo_Prescription(img_path, yolo_checkpoint_path)
-#     detected_string = yolo_predictor.img_detect()
-#     print("len(detected_string):", len(detected_string))
 
-#     return {"filename": detected_string}
+# # specify a port
+# port = 8001
+# ngrok_tunnel = ngrok.connect(port)
+
+# # where we can visit our fastAPI app
+# print('Public URL:', ngrok_tunnel.public_url)
+
+
+# nest_asyncio.apply()
+
+# if __name__ =="__main__":
+#     uvicorn.run(app, port=port)

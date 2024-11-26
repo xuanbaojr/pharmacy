@@ -16,7 +16,7 @@ import { StaticImageData } from "next/image";
 
 
 export interface pharmacy {
-    id : string,
+    id : number,
     image : string,
     alt : string,
     name : string,

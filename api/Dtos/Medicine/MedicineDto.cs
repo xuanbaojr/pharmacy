@@ -16,6 +16,7 @@
             public decimal Price { get; set; }
             public int Stock { get; set; }
             public string? Specification { get; set; }
+            public int NumberOfSale { get; set; }
         }
     }
 }

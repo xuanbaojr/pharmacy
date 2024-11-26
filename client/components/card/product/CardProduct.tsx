@@ -10,7 +10,7 @@ interface Props {
 
 const CardProduct = ({pharmacy} : Props) => {
     
-    const imagePath = pharmacy.image ? pharmacy.image : "/assets/image/anhho.jpg";
+    const imagePath = pharmacy.image ;
 
     // Kiểm tra giá trị của imagePath
     // console.log("imagePath:", imagePath);
@@ -30,7 +30,7 @@ const CardProduct = ({pharmacy} : Props) => {
                     </div> 
                     {/* loai san pham */}
                     <div className="row-span-1 text-sm flex items-end">
-                        Thuốc bổ
+                         {pharmacy.specification}
                     </div>
                         {/* gia ban cung da ban */}
                     <div className="flex items-end row-span-1 justify-between mx-2 ">
