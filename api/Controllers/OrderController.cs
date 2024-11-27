@@ -133,9 +133,10 @@ namespace pharmacy.Controllers
                     OrderItems = orderItems.Select(oi => new OrderItemDto.OrderItemResponse
                     {
                         OrderItemID = oi.OrderItemID ?? 0,
-                        MedicineID = oi.MedicineID ?? 0,
+                        Name = _context.Medicines.Where(m => m.MedicineID == oi.MedicineID).Select(m => m.Name).FirstOrDefault(),
+                        MainImage = _context.Images.Where(i => i.MedicineID == oi.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
                         Quantity = oi.Quantity,
-                        TotalPrice = oi.TotalPrice ?? 0
+                        TotalPrice = oi.TotalPrice ?? 0,
                     }).ToList()
                 };
 

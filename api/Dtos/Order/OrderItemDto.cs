@@ -17,6 +17,8 @@ namespace pharmacy.Dtos.Order
         {
             public int OrderItemID { get; set; }
             public int MedicineID { get; set; }
+            public string? Name { get; set; }
+            public string? MainImage { get; set; }
             public int Quantity { get; set; }
             public decimal TotalPrice { get; set; }
         }
