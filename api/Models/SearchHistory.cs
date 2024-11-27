@@ -6,7 +6,6 @@ namespace pharmacy.Models
     {
         [Key]
         public int SearchID { get; set; }
-        public string? UserID { get; set; }
         public string SearchQuery { get; set; }
         public DateTime? SearchDate { get; set; }
 
