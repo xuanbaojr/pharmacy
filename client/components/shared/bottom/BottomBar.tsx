@@ -8,13 +8,14 @@ const BottomBar = () => {
 
     return (
         <div className="mt-4 bg-white shadow-sm">
-            <div className="mx-32 pt-4 px-2 ">
-            <div className="grid grid-cols-5 ">
-                <div className="">
-                    <div className="text-sm font-semibold py-1 mb-1">
+            <div className="xl:mx-60 lg:mx-32 pt-4 px-2 ">
+            <div className="grid grid-cols-5 gap-2 mb-2">
+                {/* cot 1 */}
+                <div className=" space-y-1">
+                    <div className="font-semibold py-1 mb-1 text-base">
                         chăm sóc khách hàng
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-2">
                         <div>Tư vấn trực tuyến</div>
                         <div>Hỏi đáp Ai</div>
                         <div>Hướng dẫn mua hàng</div>
@@ -22,12 +23,12 @@ const BottomBar = () => {
                         <div>Trung tập trợ giúp</div>
                     </div>
                 </div>
-
-                <div className="">
-                    <div className="text-sm font-semibold py-1 mb-1">
+            {/* cot 2  */}
+                <div className=" space-y-1">
+                    <div className="text-base font-semibold py-1 mb-1">
                         Về ứng dụng
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-2">
                         <div>Next js 14</div>
                         <div>doc .net</div>
                         <div>tailwind</div>
@@ -36,45 +37,43 @@ const BottomBar = () => {
                     </div>
 
                 </div>
-                <div className="">
-                    <div className="text-sm font-semibold py-1 mb-1">
+                {/* cot 3 */}
+                <div className=" ">
+                    <div className="text-base font-semibold py-1 mb-1">
                         Phương thức thanh toán
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-2">
                         <div>vnpay</div>
                         <div>mono</div>
                     </div>
-                    <div className="text-sm font-semibold py-1 mb-1">
+                    <div className="text-base font-semibold py-1 mb-1">
                         Đơn vị vận chuyển
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-2">
                         <div>VietNam post</div>
                         <div>be</div>
                     </div>
-
+                {/* cot 4 */}
                 </div><div className="">
-                    <div className="text-sm font-semibold py-1 mb-1">
+                    <div className="text-base font-semibold py-1 mb-1">
                         Thông tin
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-0.5">
                         <div>nguyen duc quyen</div>
                         <div>phan van bao</div>
                         <div>doan manh duong</div>
                     </div>
 
                 </div><div className="">
-                    <div className="text-sm font-semibold py-1 mb-1">
+                    <div className="text-base font-semibold py-1 mb-1">
                         Sản phầm 
                     </div>
-                    <div className="text-sm space-y-0.5">
+                    <div className="text-base space-y-0.5">
                         <div><a href={"/asd"}>github </a></div>
-                        
                     </div>
-
                 </div>
-
             </div>
-            <div className="border-t flex gap-3 justify-evenly border-slate-300 mt-3 p-1 ">
+            <div className="border-t flex gap-3 justify-evenly border-slate-300 mt-3 px-2 py-1.5 ">
                 <div className="">
                     2024 pharmacy
                 </div>

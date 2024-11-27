@@ -12,7 +12,7 @@ const UserForm = ({user} : Props) => {
             {
                 user.map((item) => {
                     return (
-                        <UserItemLink key={item.link} item={item} />
+                        <UserItemLink  key={item.link} item={item} />
                     )
                 })
             }

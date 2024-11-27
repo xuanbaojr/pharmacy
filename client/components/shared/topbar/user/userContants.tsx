@@ -4,6 +4,16 @@ import { IoPersonOutline, IoHeartOutline } from 'react-icons/io5';
 import { FiShoppingCart } from 'react-icons/fi';
 import { useAuth } from '@/hooks/AuthContext';
 import Link from 'next/link';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export interface UserItem {
     icon: React.ReactNode;
@@ -34,22 +44,38 @@ const UserIconWithClick = () => {
 
     return (
         <div className="relative inline-block cursor-pointer">
-            <IoPersonOutline size={24} onClick={handleIconClick} />
-            {isModalVisible && (
-                <div className="absolute top-full mt-2 p-2 bg-gray-200 rounded shadow-lg z-50">
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button className='p-0 '>
+                    {isAuthenticated ? 
+                        (
+                            <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+                        ) : (
+                            <IoPersonOutline size={24}/>
+                        )
+                    }
+                    
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="border border-gray-300 bg-white p-0 rounded-xl overflow-hidden">
+                
                     {isAuthenticated ? (
                         <>
-                            <div>{username}</div>
-                            <button onClick={handleLogout}>Log Out</button>
+                            <DropdownMenuLabel className='w-full flex bg-gray-200'>{username}</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
                         </>
                     ) : (
                         <>
-                            <button onClick={() => window.location.href = '/login'}>Đăng nhập</button>
-                            <button onClick={() => window.location.href = '/register'}>Đăng ký</button>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={() => window.location.href = '/login'}>Đăng nhập</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={() => window.location.href = '/register'}>Đăng ký</DropdownMenuLabel>
                         </>
                     )}
-                </div>
-            )}
+                
+            </DropdownMenuContent>
+            </DropdownMenu>
         </div>
     );
 };
@@ -62,7 +88,7 @@ export const UserContants: UserItem[] = [
     {
         icon: (
             <Link href="/">
-                <IoHeartOutline size={24} />
+                <IoHeartOutline className='hover:shadow-2xl rounded-lg' size={24} />
             </Link>
         ),
         link: "/",
@@ -70,7 +96,7 @@ export const UserContants: UserItem[] = [
     {
         icon: (
             <Link href="/cart">
-                <FiShoppingCart size={24} />
+                <FiShoppingCart className='hover:shadow-2xl rounded-lg' size={24} />
             </Link>
         ),
         link: "/cart",
