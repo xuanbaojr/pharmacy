@@ -1,6 +1,7 @@
 
 import { getMedicineDetail } from "@/api/medicine";
 import { convertPharmacy} from "@/components/card/product/DataProduct";
+import { convertViewPharmacy, viewPharmacy } from "@/components/card/ViewProduct/ViewDataProduct";
 import ViewProduct from "@/components/card/ViewProduct/ViewProduct";
 import testJson from '@/utils/testJson.json'; 
 
@@ -10,12 +11,12 @@ interface Props {}
 const ProductPage = async ({ params }: { params: { id: string } }) => {
 
     // Lấy dữ liệu từ JSON
-    const productData = testJson.find(item => item.usage.includes(params.id));
-    if (!productData) return;
+    // const productData = testJson.find(item => item.usage.includes(params.id));
+    // if (!productData) return;
 
-    const data = await getMedicineDetail(params.id);
-
-    const product = await convertPharmacy(data.data)
+    const res = await getMedicineDetail(params.id);
+    
+    const product : viewPharmacy = await convertViewPharmacy(res.data.data)
     if(!product) return;
     return (
         <>
@@ -24,7 +25,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
                 <head>
                     
                 </head>
-                <div dangerouslySetInnerHTML={{ __html: productData.usage }} className={styles.usage}/>
+                {/* <div dangerouslySetInnerHTML={{ __html: productData.usage }} className={styles.usage}/> */}
                 {/* <div dangerouslySetInnerHTML={{ __html: productData.dosage }} />
                 <div dangerouslySetInnerHTML={{ __html: productData.adverseEffect }} />
                 <div dangerouslySetInnerHTML={{ __html: productData.careful }} />

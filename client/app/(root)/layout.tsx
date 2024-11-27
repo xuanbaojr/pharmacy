@@ -26,17 +26,17 @@ const pluginsidebar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/
 const pluginrightbar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/rightbar'; // Đường dẫn đến thư mục chứa các plugin
 
 
-const sideBar = MainManager(pluginsidebar);
-const rightBar = LoadRPlugin(pluginrightbar)
+// const sideBar = MainManager(pluginsidebar);
+// const rightBar = LoadRPlugin(pluginrightbar)
 
-mainWindow.loadPlugin(sideBar, rightBar)
+// mainWindow.loadPlugin(sideBar, rightBar)
 
 
 
 const RootLayout = ({ children }: Props) => {
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-white`}>
+            <body className={`${inter.className} bg-[#F7F7F7]`}>
                 <AuthProvider>
                     <div className="w-full">
                         <TopBar />

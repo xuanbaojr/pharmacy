@@ -22,7 +22,7 @@ const SideBar = () => {
     return (
         <>
         <div className="w-full  mr-4 px-2 py-1 rounded-lg">
-            {/* {mainWindow.getSideBar().map((item, index) => {
+            {mainWindow.getSideBar().map((item, index) => {
                 return (
                     <div key={index} className="my-4 ">
                         {item.getDes()}
@@ -31,12 +31,8 @@ const SideBar = () => {
             })}
             {
                 a
-            } */}
-            <div>
-                <Button onClick={getcheck}>
-                    click
-                </Button>
-            </div>
+            }
+            
         </div>
         
         </>

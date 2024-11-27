@@ -5,8 +5,8 @@ import logo from "@/public/assets/image/home1.png";
 
 const Upload = () => {
   return (
-    <div className="bg-green-800 py-12 px-4 sm:px-6 lg:px-8 rounded-2xl">
-      <div className="max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between">
+    <div className="bg-green-800 h-full py-8 px-4 sm:px-6 lg:px-8 rounded-2xl">
+      <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between">
         <div className="">
           <div className="flex items-center space-x-2 mb-2">
             <span className="text-gray-300">TOP 10 NHÀ THUỐC TỐT NHẤT</span>
@@ -23,7 +23,7 @@ const Upload = () => {
               & thực phẩm chức năng
             </h2>
           </div>
-          <p className="text-gray-300 mb-6">
+          <p className="text-gray-300 mb-3">
             Chúng tôi cung cấp các sản phẩm chất lượng, uy tín và an toàn cho
             sức khỏe của bạn.
           </p>

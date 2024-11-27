@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import CardProduct from "./CardProduct"
-import { Pharmacy } from "./DataProduct"
 import { convertPharmacyList, pharmacy } from "./DataProduct"
 import { getMedicine } from "@/api/medicine"
 

@@ -4,13 +4,14 @@ import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './EmblaCarouselThumbsButton'
 import Image, { StaticImageData } from 'next/image'
+import { ImageUrl } from '../card/ViewProduct/ViewDataProduct'
 
 
 
 type PropType = {
   slides: number[]
   options?: EmblaOptionsType
-  slide : (string | StaticImageData)[]
+  slide : ImageUrl[]
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
@@ -50,7 +51,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           {slide.map((item, index ) => (
             <div className="transform translate-z-0 flex-none w-full min-w-0 px-4" key={index}>
               <div className=" h-96 font-semibold flex items-center justify-center select-none">
-                <Image src={item} alt="as " className="object-cover w-full"/> 
+                <Image src={item} width={300} height={300} alt="as " className="object-cover w-full"/> 
               </div>
             </div>
           ))}
