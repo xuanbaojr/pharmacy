@@ -10,8 +10,8 @@ interface Props {
 const MenuItemLink = ({item, active} : Props) => {
     return (
         <>
-        <div className="flex items-center justify-center">
-            <Link href={item.link} className={ `${!active ? "text-black" : "text-blue-500"} text-xl`}>
+        <div className="flex items-center justify-center ">
+            <Link href={item.link} className={ `${!active ? "text-black" : "text-blue-500"} text-xl h-full`}>
                 {item.label}
             </Link>
 

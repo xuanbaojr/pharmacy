@@ -5,8 +5,10 @@ import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { pharmacy } from "../product/DataProduct";
 import useEmblaCarousel from 'embla-carousel-react'
+import { viewPharmacy } from "./ViewDataProduct";
+import { formatNumber } from "@/utils/formatNumber";
 interface Props {
-    product : pharmacy
+    product : viewPharmacy
 }
 
 
@@ -21,13 +23,61 @@ const InforProduct = ({product} : Props) => {
 
             
             {/* price */}
-            <div className="text-2xl font-semibold my-2 px-5 bg-slate-200 py-2 rounded-lg">
-                {product.price}.000 đ
+            <div className="text-2xl font-semibold my-2  text-blue-700 py-2 rounded-lg">
+                {formatNumber(product.price)} đ
             </div>
 
             {/* description */}
-            <div className="w-full text-xl font-light px-2 my-2 ">
-                <span>phan nay mo ta cong dunjg va cach bao quan cua thuoc</span>
+            <div className="w-full text-sm font-light px-2 my-2 space-y-1">
+                    <div className="grid grid-cols-3 ">
+                        <div className="col-span-1">
+                            Danh mục
+                        </div>
+                        <div className="col-span-2">
+                            {product.category}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-3 ">
+                        <div className="col-span-1">
+                            Dạng bào chế
+                        </div>
+                        <div  className="col-span-2">
+                            {product.ingredient}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-3 ">
+                        <div  className="col-span-1">
+                            Thành phần
+                        </div>
+                        <div className="col-span-2">
+                            {product.ingredient}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-3 ">
+                        <div className="col-span-1">
+                            Xuất xứ thương hiệu
+                        </div>
+                        <div className="col-span-2">
+                            {product.country}
+                        </div>
+                    </div>  
+                    <div className="grid grid-cols-3 ">
+                        <div className="col-span-1">
+                            Chỉ định
+                        </div>
+                        <div className="col-span-2">
+                            {product.indication}
+                        </div>
+                    </div>   
+                    <div className="grid grid-cols-3 ">
+                        <div className="col-span-1">
+                            Chống chỉ định
+                        </div>
+                        <div className="col-span-2">
+                            {product.contraindication}
+                        </div>
+                    </div>
+                       
             </div>
 
             {/* option */}
@@ -42,7 +92,7 @@ const InforProduct = ({product} : Props) => {
                             <Button><FaMinus className="h-2 w-2"/></Button>
                         </div>
                         <div className="flex-1 text-center">
-                            <span>12</span>
+                            <span>1</span>
                         </div>
                         <div className="w-1/4 flex justify-center border-l">
                             <Button><FaPlus className="h-2 w-2"/></Button>

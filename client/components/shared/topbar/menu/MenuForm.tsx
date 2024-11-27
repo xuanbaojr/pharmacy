@@ -11,7 +11,7 @@ const MenuForm = ({menu} : Props) => {
     const pathname = usePathname();
     return (
         <>
-        <div className="flex gap-6 pt-3">
+        <div className="flex items-center gap-6 ">
             {
                 menu.map((item) => {
                     

@@ -13,14 +13,14 @@ const TopBar = () => {
 
     return (
         <>
-        <div className="flex justify-between bg-white rounded-lg mx-4 mt-2 py-2 px-10 border ">
-            <div className="flex justify-between gap-10 ">
+        <div className="flex justify-between items-center bg-white rounded-lg mx-4 mt-2 py-2 px-10 border ">
+            <div className="flex justify-between items-center gap-10 ">
                 <Logo />
-                <div className="flex">
+                <div className="flex items-center ">
                     <MenuForm menu={MenuContants}/>
                 </div>
             </div>
-            <div className="flex justify-end gap-7">
+            <div className="flex justify-end items-center gap-7">
                 {/* <SearchTop /> */}
                 <UserForm user={UserContants}/>
 
