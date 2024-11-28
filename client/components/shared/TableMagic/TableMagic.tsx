@@ -123,7 +123,7 @@ const TableMagic =  ({listOrder, columns, selectBox} : Props) => {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Không có sản phẩm phù hợp
                 </TableCell>
               </TableRow>
             )}

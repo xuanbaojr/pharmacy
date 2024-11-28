@@ -14,6 +14,8 @@ import {
   } from "@/components/ui/dropdown-menu"
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { FaFacebookMessenger } from "react-icons/fa6";
+import ChatBox from './UserOption/Chatbox';
 
 export interface UserItem {
     icon: React.ReactNode;
@@ -80,10 +82,39 @@ const UserIconWithClick = () => {
     );
 };
 
+const ChatIcon = () => {
+    const [open, setOpen] = useState(false)
+
+    const handleChange = (change : boolean) => {
+        setOpen(change)
+    }
+
+    const handleOpen = () => {
+        setOpen(!open)
+    }
+
+    return (
+        <div  className='relative inline-block cursor-pointer '>
+            <Button onClick={handleOpen} className='p-0 '>
+                <FaFacebookMessenger size={24}/>
+            </Button>
+            
+            {
+                open && 
+                <ChatBox />
+            }
+        </div>
+    )
+}
+
 export const UserContants: UserItem[] = [
     {
         icon: <UserIconWithClick />,
         link: "#"
+    },
+    {
+        icon : <ChatIcon/>,
+        link : "#"
     },
     {
         icon: (

@@ -14,11 +14,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
+import { StaticImageData } from "next/image"
 
 
 // mo ta kieu du lieu co trong bang
 interface pharmacy {
-    image : string,
+    image : string | StaticImageData,
     description : string,
     price : string,
     quantity : number,

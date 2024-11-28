@@ -1,18 +1,12 @@
-import { Pharmacy } from "@/components/card/product/DataProduct"
+import { getListCart } from "@/api/cart"
 import CartContain from "@/components/shared/CartList/CartContain"
 import { listOrder } from "@/components/shared/CartList/CartType"
-import { PharmacyColumns } from "@/components/shared/TableMagic/Colums/PhamacyColums"
-import TableMagic from "@/components/shared/TableMagic/TableMagic"
 
 
-interface Props {
-
-
-}
-
-const CartPage = () => {
-
-   
+const CartPage = async () => {
+    const res : any = await getListCart();
+    console.log(res)
+    
 
     return (
         <div className="mx-32 px-4 my-5 ">

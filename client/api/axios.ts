@@ -1,63 +1,50 @@
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { URL } from './constants';
+
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+  requiresAuth?: boolean;
+}
 
 const axiosClient = axios.create({
-    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+  baseURL: URL, 
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-export const axiosQbert = axios.create({
-    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-})
-
-// Add token to request headers if available
-const handleRequestSuccess = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-};
-
-// Handle request errors
-const handleRequestErr = (error: AxiosError): Promise<AxiosError> => {
-    return Promise.reject(error);
-};
-
-// Directly return successful responses
-const handleResponseSuccess = <T>(response: AxiosResponse<T>): AxiosResponse<T> => {
-    return response;
-};
-
-// Handle response errors
-const handleResponseErr = (error: AxiosError): Promise<AxiosError> => {
-    if (error.response?.status === 401) {
-        // Optionally, clear localStorage or handle unauthorized access globally
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-    }
-
-    return Promise.reject(error);
-};
-
-// Add request interceptors
 axiosClient.interceptors.request.use(
-    (config) => handleRequestSuccess(config as InternalAxiosRequestConfig), // Explicit cast to InternalAxiosRequestConfig
-    (error) => handleRequestErr(error)
+  (config: InternalAxiosRequestConfig) => {
+    if ((config as CustomAxiosRequestConfig).requiresAuth) {
+    // let token = null
+    //       // Kiểm tra xem đang chạy trong môi trường trình duyệt
+    // if (typeof window !== 'undefined') {
+    //   token = localStorage.getItem('token');
+    // }
+      const token = localStorage.getItem('token'); 
+      console.log(token)
+      if (token) {
+        config.headers = {
+          ...config.headers,
+          Authorization:`Bearer ${token}`
+        } as any; 
+      } else {
+        console.warn('Token is missing for an authorized request');
+      }
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
-// Add response interceptors
 axiosClient.interceptors.response.use(
-    (response) => handleResponseSuccess(response),
-    (error) => handleResponseErr(error)
+  (response: AxiosResponse) => {
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
 export default axiosClient;

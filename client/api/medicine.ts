@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { URL, GET_MEDICINE, MODEL } from './constants';
+import { URL, GET_MEDICINE, MODEL, CHAT } from './constants';
+import axiosClient from './axios';
 
 export const getMedicine = async ()  => {
-    const res : any = await axios.get(URL + GET_MEDICINE);
+    const res : any = await axiosClient.get(GET_MEDICINE);
     return res;
 }
 
 export const getMedicineDetail = async (id: string)  => {
-    const res : any = await axios.get(URL + GET_MEDICINE + `/${id}`);
+    const res : any = await axiosClient.get(GET_MEDICINE + `/${id}`);
     return res;
 }
 
@@ -20,4 +20,20 @@ export const getUploadImage = async (formData : FormData) => {
         body: formData,
       });
     return response;
+}
+
+export const getChatbot = async (message : string) => {
+  const data = {
+    human : message
+  }
+  const response = await fetch(CHAT + "/default_llm/single_forward/1", {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  // const response = await axiosClient.post("localhost:8001/default_llm/single_forward/1", hello)
+  return response;
+
 }

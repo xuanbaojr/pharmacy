@@ -69,4 +69,54 @@ export const listOrder : (pharmacy | prescription) [] = [
     // }
 ]
 
-
+export const listOrders : pharmacy[] = [
+    {
+        image : anh1,
+        description: "mota1",
+        price : 212,
+        quantity : 1
+    },{
+        image : anh1,
+        description: "mota2",
+        price : 232,
+        quantity : 1
+    },{
+        image : anh1,
+        description: "mota3",
+        price : 232,
+        quantity : 1
+    },{
+        image : anh1,
+        description: "mota4",
+        price : 563,
+        quantity : 1
+    },{
+        image : anh1,
+        description: "mota5",
+        price : 312,
+        quantity : 1
+    },
+    {
+        image : anh1,
+        description: "mota6",
+        price : 123,
+        quantity : 1
+    },
+    //  {
+    //     name :"anh7",
+    //     pharmacy : [
+    //         {
+    //             image : anh1,
+    //             description: "mota5",
+    //             price : 123,
+    //             quantity : 1
+    //         },{
+    //             image : anh1,
+    //             description: "mota6",
+    //             price : 23,
+    //             quantity : 1
+    //         }
+    //     ],
+    //     guide : "day la huong dan "
+    // }
+]
