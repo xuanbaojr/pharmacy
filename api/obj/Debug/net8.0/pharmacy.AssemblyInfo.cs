@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pharmacy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61cddecb202713aa1fbd2c836526a607e785c4c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d4538a288e15642c8cbaf1908da59b4756b2b14")]
 [assembly: System.Reflection.AssemblyProductAttribute("pharmacy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pharmacy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

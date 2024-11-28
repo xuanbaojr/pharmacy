@@ -1,63 +1,89 @@
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+"use client"
+import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const axiosClient = axios.create({
-    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+// Mở rộng interface của AxiosRequestConfig
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    requiresAuth?: boolean;
+  }
+}
+
+const axiosClient: AxiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://pharmacy.com', 
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-export const axiosQbert = axios.create({
-    baseURL: 'https://00b0-2405-4803-f586-cb60-3d80-dcc1-8c43-be46.ngrok-free.app',
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-})
-
-// Add token to request headers if available
-const handleRequestSuccess = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-};
-
-// Handle request errors
-const handleRequestErr = (error: AxiosError): Promise<AxiosError> => {
-    return Promise.reject(error);
-};
-
-// Directly return successful responses
-const handleResponseSuccess = <T>(response: AxiosResponse<T>): AxiosResponse<T> => {
-    return response;
-};
-
-// Handle response errors
-const handleResponseErr = (error: AxiosError): Promise<AxiosError> => {
-    if (error.response?.status === 401) {
-        // Optionally, clear localStorage or handle unauthorized access globally
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-    }
-
-    return Promise.reject(error);
-};
-
-// Add request interceptors
 axiosClient.interceptors.request.use(
-    (config) => handleRequestSuccess(config as InternalAxiosRequestConfig), // Explicit cast to InternalAxiosRequestConfig
-    (error) => handleRequestErr(error)
+  (config: InternalAxiosRequestConfig) => {
+    if (config.requiresAuth) {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        console.warn('Token is missing for an authorized request');
+      }
+    }
+    
+    return config;
+  },
+  (error) => Promise.reject(error)
 );
 
-// Add response interceptors
 axiosClient.interceptors.response.use(
-    (response) => handleResponseSuccess(response),
-    (error) => handleResponseErr(error)
+  (response: AxiosResponse) => response,
+  (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+          }
+          break;
+        case 403:
+          console.error('Forbidden: Bạn không có quyền truy cập');
+          break;
+        case 404:
+          console.error('Không tìm thấy tài nguyên');
+          break;
+        case 500:
+          console.error('Lỗi máy chủ nội bộ');
+          break;
+      }
+    }
+    return Promise.reject(error);
+  }
 );
 
 export default axiosClient;
+
+
+export const apiCart = {
+  async getUserProfile() {
+    try {
+      const response = await axiosClient.get('/api/ROI02', {
+        requiresAuth: true
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Lỗi khi lấy cart:', error);
+      throw error;
+    }
+  },
+
+  // async updateUserProfile(profileData: any) {
+  //   try {
+  //     const response = await axiosClient.put('/user/profile', profileData, {
+  //       requiresAuth: true
+  //     });
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Lỗi khi cập nhật profile:', error);
+  //     throw error;
+  //   }
+  // }
+};
