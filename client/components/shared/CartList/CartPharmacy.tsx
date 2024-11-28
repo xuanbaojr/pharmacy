@@ -7,61 +7,59 @@ import { MdDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PharmacyState } from "./CartState";
+import { getChangeAmount } from "@/api/cart";
 
 interface Props {
     pharmacy : PharmacyState,
-    change : (des : string | undefined, name : string | undefined) => void
-    updateBill : (price : number) => void
-    name  : string | undefined
+    change : (prod : number, id : number) => void,
+    deleteProd : (id : number ) => void,
 }
 
-const CartPharmacy = ({pharmacy,name,  change, updateBill} : Props) => {
+const CartPharmacy = ({pharmacy, change, deleteProd}: Props) => {
 
    
     const [prod, setProd] = useState<number>(pharmacy.quantity);
 
-    const changeQuantity = ( change : "-" | "+") => {
-        if (change == "+") {
+    const changeQuantity = ( changes : "-" | "+") => {
+        if (changes == "+") {
             setProd( prod + 1)
         } else {
-            setProd(prod -1)
+            setProd(prod - 1)
             if (prod == 0) {
                 // dosomething
+                return
             }
         }
+        change(prod, pharmacy.orderItemID)
     }
 
-   
 
     return (
         <div className="border shadow-sm px-4 py-2 grid grid-cols-10 bg-white rounded-lg ">
             <div className="col-span-6 grid grid-cols-10 ">
-                <div className="col-span-1 flex justify-center items-center">
-                    <Checkbox checked={pharmacy.check} onCheckedChange={() => {change(pharmacy.description, name )}} className="border-slate-500"/>
-                </div>
                 <div className="col-span-9 flex gap-2">
                     <div className=" h-20 w-20 border">
-                        <Image src={pharmacy.image} alt="asd" className=" object-cover h-full"/>
+                    <Image src={pharmacy.image} alt={"sad"} width={200} height={200} className="object-cover w-full"/>
                     </div>
-                    <div className="text-wrap line-clamp-2">
-                        {pharmacy.description}
+                    <div className="text-wrap line-clamp-2 py-2">
+                        {pharmacy.name}
                     </div>
                 </div>     
             </div>
             <div className="col-span-4 grid grid-cols-10">
                 <div className="col-span-3 text-sm flex justify-center items-center">
-                    {pharmacy.price}.000 đ
+                    {pharmacy.price}đ
                 </div>
                 <div className="col-span-3 flex justify-center items-center px-4 ">
                     <Quantity quantity={prod} change={changeQuantity} />
                 </div>
                 <div className="col-span-3 flex justify-center items-center">
-                    {prod * pharmacy.price}.000 đ
+                    {pharmacy.totalPrice}đ
                 </div>
 
                 <div className="col-span-1 flex justify-center items-center">
-                    <Button>
-                        <MdDelete  className="h-5 w-5" color="red" />
+                    <Button onClick={() => deleteProd(pharmacy.orderItemID)}>
+                        <MdDelete  className="h-5 w-5" color="gray" />
                     </Button>
                     
                 </div>

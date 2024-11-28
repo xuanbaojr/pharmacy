@@ -7,9 +7,6 @@ interface Props {
 }
 
 const CheckoutPage = ({ params }: { params: { id: string } }) => {
-    const result = splitStringByComma( params.id.toString());
-
-    const list = listOrder
 
     return (
         <div className="mx-32 px-4 my-5">

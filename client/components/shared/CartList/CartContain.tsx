@@ -6,183 +6,75 @@ import { cart } from "./CartType"
 import CartPharmacy from "./CartPharmacy"
 import CartPresctiption from "./CartPrescription"
 import { Button } from "@/components/ui/button"
-import { convertCartState } from "./CartState"
+import {  convertAmount, convertCart, PharmacyState } from "./CartState"
 import Link from "next/link"
-import { getCart } from "@/api/cart"
+import { deleteProduct, getAmount, getCarts, getChangeAmount } from "@/api/cart"
+
 
 
 
 interface Props {
-    cart : cart
+    
 }
 
 
-const CartContain = ({cart} : Props) => {
-    const [all, setAll] = useState(false)
-    const [bill, setBill] = useState(0)
-    const [eff, setEff] = useState(true)
-    const [cartState, setCartState] = useState(convertCartState(cart))
-    
-    useEffect(() => {
-        getCart()
-            .then((res) => {
-                setCartState(convertCartState(res.data));
-            })
-            .catch((error) => {
-                console.error('Lỗi khi lấy dữ liệu giỏ hàng:', error);
-            });
-    }, []);
-    // set tất cả các đơn hàng
-    const setAllChecks = (check : boolean) => {
-        setEff(!eff)
-        setAll(check);
-        setCartState(prevCartState => 
-            prevCartState.map(item => {
-                if ('pharmacy' in item) {
-                    // Nếu là PrescriptionState
-                    return {
-                        ...item,
-                        check : check,
-                        pharmacy: item.pharmacy.map(ph => ({
-                            ...ph,
-                            check: check // Đặt check thành true
-                        }))
-                    };
-                } else {
-                    // Nếu là PharmacyState
-                    return { ...item, check: check }; // Đặt check thành true
-                }
-            })
-        );
-    };
-    // hàm chuyển trạng thái tích chọn
-    const updateCheck = (des : string | undefined, name : string | undefined) => {
-        setEff(!eff)
-        setCartState(prevCartState => 
-            prevCartState.map(item => {
-                if ('pharmacy' in item) {
-                    // Nếu là PrescriptionState
-                    if (name && item.name === name) {// nếu theo đơn thuốc,
-                        if (des) { // nếu theo tên
-                            return {
-                                ...item,
-                                pharmacy: item.pharmacy.map(ph => {
-                                    if (ph.description === des ) { 
-                                        return { ...ph, check: !ph.check}; 
-                                    }
-                                    return ph;
-                                })
-                            };
-                        } else {// tất cả
-                            return {  
-                                ...item,
-                                check : !item.check,
-                                pharmacy: item.pharmacy.map(ph => ({
-                                    ...ph,
-                                    check: !item.check 
-                                }))
-                            };
-                        }
-                    } 
-                    return item // return nếu không gọi đến các thuốc đã có đơn
-                }  else {// Nếu là PharmacyState
-                    if (item.description === des && !name) {
-                        return { ...item, check: !item.check }; // Cập nhật check thành true
-                    }
-                    return item;
-                }
-            })
-        );
-    };
-    // trả về true nếu tất cả đơn hàng đều được chọn
-    const allChecksTrue = (): boolean => {
-        return cartState.every(item => {
-            if ('pharmacy' in item) {
-                // Nếu là PrescriptionState
-                return item.check && item.pharmacy.every(ph => ph.check);
-            }
-            // Nếu là PharmacyState
-            return item.check;
-        });
-    };
-    // trả về true nếu tất cả đơn hàng trong prescription đều được chọn
-    const updatePrescriptionChecks = () => {
-        setCartState(prevCartState => 
-            prevCartState.map(item => {
-                if ('pharmacy' in item) {
-                    // Nếu là PrescriptionState
-                    const allPharmacyChecked = item.pharmacy.every(ph => ph.check);
-                    return {
-                        ...item,
-                        check: allPharmacyChecked // Cập nhật check của Prescription
-                    };
-                }
-                return item; // Nếu không phải PrescriptionState thì giữ nguyên
-            })
-        );
-    };
-    // effect kiểm tra xem các đơn hàng đã được chọn tất cả
-    useEffect(() => {
-        if (allChecksTrue()) {
-            setAll(true)
-        } else setAll(false)
+const CartContain = () => {
 
-        updatePrescriptionChecks()
-        updateBill()
-    }, [eff])
-
-    const updateBill = () => {
-        var a= 0
-        cartState.map(item => {
-            if ('pharmacy' in item) {
-                // Nếu là PrescriptionState
-                item.pharmacy.map((ph, index) => {
-                    if (ph.check === true) {
-                        a += ph.price * ph.quantity
-                    }
-                })
-            } else {
-                // Nếu là PharmacyState
-                if (item.check === true) {
-                    a += item.price
-                }
-            }
-        })
-        setBill(a)
-        
+    const [cartState, setCartState] = useState<PharmacyState[]>([])
+    const [amount, setAmount] = useState('')
+    const [load, setLoad] = useState(false)
+    const fecthData = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if(!token) return
+            const response = await getCarts(token);
+            const responeAmount = await getAmount(token)
+            setCartState(convertCart(response.data))
+            setAmount(convertAmount(responeAmount.data))
+        } catch (error) {
+            console.error('Lỗi trong hàm handle:', error); // Ghi lại lỗi trong hàm handle
+        }
+        console.log("asas asda ")
     }
 
-    const handleCheckout = () : string=> {
-        var list : string = ""
-        cartState.map((item, index) => {
-            if ('pharmacy' in item) { // la prescription
-                const allPharmacyChecked = item.pharmacy.every(ph => ph.check);
-                if (allPharmacyChecked) list +=  item.name + "," 
-                else {
-                    item.pharmacy.map((ph, index) => {
-                        if(ph.check) list +=  ph.description + ","
-                    })
-                }
-            } else { // la phamacy
-                if (item.check) list +=  item.description + "," 
-            }
-        })
-        return list
+    const hanldChangeAmount = async (prod : number, id : number ) => {
+        try {
+            const token = localStorage.getItem("token")
+            if(!token) return
+            await getChangeAmount(token, prod,id );
+            console.log("asda" + id)
+            setLoad(!load)
+        } catch {
+
+        }
     }
+
+    const hanldDeleteProd = async (id : number ) => {
+        try {
+            const token = localStorage.getItem("token")
+            if(!token) return
+            // const response = await deleteProduct(token, id);
+            setLoad(!load)
+        } catch {
+
+        }
+    }
+    useEffect(() => {
+        fecthData()
+    }, [])
+
+    useEffect(() => {
+        fecthData()
+    }, [cartState])
+    useEffect(() => {
+        fecthData()
+    }, [load])
 
     return (
         <div>
-
             {/* top */}
             <div className="grid grid-cols-10 py-2 px-4 bg-slate-300 rounded-lg text-lg mb-5"> 
                 <div className="col-span-6 grid grid-cols-10">
-                    <div className="col-span-1 text-center">
-                        <Checkbox 
-                            checked = {all}
-                            onCheckedChange={() => setAllChecks(!all)}
-                            className="border-black"
-                        />
-                    </div>
                     <div className="col-span-9">
                         Mô tả sản phẩm
                     </div>
@@ -202,48 +94,43 @@ const CartContain = ({cart} : Props) => {
                     </div>
                 </div>
             </div>
+
             {/* content */}
             <div className="space-y-2 mt-2 ">
                 {
                     cartState.map((item, index) => {
-                        if ('image' in item) {
+                       
                             return (
-                                <CartPharmacy key={index} pharmacy={item} change={updateCheck} name={undefined} updateBill={updateBill}/>
+                                <CartPharmacy key={index} pharmacy={item}  change={hanldChangeAmount} deleteProd={hanldDeleteProd}/>
                             )
-                        }
-
-                     return (
-                        <CartPresctiption key={index} prescription={item} change={updateCheck} updateBill={updateBill}/>
-                     )
                     })
                 }
                 
             </div>
+
             {/* bottom */}
             <div className=" grid grid-cols-10 sticky bottom-0 bg-slate-300 px-4 py-6 mt-10 rounded-sm">
                 <div className="col-span-6 grid grid-cols-10">
                     <div className="col-span-1 flex items-center justify-center">
-                        <Checkbox 
-                            checked = {all}
-                            onCheckedChange={() => setAllChecks(!all)}
-                            className="border-black"
-                        />
+                        
                     </div>
                 </div>
                 <div className="col-span-4 grid grid-cols-10">
                     <div className=" col-span-4">
                     </div>
-                    <div className="col-span-4 flex items-center">
-                        Tổng giá trị:  {bill + ".000.đ"  }
+                    <div className="col-span-4 text-xl flex items-center">
+                        Tổng giá trị:  {amount + "đ"  }
                     </div>
                     <div className="col-span-2">
-                        <Link href={`/checkout/${handleCheckout()}`} >
-                        <Button className="bg-blue-800 w-full" onClick={() => console.log(handleCheckout())}> mua</Button>   
-                        </Link>
+                        <Link href={`/checkout/}`} >
+                        <Button className="bg-blue-800 w-full" > mua</Button>   
+                        </Link> 
                     </div>
                 </div>
                 
             </div>
+            
+            
         </div>
     )
 }

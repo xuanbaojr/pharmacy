@@ -1,5 +1,6 @@
-"use client"
+'use client'
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { URL } from './constants';
 
 // Mở rộng interface của AxiosRequestConfig
 declare module 'axios' {
@@ -9,7 +10,7 @@ declare module 'axios' {
 }
 
 const axiosClient: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://pharmacy.com', 
+  baseURL: URL, 
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -20,9 +21,10 @@ axiosClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     if (config.requiresAuth) {
       const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-      
+      console.log(token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Accept = "*/*"
       } else {
         console.warn('Token is missing for an authorized request');
       }
@@ -40,8 +42,8 @@ axiosClient.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           if (typeof window !== 'undefined') {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
+            // localStorage.removeItem('token');
+            // window.location.href = '/login';
           }
           break;
         case 403:

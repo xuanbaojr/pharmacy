@@ -1,13 +1,14 @@
+'use server'
+import axios from 'axios';
 import { URL, GET_MEDICINE, MODEL, CHAT } from './constants';
-import axiosClient from './axios';
 
 export const getMedicine = async ()  => {
-    const res : any = await axiosClient.get(GET_MEDICINE);
+    const res : any = await axios.get(URL + GET_MEDICINE);
     return res;
 }
 
 export const getMedicineDetail = async (id: string)  => {
-    const res : any = await axiosClient.get(GET_MEDICINE + `/${id}`);
+    const res : any = await axios.get(URL + GET_MEDICINE + `/${id}`);
     return res;
 }
 

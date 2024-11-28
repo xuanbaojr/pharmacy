@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button"
 import { listOptionPay } from "./pay/OptionPay"
 
 interface Props {
-
+    totalPrice : string
 }
 
 
-const CheckoutPay = () => {
+const CheckoutPay = ({totalPrice} : Props) => {
 
     return (
         <div className="grid grid-rows-4 rounded-md bg-white  ">
@@ -36,9 +36,9 @@ const CheckoutPay = () => {
 
                 </div>
                 <div className="col-span-3 grid grid-cols-2 gap-4 my-3 ">
-                    <div className="text-sm font-light">Tổng tiền hàng</div><div className="text-end">₫381.000</div>
-                    <div className="text-sm font-light">Tổng tiền phí vận chuyển</div> <div className="text-end">₫76.000</div>
-                    <div className="text-sm font-light">Tổng thanh toán</div><div className="text-end text-3xl">₫457.000</div>
+                    <div className="text-sm font-light">Tổng tiền hàng</div><div className="text-end">₫{totalPrice}</div>
+                    <div className="text-sm font-light">Tổng tiền phí vận chuyển</div> <div className="text-end">₫0.000</div>
+                    <div className="text-sm font-light">Tổng thanh toán</div><div className="text-end text-3xl">₫{totalPrice}</div>
                 </div>
             </div>
 

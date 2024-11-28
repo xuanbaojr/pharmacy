@@ -36,7 +36,6 @@ const ImageSearch = () => {
     }
 
     useEffect(() => {
-        console.log(open)
     }, [open])
 
     return (

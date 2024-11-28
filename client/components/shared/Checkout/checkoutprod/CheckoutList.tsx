@@ -1,8 +1,9 @@
+import { PharmacyState } from "../../CartList/CartState"
 import { cart } from "../../CartList/CartType"
 import CheckoutProd from "./Checkoutprod"
 
 interface Props {
-    list : cart
+    list : PharmacyState[]
 }
 
 const CheckoutList = ({list} : Props) => {
@@ -24,18 +25,12 @@ const CheckoutList = ({list} : Props) => {
                 </div>
             </div>
 
-            <div className="py-2 my-2 space-y-2">
+            <div className="py-2 my-2 space-y-4">
                 {
                     list.map((item, index) => {
                         if ("price" in item)
                         return (
-                            <CheckoutProd 
-                            key={index} 
-                            price={item.price} 
-                            quantity={item.quantity} 
-                            des = {item.description}
-                            image={item.image} 
-                            />
+                            <CheckoutProd prod={item} />
                         )
                     })
                 }
