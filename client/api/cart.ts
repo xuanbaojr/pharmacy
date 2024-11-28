@@ -1,10 +1,9 @@
-import axiosClient from "./axios"
-import { GET_CART } from "./constants";
+import { GET_CART } from './constants';
+import axiosClient from "./axios";
 
-
-export const getListCart = async() => {
-    const response = await axiosClient.get(GET_CART, {
-        requiresAuth: true, 
+export const getCart = async () => {
+    const res = await axiosClient.get(GET_CART, {
+        requiresAuth: true
     });
-    return response
+    return res.data;
 }

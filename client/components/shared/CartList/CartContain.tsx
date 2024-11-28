@@ -8,6 +8,7 @@ import CartPresctiption from "./CartPrescription"
 import { Button } from "@/components/ui/button"
 import { convertCartState } from "./CartState"
 import Link from "next/link"
+import { getCart } from "@/api/cart"
 
 
 
@@ -22,6 +23,15 @@ const CartContain = ({cart} : Props) => {
     const [eff, setEff] = useState(true)
     const [cartState, setCartState] = useState(convertCartState(cart))
     
+    useEffect(() => {
+        getCart()
+            .then((res) => {
+                setCartState(convertCartState(res.data));
+            })
+            .catch((error) => {
+                console.error('Lỗi khi lấy dữ liệu giỏ hàng:', error);
+            });
+    }, []);
     // set tất cả các đơn hàng
     const setAllChecks = (check : boolean) => {
         setEff(!eff)

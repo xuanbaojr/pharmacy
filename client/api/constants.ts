@@ -13,5 +13,4 @@ export const REGISTER = '/api/account/register';
 export const GET_MEDICINE = '/api/RMD01';
 
 
-export const GET_CART = '/api/ROI02'
-
+export const GET_CART = '/api/ROI02';

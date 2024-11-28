@@ -10,7 +10,8 @@ namespace pharmacy.Models
         public int Quantity { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
-        public string? FlexCol1 { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? TotalPrice { get; set; }
         public string? FlexCol2 { get; set; }
         public string? FlexCol3 { get; set; }
         public string? FlexCol4 { get; set; }

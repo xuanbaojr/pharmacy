@@ -1,12 +1,16 @@
-import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { URL } from './constants';
+"use client"
+import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-interface CustomAxiosRequestConfig extends AxiosRequestConfig {
-  requiresAuth?: boolean;
+// Mở rộng interface của AxiosRequestConfig
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    requiresAuth?: boolean;
+  }
 }
 
-const axiosClient = axios.create({
-  baseURL: URL, 
+const axiosClient: AxiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://pharmacy.com', 
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,37 +18,72 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    if ((config as CustomAxiosRequestConfig).requiresAuth) {
-    // let token = null
-    //       // Kiểm tra xem đang chạy trong môi trường trình duyệt
-    // if (typeof window !== 'undefined') {
-    //   token = localStorage.getItem('token');
-    // }
-      const token = localStorage.getItem('token'); 
-      console.log(token)
+    if (config.requiresAuth) {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      
       if (token) {
-        config.headers = {
-          ...config.headers,
-          Authorization:`Bearer ${token}`
-        } as any; 
+        config.headers.Authorization = `Bearer ${token}`;
       } else {
         console.warn('Token is missing for an authorized request');
       }
     }
+    
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 axiosClient.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
+  (response: AxiosResponse) => response,
   (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+          }
+          break;
+        case 403:
+          console.error('Forbidden: Bạn không có quyền truy cập');
+          break;
+        case 404:
+          console.error('Không tìm thấy tài nguyên');
+          break;
+        case 500:
+          console.error('Lỗi máy chủ nội bộ');
+          break;
+      }
+    }
     return Promise.reject(error);
   }
 );
 
 export default axiosClient;
+
+
+export const apiCart = {
+  async getUserProfile() {
+    try {
+      const response = await axiosClient.get('/api/ROI02', {
+        requiresAuth: true
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Lỗi khi lấy cart:', error);
+      throw error;
+    }
+  },
+
+  // async updateUserProfile(profileData: any) {
+  //   try {
+  //     const response = await axiosClient.put('/user/profile', profileData, {
+  //       requiresAuth: true
+  //     });
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Lỗi khi cập nhật profile:', error);
+  //     throw error;
+  //   }
+  // }
+};

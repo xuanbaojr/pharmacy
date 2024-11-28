@@ -11,14 +11,29 @@ namespace pharmacy.Dtos.Order
             [Required]
             public string ShippingAddress { get; set; }
             [Required]
-            public List<OrderItemDto.OrderItemRequest> OrderItems { get; set; }
+            public string Orderer { get; set; }
+            [Required]
+            public string Consignee { get; set; }
+            public string OrderPhoneNum { get; set; }
+            [Required]
+            public string ReceivePhoneNum { get; set; }
+            public string? Note { get; set; }
+            [Required]
+            public string PaymentMethod { get; set; }
         }
 
         public class OrderResponse
         {
             public int OrderID { get; set; }
-            public string Status { get; set; }
+            public string? Status { get; set; }
             public DateTime CreatedAt { get; set; }
+            public string? ShippingAddress { get; set; }
+            public string? Orderer { get; set; }
+            public string? Consignee { get; set; }
+            public string? OrderPhoneNum { get; set; }   
+            public string? ReceivePhoneNum { get; set; }
+            public string? Note { get; set; }
+            public string? PaymentMethod { get; set; }
             public decimal TotalAmount { get; set; }
             public List<OrderItemDto.OrderItemResponse> OrderItems { get; set; }
         }
