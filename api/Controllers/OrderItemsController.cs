@@ -72,26 +72,39 @@ namespace pharmacy.Controllers
                     return NotFound(_res);
                 }
 
-                var orderItem = new OrderItem
+                OrderItem existingOrderItem = await _context.OrderItems.FirstOrDefaultAsync(oi => oi.OrderID == order.OrderID && oi.MedicineID == request.MedicineID);
+                if (existingOrderItem != null)
                 {
-                    OrderID = order.OrderID,
-                    MedicineID = request.MedicineID,
-                    Quantity = request.Quantity,
-                    Price = medicine.Price,
-                    TotalPrice = request.Quantity * medicine.Price
-                };
+                    existingOrderItem.Quantity += request.Quantity;
+                    existingOrderItem.TotalPrice = existingOrderItem.Quantity * medicine.Price;
+                    _context.OrderItems.Update(existingOrderItem);
+                }
+                else
+                {
+                    var newOrderItem = new OrderItem
+                    {
+                        OrderID = order.OrderID,
+                        MedicineID = request.MedicineID,
+                        Quantity = request.Quantity,
+                        Price = medicine.Price,
+                        TotalPrice = request.Quantity * medicine.Price
+                    };
 
-                _context.OrderItems.Add(orderItem);
+                    _context.OrderItems.Add(newOrderItem);
+                    existingOrderItem = newOrderItem;
+                }
+
                 await _context.SaveChangesAsync();
 
                 var orderItemResponse = new OrderItemDto.OrderItemResponse
                 {
-                    OrderItemID = orderItem.OrderItemID ?? 0,
-                    MedicineID = orderItem.MedicineID ?? 0,
-                    Name = _context.Medicines.Where(m => m.MedicineID == orderItem.MedicineID).Select(m => m.Name).FirstOrDefault(),
-                    MainImage = _context.Images.Where(i => i.MedicineID == orderItem.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
-                    Quantity = orderItem.Quantity,
-                    TotalPrice = orderItem.TotalPrice ?? 0
+                    OrderItemID = existingOrderItem.OrderItemID ?? 0,
+                    MedicineID = existingOrderItem.MedicineID ?? 0,
+                    Name = _context.Medicines.Where(m => m.MedicineID == existingOrderItem.MedicineID).Select(m => m.Name).FirstOrDefault(),
+                    MainImage = _context.Images.Where(i => i.MedicineID == existingOrderItem.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
+                    Quantity = existingOrderItem.Quantity,
+                    Price = existingOrderItem.Price,
+                    TotalPrice = existingOrderItem.TotalPrice ?? 0
                 };
 
                 _res.Status = StatusCodes.Status201Created.ToString();
@@ -105,9 +118,6 @@ namespace pharmacy.Controllers
                 return StatusCode(500, _res);
             }
         }
-
-
-
 
         [HttpDelete("DOI01/{id}")]
         [Authorize]
@@ -221,6 +231,7 @@ namespace pharmacy.Controllers
                         Name = _context.Medicines.Where(m => m.MedicineID == oi.MedicineID).Select(m => m.Name).FirstOrDefault(),
                         MainImage = _context.Images.Where(i => i.MedicineID == oi.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
                         Quantity = oi.Quantity,
+                        Price = oi.Price,
                         TotalPrice = oi.TotalPrice ?? 0,
                     })
                     .ToListAsync();

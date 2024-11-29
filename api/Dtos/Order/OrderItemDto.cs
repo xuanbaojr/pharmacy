@@ -20,6 +20,7 @@ namespace pharmacy.Dtos.Order
             public string? Name { get; set; }
             public string? MainImage { get; set; }
             public int Quantity { get; set; }
+            public decimal Price { get; set; }
             public decimal TotalPrice { get; set; }
         }
         public class TotalAmountResponse
