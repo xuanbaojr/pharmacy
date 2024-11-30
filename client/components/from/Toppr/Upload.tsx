@@ -32,7 +32,7 @@ const Upload = () => {
               & thực phẩm chức năng
             </h2>
           </div>
-          <p className="text-gray-300 mb-3">
+          <p className="text-gray-300 mb-6">
             Chúng tôi cung cấp các sản phẩm chất lượng, uy tín và an toàn cho
             sức khỏe của bạn.
           </p>

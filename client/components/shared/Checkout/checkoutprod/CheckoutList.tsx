@@ -9,7 +9,7 @@ interface Props {
 const CheckoutList = ({list} : Props) => {
 
     return (
-        <div className=" rounded-md bg-white px-2">
+        <div className=" rounded-md bg-white px-2 border border-gray-200 shadow-sm">
             <div className=" grid grid-cols-8 gap-1 py-2 text-center">
                 <div className="col-span-5 text-start pl-2">
                     Đơn thuốc

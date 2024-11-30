@@ -1,18 +1,18 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
 import { IoMdSend } from "react-icons/io";
 import UserChat from "./UserChat";
 import { useEffect, useRef, useState } from 'react';
 import { DataChat, listChat } from "./DataChat";
-import { getChatbot } from "@/api/medicine";
+// import { getChatbot } from "@/api/medicine";
 import { Ellipsis } from "lucide-react";
+import { chatMessageAI } from "@/api/chatbox";
+import { TbXboxX } from "react-icons/tb";
 interface Props {
-
+    change : (change : boolean) => void
 }
 
-
-const ChatBox = () => {
+const ChatBox = ({change} : Props) => {
     const chatContainerRef = useRef<HTMLDivElement | null>(null);
     const [messages, setMessages] = useState<DataChat[]>(listChat);
     const [inputValue, setInputValue] = useState<string>('');
@@ -30,19 +30,18 @@ const ChatBox = () => {
 
     const addMessage = async() => {
         if (inputValue.trim() !== '') {
-            
             const newMes : DataChat = {
                 type : "right",
                 title: inputValue
             }
             setMessages((prevMessages) => [...prevMessages, newMes]);
             setLoad(false)
-            const respone : any = await getChatbot(inputValue);
+            const respone : any = await chatMessageAI(inputValue);
             const res : DataChat = {
                 type: 'left',
-                title : respone.answer
+                title : respone.data.answer
             }
-            console.log(respone)
+            console.log(res)
             setMessages((prevMessages) => [...prevMessages, res]);
             setLoad(true)
             setInputValue(''); // Xóa input sau khi gửi
@@ -60,11 +59,20 @@ const ChatBox = () => {
       };
     
     return (
-        <div className='w-80 h-96 bg-white fixed bottom-4 right-8 z-30 border border-gray-200 shadow-xl flex flex-col rounded-lg '>
-            <div className="border-b flex-none h-10 border-gray-200 py-2 px-3 shadow-xl">
-                Chat với AI
+        <div className='w-80 bg-white fixed bottom-2 right-8 z-30 border border-gray-300 shadow-xl flex flex-col rounded-lg overflow-hidden'>
+            <div className="border-b w-full flex-none flex justify-between items-center h-10 border-gray-200 py-2 px-1 shadow-xl bg-blue-600">
+                <div className="ml-2 text-white">
+                    Chat với AI
+                </div>
+                {/* option */}
+                <div className="flex justify-center gap-2 items-center">
+                    <Button onClick={() => change(false)}>
+                        <TbXboxX size={20} color="white"/>
+                    </Button>
+                </div>
+                
             </div>
-            <div className=" flex-1 flex overflow-y-scroll  " ref={chatContainerRef}>
+            <div className="  h-96 flex overflow-y-scroll  " ref={chatContainerRef}>
                 <div className=" space-y-3  w-full h-full px-2 ">
                     {
                         messages.map((item, index) => {

@@ -3,13 +3,14 @@ import { listOptionPay } from "./pay/OptionPay"
 
 interface Props {
     totalPrice : string
+    done : () => void
 }
 
 
-const CheckoutPay = ({totalPrice} : Props) => {
+const CheckoutPay = ({totalPrice, done} : Props) => {
 
     return (
-        <div className="grid grid-rows-4 rounded-md bg-white  ">
+        <div className="grid grid-rows-4 rounded-md bg-white border border-gray-200 shadow-sm ">
             <div className=" row-span-1 grid grid-cols-10 bg-slate-200 px-4">
                 <div className="col-span-3 flex items-center px-2 text-xl ">
                     Phương thức thanh toán
@@ -47,7 +48,7 @@ const CheckoutPay = ({totalPrice} : Props) => {
 
                 </div>
                 <div className="col-span-2">
-                    <Button className="bg-[#0076C0] text-white  w-full my-4 ">Đặt hàng</Button>
+                    <Button onClick={done} className="bg-[#0076C0] text-white  w-full my-4 ">Đặt hàng</Button>
                 </div>
 
             </div>

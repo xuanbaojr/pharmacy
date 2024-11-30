@@ -2,7 +2,7 @@ import CartContain from "@/components/shared/CartList/CartContain"
 
 
 
-const CartPage = async () => {
+const CartPage =  () => {
    
 
     return (

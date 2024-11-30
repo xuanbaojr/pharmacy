@@ -7,7 +7,7 @@ import { AuthProvider } from '@/hooks/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MainManager from "@/manager/MainManager";
-import { mainWindow } from "@/manager/MainWindow";
+import { MainWindow} from "@/manager/MainWindow";
 import LoadRPlugin from "@/manager/LoadRPlugin";
 
 interface Props {
@@ -22,16 +22,15 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const mainWindow = new MainWindow([], [])
+
 const pluginsidebar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/sidebar'; // Đường dẫn đến thư mục chứa các plugin
 const pluginrightbar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/rightbar'; // Đường dẫn đến thư mục chứa các plugin
 
+const sideBar = MainManager(pluginsidebar);
+const rightBar = LoadRPlugin(pluginrightbar)
 
-// const sideBar = MainManager(pluginsidebar);
-// const rightBar = LoadRPlugin(pluginrightbar)
-
-// mainWindow.loadPlugin(sideBar, rightBar)
-
-
+mainWindow.loadPlugin(sideBar, rightBar)
 
 const RootLayout = ({ children }: Props) => {
     return (

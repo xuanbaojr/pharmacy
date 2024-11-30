@@ -1,22 +1,15 @@
 'use client'
 
-import { Checkbox } from "@/components/ui/checkbox"
 import { useEffect, useState } from "react"
-import { cart } from "./CartType"
 import CartPharmacy from "./CartPharmacy"
-import CartPresctiption from "./CartPrescription"
 import { Button } from "@/components/ui/button"
 import {  convertAmount, convertCart, PharmacyState } from "./CartState"
 import Link from "next/link"
 import { deleteProduct, getAmount, getCarts, getChangeAmount } from "@/api/cart"
 
-
-
-
 interface Props {
     
 }
-
 
 const CartContain = () => {
 
@@ -53,7 +46,7 @@ const CartContain = () => {
         try {
             const token = localStorage.getItem("token")
             if(!token) return
-            // const response = await deleteProduct(token, id);
+            await deleteProduct(token, id);
             setLoad(!load)
         } catch {
 
@@ -62,10 +55,7 @@ const CartContain = () => {
     useEffect(() => {
         fecthData()
     }, [])
-
-    useEffect(() => {
-        fecthData()
-    }, [cartState])
+   
     useEffect(() => {
         fecthData()
     }, [load])

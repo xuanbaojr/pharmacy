@@ -1,5 +1,6 @@
 import { listOrders } from "@/components/shared/CartList/CartType"
-import { PharmacyColumns } from "@/components/shared/TableMagic/Colums/PhamacyColums"
+import {TableColumns } from "@/components/shared/TableMagic/Colums"
+import { data } from "@/components/shared/TableMagic/Data"
 import TableMagic from "@/components/shared/TableMagic/TableMagic"
 
 
@@ -13,15 +14,12 @@ const ShipPage =   () => {
     // const orders = passOrderToClient(listOrder, "")
     const orders = listOrders
     return (
-        <div>
-            
-            <TableMagic
-            listOrder={orders} 
-            columns={PharmacyColumns}
-            // searchColumns={null}
-            // dropMenu={null}
-            selectBox={null}
+        <div className="px-32 ">
+            <TableMagic 
+                listOrder={data}
+                columns={TableColumns}
             />
+            
         </div>
     )
 }

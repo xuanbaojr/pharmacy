@@ -1,13 +1,10 @@
 'use client'
-import { Checkbox } from "@/components/ui/checkbox";
-import { pharmacy } from "./CartType";
 import { useEffect, useState } from "react";
 import Quantity from "./option/quantityy";
 import { MdDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PharmacyState } from "./CartState";
-import { getChangeAmount } from "@/api/cart";
 
 interface Props {
     pharmacy : PharmacyState,
@@ -23,14 +20,16 @@ const CartPharmacy = ({pharmacy, change, deleteProd}: Props) => {
     const changeQuantity = ( changes : "-" | "+") => {
         if (changes == "+") {
             setProd( prod + 1)
+            change(prod + 1, pharmacy.orderItemID)
         } else {
-            setProd(prod - 1)
             if (prod == 0) {
                 // dosomething
                 return
             }
+            setProd(prod - 1)
+            change(prod -1, pharmacy.orderItemID)
         }
-        change(prod, pharmacy.orderItemID)
+        
     }
 
 

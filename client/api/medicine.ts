@@ -30,11 +30,17 @@ export const getChatbot = async (message : string) => {
   const response = await fetch(CHAT + "/default_llm/single_forward/1", {
     method: 'POST',
     headers: {
-      accept: 'application/json',
+      "Content-Type": 'application/json',
     },
     body: JSON.stringify(data)
+  }).then(res => {
+    if(!res.ok) {
+      console.log("Problem")
+      return
+    }
+    return res.json()
   })
   // const response = await axiosClient.post("localhost:8001/default_llm/single_forward/1", hello)
-  return response;
+  // return response;
 
 }

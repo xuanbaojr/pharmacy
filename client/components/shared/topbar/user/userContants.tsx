@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { FaFacebookMessenger } from "react-icons/fa6";
 import ChatBox from './UserOption/Chatbox';
-
+import { MdLocalShipping } from "react-icons/md";
 export interface UserItem {
     icon: React.ReactNode;
     link: string;
@@ -101,7 +101,7 @@ const ChatIcon = () => {
             
             {
                 open && 
-                <ChatBox />
+                <ChatBox change={handleChange}/>
             }
         </div>
     )
@@ -109,8 +109,10 @@ const ChatIcon = () => {
 
 export const UserContants: UserItem[] = [
     {
-        icon: <UserIconWithClick />,
-        link: "#"
+        icon : <Link href="/follow">
+                    <MdLocalShipping className='hover:shadow-2xl rounded-lg' color="gray" size={28} />
+                </Link>,
+        link : "#"
     },
     {
         icon : <ChatIcon/>,
@@ -118,11 +120,11 @@ export const UserContants: UserItem[] = [
     },
     {
         icon: (
-            <Link href="/">
+            <Link href="/whitlist">
                 <IoHeartOutline className='hover:shadow-2xl rounded-lg' size={24} />
             </Link>
         ),
-        link: "/",
+        link: "/whitlist",
     },
     {
         icon: (
@@ -131,5 +133,9 @@ export const UserContants: UserItem[] = [
             </Link>
         ),
         link: "/cart",
-    }
+    },
+    {
+        icon: <UserIconWithClick />,
+        link: "#"
+    },
 ];

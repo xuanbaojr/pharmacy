@@ -70,7 +70,7 @@ const ImageUpload  = ({close} : Props) => {
                 </div>
                 <div className="flex items-center justify-between w-full">
                     <Button onClick={() => close(false)} className="bg-white px-2 py-1 hover:bg-gray-200 text-blue-800 text-lg font-semibold gap-2 flex">
-                        Close
+                        Đóng
                     </Button>
                     <Button className="bg-white px-2 py-1 hover:bg-gray-200 text-blue-800 text-lg font-semibold gap-2 flex" type="submit">
                         <span>Lấy thuốc</span>

@@ -14,7 +14,6 @@ const ShopPage = ({searchParams} : any  ) => {
         <div className="flex gap-5 mt-3 px-10 rounded-lg">
             <div className="w-1/6">
                 <SideBar />
-
             </div>
             <div className="w-5/6">
                 <div>
@@ -22,7 +21,7 @@ const ShopPage = ({searchParams} : any  ) => {
                 </div>
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
-                    <GridProduct />
+                    {/* <GridProduct /> */}
                     
                 </div>
             </div>
