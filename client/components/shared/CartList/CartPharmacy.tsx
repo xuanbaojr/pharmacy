@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PharmacyState } from "./CartState";
+import { formatNumber } from "@/utils/mixin";
 
 interface Props {
     pharmacy : PharmacyState,
@@ -47,13 +48,13 @@ const CartPharmacy = ({pharmacy, change, deleteProd}: Props) => {
             </div>
             <div className="col-span-4 grid grid-cols-10">
                 <div className="col-span-3 text-sm flex justify-center items-center">
-                    {pharmacy.price}đ
+                    {formatNumber(pharmacy.price)}đ
                 </div>
                 <div className="col-span-3 flex justify-center items-center px-4 ">
                     <Quantity quantity={prod} change={changeQuantity} />
                 </div>
                 <div className="col-span-3 flex justify-center items-center">
-                    {pharmacy.totalPrice}đ
+                    {formatNumber(pharmacy.totalPrice)}đ
                 </div>
 
                 <div className="col-span-1 flex justify-center items-center">

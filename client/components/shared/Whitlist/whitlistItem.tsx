@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md"
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link"
 import { postCrat } from "@/api/cart"
+import { formatNumber } from "@/utils/mixin"
 interface Props{
     whits : pharmacy
 }
@@ -40,7 +41,7 @@ const WhitlistItem = ({whits} : Props) => {
             <div className=" flex-none flex items-center gap-3 px-2">
                 {/* gia */}
                 <div className="text-base font-bold">
-                    {whits.price} đ
+                    {formatNumber(whits.price)} đ
                 </div>
                 <div>
                     <Button onClick={() => handAddCart()}>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import {  convertAmount, convertCart, PharmacyState } from "./CartState"
 import Link from "next/link"
 import { deleteProduct, getAmount, getCarts, getChangeAmount } from "@/api/cart"
+import { formatNumber } from "@/utils/mixin"
 
 interface Props {
     
@@ -14,7 +15,7 @@ interface Props {
 const CartContain = () => {
 
     const [cartState, setCartState] = useState<PharmacyState[]>([])
-    const [amount, setAmount] = useState('')
+    const [amount, setAmount] = useState<number>(0)
     const [load, setLoad] = useState(false)
     const fecthData = async () => {
         try {
@@ -109,7 +110,7 @@ const CartContain = () => {
                     <div className=" col-span-4">
                     </div>
                     <div className="col-span-4 text-xl flex items-center">
-                        Tổng giá trị:  {amount + "đ"  }
+                        Tổng giá trị:  {formatNumber(amount)  + "đ"  }
                     </div>
                     <div className="col-span-2">
                         <Link href={`/checkout/}`} >

@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { listOptionPay } from "./pay/OptionPay"
+import { formatNumber } from "@/utils/mixin"
 
 interface Props {
-    totalPrice : string
+    totalPrice : number
     done : () => void
 }
 
@@ -37,9 +38,9 @@ const CheckoutPay = ({totalPrice, done} : Props) => {
 
                 </div>
                 <div className="col-span-3 grid grid-cols-2 gap-4 my-3 ">
-                    <div className="text-sm font-light">Tổng tiền hàng</div><div className="text-end">₫{totalPrice}</div>
+                    <div className="text-sm font-light">Tổng tiền hàng</div><div className="text-end">₫{formatNumber(totalPrice)}</div>
                     <div className="text-sm font-light">Tổng tiền phí vận chuyển</div> <div className="text-end">₫0.000</div>
-                    <div className="text-sm font-light">Tổng thanh toán</div><div className="text-end text-3xl">₫{totalPrice}</div>
+                    <div className="text-sm font-light">Tổng thanh toán</div><div className="text-end text-3xl">₫{formatNumber(totalPrice)}</div>
                 </div>
             </div>
 

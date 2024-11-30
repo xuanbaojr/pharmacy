@@ -1,4 +1,4 @@
-export const  URL = 'https://5874-2402-800-6141-8161-98a1-47af-eea5-8d77.ngrok-free.app';
+export const  URL = 'https://6a47-2405-4803-fd63-ad40-f17b-b3cc-e28-9aed.ngrok-free.app';
 export const MODEL = "http://localhost:8000"
 export const CHAT = "http://localhost:8001"
 
@@ -21,3 +21,7 @@ export const DELETE_CART = '/api/DOI01'
 
 
 export const POST_CHECKOUT = '/api/IOD01'
+
+
+export const GET_LIST_ORDER = "/api/ROD01"
+export const GET_STATUS_ORDER = "/api/ROD02"

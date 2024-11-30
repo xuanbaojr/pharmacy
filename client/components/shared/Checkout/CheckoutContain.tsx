@@ -16,7 +16,7 @@ interface Props {
 
 const CheckoutContain = () => {
     const [cartState, setCartState] = useState<PharmacyState[]>([])
-    const [amount, setAmount] = useState('')
+    const [amount, setAmount] = useState(0)
 
     // thon tin nguoi gui
     const [nameOrder, setNameOrder] = useState("")
@@ -31,22 +31,22 @@ const CheckoutContain = () => {
     const [payment, setPayment] = useState("Trả tiền khi nhận hàng")
     const [done, setDone] = useState(false);
 
-    // const fecthData = async () => {
-    //     try {
-    //         const token = localStorage.getItem("token")
-    //         if(!token) return
-    //         const response = await getCarts(token);
-    //         const responeAmount = await getAmount(token)
-    //         setCartState(convertCart(response.data))
-    //         setAmount(convertAmount(responeAmount.data))
-    //     } catch (error) {
-    //         console.error('Lỗi trong hàm handle:', error); // Ghi lại lỗi trong hàm handle
-    //     }
-    //     console.log("asas asda ")
-    // }
-    // useEffect(() => {
-    //     fecthData()
-    // }, [])
+    const fecthData = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if(!token) return
+            const response = await getCarts(token);
+            const responeAmount = await getAmount(token)
+            setCartState(convertCart(response.data))
+            setAmount(convertAmount(responeAmount.data))
+        } catch (error) {
+            console.error('Lỗi trong hàm handle:', error); // Ghi lại lỗi trong hàm handle
+        }
+        console.log("asas asda ")
+    }
+    useEffect(() => {
+        fecthData()
+    }, [])
 
     const checkoutDone = async () => {
         try {

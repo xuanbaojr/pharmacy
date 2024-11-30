@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { order } from "./test";
+import { formatNumber } from "@/utils/mixin";
 
 interface Props {
     follow : order,
@@ -9,22 +10,22 @@ const FollowItem = ({follow} : Props) => {
 
     return (
         <div className="flex items-center border border-gray-200 bg-white rounded-lg shadow-md">
-            <Link href={`/state/${follow.orderId}`} className="w-full flex gap-2 px-4 py-1.5">
+            <Link href={`/state/${follow.orderID}`} className="w-full flex gap-2 px-4 py-1.5">
                 <div className="flex-1">
-                    {follow.nameOrder}
+                    {follow.orderer}
                 </div>
                 <div className=" flex-1">
-                    {follow.nameGu === follow.nameOrder ? "" : follow.nameGu}
+                    {follow.consignee === follow.orderer ? "" : follow.consignee}
                 </div>
                 <div className="flex-1 text-left flex justify-evenly px-2 gap-2">
                     <div className=" flex-1 ">
-                        {follow.createDate}
+                        {convertDate(follow.createdAt) }
                     </div>
                     <div className=" flex-1 text-center">
-                        {follow.phoneGu}
+                        {formatNumber(follow.totalAmount)} đ
                     </div>
                     <div className={`flex-1 text-center`}>
-                        <State state={follow.state} />
+                        <State state={follow.status} />
                     </div>
                 </div>
             </Link>
@@ -58,4 +59,10 @@ const State = ({state} : stateProps) => {
             </div>
         )
     }
+}
+
+const convertDate = (formattedDate : Date ) => {
+ 
+    const s = formattedDate ? formattedDate.toLocaleDateString() : "";
+    return s
 }

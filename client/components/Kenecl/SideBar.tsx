@@ -1,5 +1,4 @@
 import { mainWindow } from "@/app/layout"
-import instance from "@/utils/axios"
 
 interface Props {
 
@@ -8,12 +7,12 @@ interface Props {
 
 const SideBar = () => {
 
-    const getcheck =  async ()=> {
-        const data = await instance.get(`/api/RMD01`)
-        console.log(data.data.map((item : any) => 
-            item.id + " " + item.name
-        ))
-    }
+    // const getcheck =  async ()=> {
+    //     const data = await instance.get(`/api/RMD01`)
+    //     console.log(data.data.map((item : any) => 
+    //         item.id + " " + item.name
+    //     ))
+    // }
 
     return (
         <>

@@ -13,7 +13,7 @@ const BottomBar = () => {
                 {/* cot 1 */}
                 <div className=" space-y-1">
                     <div className="font-semibold py-1 mb-1 text-base">
-                        chăm sóc khách hàng
+                        Chăm sóc khách hàng
                     </div>
                     <div className="text-base space-y-2">
                         <div>Tư vấn trực tuyến</div>

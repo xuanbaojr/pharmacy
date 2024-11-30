@@ -1,6 +1,7 @@
 import { boolean } from "zod";
 import { cart, pharmacy, prescription } from "./CartType";
 import { StaticImageData } from "next/image";
+import { product } from "../State/data";
 
 export interface PharmacyState {
     image : string 
@@ -8,15 +9,15 @@ export interface PharmacyState {
     price : number,
     quantity : number,
     orderItemID : number,
-    totalPrice : string,
-    medicineID : string,
+    totalPrice : number,
+    medicineID : number,
 }
 
 export interface Amount {
-    totalAmount : string,
+    totalAmount : number,
 }
 
-export const convertAmount = (data : any) : string=> {
+export const convertAmount = (data : any) : number=> {
     return data.totalAmount
 }
 
@@ -34,4 +35,20 @@ export const convertCart = (data : any) : PharmacyState[] => {
     })
 
     return newData;
+}
+
+export const convertProduct = (data : product[]) : PharmacyState[] => {
+    const newData : PharmacyState[] = data.map((item) => {
+        return {
+            image : item.mainImage ,
+            name: item.name,
+            price : item.price,
+            quantity : item.quantity,
+            orderItemID : item.orderItemID,
+            totalPrice : item.totalPrice,
+            medicineID : item.medicineID,
+        }
+    })
+
+    return newData
 }

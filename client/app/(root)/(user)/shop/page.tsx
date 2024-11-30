@@ -21,7 +21,7 @@ const ShopPage = ({searchParams} : any  ) => {
                 </div>
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
-                    {/* <GridProduct /> */}
+                    <GridProduct />
                     
                 </div>
             </div>

@@ -2,12 +2,13 @@ import { FaBox } from "react-icons/fa";
 import { FaShippingFast } from "react-icons/fa";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import StateNote from "./StateNote";
+import { status } from "./data";
 interface Props {
     state : "done"|"do"|"get",
-    note : string
+    status : status
 }
 
-const StateImage = ({state, note} : Props) => {
+const StateImage = ({state, status} : Props) => {
 
     const green = '#16a34a'
     const gray = '#4b5563'
@@ -52,7 +53,7 @@ const StateImage = ({state, note} : Props) => {
             </div>
 
             <div className=" mt-10 mb-2 px-32 ">
-                <StateNote note={note} />
+                <StateNote status={status} />
             </div>
 
         </div>

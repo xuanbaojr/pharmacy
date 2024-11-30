@@ -66,8 +66,8 @@ const UserIconWithClick = () => {
                 
                     {isAuthenticated ? (
                         <>
-                            <DropdownMenuLabel className='w-full flex bg-gray-200'>{username}</DropdownMenuLabel>
-                            <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
+                            <DropdownMenuLabel className='w-full flex bg-gray-200 cursor-pointer' >{username}</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
                         </>
                     ) : (
                         <>

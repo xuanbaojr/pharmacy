@@ -1,17 +1,38 @@
+'use client'
+import { useEffect, useState } from "react"
 import CheckoutList from "../Checkout/checkoutprod/CheckoutList"
 import StateImage from "./StateImage"
 import StateNote from "./StateNote"
+import { getStatusOrder } from "@/api/order"
+import { convertStatus, status } from "./data"
+import { convertProduct } from "../CartList/CartState"
 
 interface Props {
-
+    id : number
 }
 
-const StateContain = () => {
+const StateContain = ({id} : Props) => {
+    const [status, setStatus] = useState<status>()
+    const handleFetch = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if (!token) return
+            const respone = await getStatusOrder(token, id)
+            setStatus(convertStatus(respone.data))
+        } catch {
+
+        }
+    }
+
+    useEffect(() => {
+        handleFetch()
+    }, [])
+    if (!status) return
 
     return (
-        <div>
-            <StateImage state="do" note={"asdasdad asbahsb babdb day la mojt loiwf thu toi va toi nghi rang toi ne mua mon do gi do cuar nguowif ta nghuwng toi khong biet phar lamf gif car ngene ngay car khi abn cos ther laf nguoif toi khong coan thiet nhieu lamf"}/>
-            {/* <CheckoutList list={cartState}/> */}
+        <div className=" space-y-4">
+            <StateImage state="do" status={status} />
+            <CheckoutList list={convertProduct(status.orderItems)}/>
 
             
         </div>

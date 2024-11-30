@@ -1,5 +1,8 @@
+'use client'
+import { getListOrder } from "@/api/order"
 import FollowItem from "./FollowItem"
-import { data } from "./test"
+import { convertOrderData, order } from "./test"
+import { useEffect, useState } from "react"
 
 
 interface Props {
@@ -7,6 +10,24 @@ interface Props {
 }
 
 const FollowContain = () => {
+    const [list, setList] = useState<order[]>([])
+
+    const handleFecth = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if (!token) return
+            const respone = await getListOrder(token);
+            setList(convertOrderData(respone.data))
+            console.log(respone)
+        } catch {
+
+        }
+    }
+
+    useEffect (() => {
+        handleFecth()
+    },[])
+    
 
     return (
         <div>
@@ -39,17 +60,13 @@ const FollowContain = () => {
             {/* content order */}
             <div className=" space-y-2 mt-2">
                 {
-                    data.map((item, index) => {
+                    list.map((item, index) => {
                         return (
                             <FollowItem follow={item} key={index} />
                         )
                     })
                 }
-
             </div>
-
-            
-
         </div>
     )
 }
