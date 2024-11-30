@@ -7,6 +7,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link"
 import { postCrat } from "@/api/cart"
 import { formatNumber } from "@/utils/mixin"
+import { deleteWhits } from "@/api/medicine"
 interface Props{
     whits : pharmacy
 }
@@ -19,6 +20,17 @@ const WhitlistItem = ({whits} : Props) => {
             if (!token) return
             console.log(whits.id)
             await postCrat(token, whits.id, 1)
+        } catch {
+
+        }
+    }
+
+    const handDelete = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if (!token) return
+            console.log(whits.id)
+            await deleteWhits(token, whits.id)
         } catch {
 
         }
@@ -41,7 +53,7 @@ const WhitlistItem = ({whits} : Props) => {
             <div className=" flex-none flex items-center gap-3 px-2">
                 {/* gia */}
                 <div className="text-base font-bold">
-                    {formatNumber(whits.price)} đ
+                    {/* {formatNumber(whits.price)} đ */}
                 </div>
                 <div>
                     <Button onClick={() => handAddCart()}>
@@ -50,7 +62,7 @@ const WhitlistItem = ({whits} : Props) => {
                 </div>
 
                 <div className="">
-                    <Button onClick={() => console.log("xoa")}>
+                    <Button onClick={() => handDelete()}>
                         <MdDelete  className="h-5 w-5" color="gray" />
                     </Button>
                     

@@ -9,7 +9,7 @@ interface Props {
 const FollowItem = ({follow} : Props) => {
 
     return (
-        <div className="flex items-center border border-gray-200 bg-white rounded-lg shadow-md">
+        <div className="flex items-center border border-gray-200 bg-white rounded-lg shadow-sm">
             <Link href={`/state/${follow.orderID}`} className="w-full flex gap-2 px-4 py-1.5">
                 <div className="flex-1">
                     {follow.orderer}

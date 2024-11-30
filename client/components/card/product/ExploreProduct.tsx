@@ -4,14 +4,22 @@ import { Button } from "@/components/ui/button"
 import { FiShoppingCart } from "react-icons/fi";
 import { postCrat } from "@/api/cart";
 import { useRouter } from "next/navigation";
+import { postWhits } from "@/api/medicine";
 interface Props {
     id : number
 }
 
 const ExploreProduct = ({id} : Props) => {
     const router = useRouter()
-    const handleWhist = () => {
-        console.log("whit")
+    const handleWhist = async () => {
+        try {
+            const token = localStorage.getItem("token")
+            if (!token) return
+            console.log(id)
+            await postWhits(token, id,)
+        } catch {
+
+        }
     }
 
     const handAddCart = async () => {

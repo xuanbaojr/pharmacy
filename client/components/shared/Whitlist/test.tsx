@@ -1,5 +1,7 @@
 import { pharmacy } from "@/components/card/product/DataProduct";
 
+
+
 export const data : pharmacy[] = [
     {
         id : 1,

@@ -7,12 +7,18 @@ import {  convertAmount, convertCart, PharmacyState } from "./CartState"
 import Link from "next/link"
 import { deleteProduct, getAmount, getCarts, getChangeAmount } from "@/api/cart"
 import { formatNumber } from "@/utils/mixin"
+import { useRouter } from "next/navigation"
 
 interface Props {
     
 }
 
 const CartContain = () => {
+    const router = useRouter()
+
+    const checkout = () => {
+        router.push('/checkout')
+    }
 
     const [cartState, setCartState] = useState<PharmacyState[]>([])
     const [amount, setAmount] = useState<number>(0)
@@ -113,9 +119,7 @@ const CartContain = () => {
                         Tổng giá trị:  {formatNumber(amount)  + "đ"  }
                     </div>
                     <div className="col-span-2">
-                        <Link href={`/checkout/}`} >
-                        <Button className="bg-blue-800 w-full" > mua</Button>   
-                        </Link> 
+                        <Button onClick={() => checkout()} className="bg-blue-600 w-full hover:text-white hover:bg-blue-400" disabled={cartState.length === 0}> mua</Button>   
                     </div>
                 </div>
                 

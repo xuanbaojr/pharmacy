@@ -3,33 +3,25 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
-export const data : User = {
-    name : "nguyen duc quyen",
-    address : "ha noi thanh hoa ",
-    phone : "019292922"
-}
+import { user } from "./user";
 
-export interface User {
-    name : string,
-    phone : string,
-    address : string,
-}
 
 interface Props {
-    user : User
-    changeProfile : (user : User) => void
+    user : user 
+    changeProfile : (name: string, phone : string, address : string) => void
 }
 
 const CheckoutOrder = ({user, changeProfile } : Props) => {
     const [change, setChange] = useState(false)
-    const [name, setName] = useState(user.name)
-    const [phone, setPhone] = useState(user.phone)
+    const [name, setName] = useState(user.fullName)
+    const [phone, setPhone] = useState(user.phoneNumber)
     const [address, setAddress] = useState(user.address)
 
-    const handleOke = () => {
+    const handleOke = async() => {
         setChange(false)
-        changeProfile({name, phone, address})
+        changeProfile(name, phone, address)
     }
+    
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -102,7 +94,7 @@ const CheckoutOrder = ({user, changeProfile } : Props) => {
                 <div className="grid grid-cols-10 gap-2 ">
                     <div className=" col-span-2 flex  ">
                         <div className="text-base font-semibold ml-2 ">
-                            <span>{user.name}</span>
+                            <span>{user.fullName}</span>
                         </div>
                     </div>
                 <div className="flex  col-span-6 text-center flex-col gap-2 items-start justify-center">
@@ -121,10 +113,10 @@ const CheckoutOrder = ({user, changeProfile } : Props) => {
                         <div className=" min-w-32 text-left">
                             Số điện thoại :
                         </div>
-                        {user.phone.length === 0 ? <div className="text-red-500 text-base">
+                        {user.phoneNumber.length === 0 ? <div className="text-red-500 text-base">
                             Chưa có địa chỉ người nhận
                         </div> : <div className="text-base">
-                            {user.phone}
+                            {user.phoneNumber}
                         </div>}
                     </div>
                 </div>

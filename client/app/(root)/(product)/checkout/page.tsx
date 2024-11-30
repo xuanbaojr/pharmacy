@@ -8,7 +8,7 @@ interface Props {
 const CheckoutPage = ({ params }: { params: { id: string } }) => {
 
     return (
-        <div className="mx-32 px-4 my-5">
+        <div className="mx-32 px-4 my-5 relative">
             <CheckoutContain />
            
         </div>

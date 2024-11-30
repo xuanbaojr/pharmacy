@@ -8,9 +8,16 @@ export const RAW_JSON = {
     crossDomain : true
 };
 
+export const GET_USER = '/api/RUI01'
+export const POST_USER = '/api/UUI01'
+
 export const LOGIN = '/api/account/login';
 export const REGISTER = '/api/account/register';
 export const GET_MEDICINE = '/api/RMD01';
+
+export const GET_WHITS_LIST = '/api/RWL01'
+export const POST_WHITS = '/api/RWL01/IWL01'
+export const DELETE_WHITS = '/api/RWL01/DWL'
 
 
 export const GET_CART = '/api/ROI02';
