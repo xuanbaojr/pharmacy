@@ -1,4 +1,4 @@
-export const  URL = 'https://2e48-42-113-16-18.ngrok-free.app';
+export const  URL = 'http://pharmacy.com';
 export const MODEL = "http://localhost:8000"
 export const CHAT = "http://localhost:8001"
 export const CHAT_IMAGE = "https://0b73-14-232-232-166.ngrok-free.app"
