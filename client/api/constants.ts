@@ -1,8 +1,12 @@
-export const  URL = 'http://pharmacy.com';
-export const MODEL = "http://localhost:8000"
-export const CHAT = "http://localhost:8001"
+export const  URL = 'https://2e48-42-113-16-18.ngrok-free.app';
+export const CHAT = "https://0b73-14-232-232-166.ngrok-free.app"
 export const CHAT_IMAGE = "https://0b73-14-232-232-166.ngrok-free.app"
 
+export const PAGE_SIZE =6
+
+
+// ai cua bao 
+export const GET_DON = '/pre_predict'
 
 export const RAW_JSON = {
     'Content-Type': 'application/json',
@@ -17,6 +21,7 @@ export const REGISTER = '/api/account/register';
 export const GET_MEDICINE = '/api/RMD01';
 
 export const GET_MEDICINE_SORT = '/api/RMD02'
+export const GET_MEDICINE_SORT_AI = '/api/search'
 
 export const GET_WHITS_LIST = '/api/RWL01'
 export const POST_WHITS = '/api/RWL01/IWL01'

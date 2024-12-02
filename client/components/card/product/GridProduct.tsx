@@ -1,10 +1,11 @@
 import CardProduct from "./CardProduct"
 import { convertPharmacyList, pharmacy } from "./DataProduct"
-import { getMedicine } from "@/api/medicine"
+import { getMedicine, getMedicineAISearch } from "@/api/medicine"
 import PaginationProduct from "./PaginationProduct"
 
 interface Props {
     // sort: string
+    aiSearch? : string ,
     page : number,
     min : number | null,
     max : number | null,
@@ -12,10 +13,10 @@ interface Props {
 }
 
 
-const GridProduct = async ({page, min, max, category} : Props ) =>  {
+const GridProduct = async ({aiSearch, page, min, max, category} : Props ) =>  {
 
 
-    const res : any = await getMedicine(page, min, max , category )
+const res : any = aiSearch? await getMedicineAISearch(page,aiSearch) :  await getMedicine(page, min, max , category )
     const newdata : pharmacy[] = convertPharmacyList(res.data.data);
     
     return (

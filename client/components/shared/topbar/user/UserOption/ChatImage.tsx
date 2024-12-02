@@ -28,7 +28,7 @@ const ChatImage = ({file, setFile, keyDown } : Props) => {
     return (
         <div className="p-1 relative text-gray-400">
             <input type="file" 
-                className=" opacity-0 absolute w-full h-full " accept="image/png" 
+                className=" opacity-0 absolute w-full h-full " accept="image/png image/jpg" 
                 onChange={handleFileChange}
                 onKeyDown={handleKeyDown}
             />

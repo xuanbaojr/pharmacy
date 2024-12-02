@@ -23,14 +23,15 @@ export const PriceSelect = ({category, minx, maxx} : Props) => {
         setMax(Number(event.target.value))
     }
 
+    const canClick = () : boolean => {
+        if (max === 0 || min >= max ) {
+            return false;
+        } 
+        return true
+    }
+
     const click = () => {
-        if (min ===0 || max === 0) {
-            return 
-        } else if (min >= max) {
-            return 
-        } else {
-            router.push(`/shop/${linkPathPlugin(category, min, max)}`);
-        }
+        router.push(`/shop/${linkPathPlugin(category, min, max)}`);
     }
 
     return (
@@ -46,7 +47,8 @@ export const PriceSelect = ({category, minx, maxx} : Props) => {
                     <Input value={min} onChange={handlMin} placeholder="từ"/>
                     <Input value={max} onChange={handlMax} placeholder="đến"/>
                 </div>
-                <Button onClick={click} className="w-full rounded-lg bg-blue-500 flex justify-center items-center mt-3 ">
+                <Button onClick={click} disabled={!canClick() === true? true : false} 
+                    className={`w-full rounded-lg ${canClick() === true? "bg-blue-600 hover:bg-blue-300 hover:text-white" : "bg-blue-300"} flex justify-center items-center mt-3 `}>
                     <div>
                         Áp dụng
                     </div>

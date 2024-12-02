@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
 import { user } from "./user";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
     user : user 
@@ -16,10 +17,13 @@ const CheckoutOrder = ({user, changeProfile } : Props) => {
     const [name, setName] = useState(user.fullName)
     const [phone, setPhone] = useState(user.phoneNumber)
     const [address, setAddress] = useState(user.address)
-
+    const toastOptions = {
+        autoClose: 2000,
+    };
     const handleOke = async() => {
         setChange(false)
         changeProfile(name, phone, address)
+        toast.success("Cập nhập thành công!", toastOptions);
     }
     
 

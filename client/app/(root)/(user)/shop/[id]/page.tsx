@@ -4,6 +4,8 @@ import GridProduct from "@/components/card/product/GridProduct";
 
 
 export interface Location {
+    aiSearch? : string,
+
     searchName? : string,
     min? : number ,
     max? : number,
@@ -32,6 +34,7 @@ const ShopPage = ({ params }: { params: { id: string } }) => {
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
                     <GridProduct 
+                    aiSearch={user.aiSearch}
                     page={user.page ? user.page : 1}
                     min={user.min? user.min : null}
                     max= {user.max? user.max : null}

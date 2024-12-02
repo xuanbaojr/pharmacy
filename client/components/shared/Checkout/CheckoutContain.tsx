@@ -11,7 +11,8 @@ import CheckoutOrder from "./CheckoutOrder"
 import { user } from "./user"
 import { getUser, postUser } from "@/api/user"
 import { useRouter } from "next/navigation"
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
 
@@ -31,7 +32,9 @@ const CheckoutContain = () => {
     const [note, setNote] = useState('')
     const [payment, setPayment] = useState("Trả tiền khi nhận hàng")
     const [done, setDone] = useState(true);
-
+    const toastOptions = {
+        autoClose: 2000,
+    };
     const fecthData = async () => {
         try {
             const token = localStorage.getItem("token")
@@ -53,16 +56,16 @@ const CheckoutContain = () => {
 
     const checkoutDone = async () => {
         if (phone=== '' || address === '' || !user) {
-            setDone(false)
+            toast.warning("Thiếu thông tin")
         } else {
             try {
             const token = localStorage.getItem("token")
             if(!token) return
             await postCheckoutDone(token, address, user.phoneNumber,payment, note, user.fullName, name, phone  ); 
-            setDone(true)
+            toast.success("Mua thành công!", toastOptions);
             router.push("/follow")
             } catch {
-
+            toast.error("Mua thất bại!", toastOptions);
             }
         }
         
@@ -83,13 +86,6 @@ const CheckoutContain = () => {
     return (
         <div className=" space-y-4">
 
-            {
-                !done && <div onClick={() => setDone(true)} className=" absolute w-full h-full flex justify-end items-start">
-                    <div className=" px-3 py-4 rounded-lg bg-yellow-400">
-                         Thiếu thông tin
-                    </div>
-                </div>
-            }
             {
                 user && <CheckoutOrder
                 user={user}

@@ -15,7 +15,7 @@ const StateImage = ({state, status} : Props) => {
     let tick=''
     let ship=''
     let title = ''
-    if (state === 'done') {
+    if (status.status === 'Pinc') {
         tick = green
         ship = green
         title = "Đơn hàng đã được giao đến"

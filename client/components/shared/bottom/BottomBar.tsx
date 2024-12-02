@@ -59,9 +59,9 @@ const BottomBar = () => {
                         Thông tin
                     </div>
                     <div className="text-base space-y-0.5">
-                        <div>nguyen duc quyen</div>
-                        <div>phan van bao</div>
-                        <div>doan manh duong</div>
+                        <div>Nguyễn Đức Quyền</div>
+                        <div>Phan Xuân Bảo</div>
+                        <div>Đoàn Mạnh Dương</div>
                     </div>
 
                 </div><div className="">

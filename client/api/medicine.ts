@@ -1,6 +1,6 @@
 'use server'
 import axios from 'axios';
-import { URL, GET_MEDICINE, MODEL, GET_WHITS_LIST, DELETE_WHITS, POST_WHITS, GET_MEDICINE_SORT } from './constants';
+import { URL, GET_MEDICINE, GET_WHITS_LIST, DELETE_WHITS, POST_WHITS, GET_MEDICINE_SORT, PAGE_SIZE, GET_MEDICINE_SORT_AI, GET_DON, CHAT } from './constants';
 
 export const getMedicine = async (
     page: number , 
@@ -9,7 +9,7 @@ export const getMedicine = async (
     category : string | null )  => {
     const res : any = await axios.post(URL + GET_MEDICINE_SORT, {
         "page": page,
-        "pageSize": 6,
+        "pageSize": PAGE_SIZE,
         "category" : category,
         "minPrice" : min,
         "maxPrice" : max,
@@ -17,6 +17,21 @@ export const getMedicine = async (
     });
     return res;
 }
+
+export const getMedicineAISearch = async (
+    page: number , 
+    search : string
+    )  => {
+    const res : any = await axios.post(URL + GET_MEDICINE_SORT_AI, {
+        "page": page,
+        "pageSize": PAGE_SIZE,
+        "searchQuery" : search
+        
+    });
+    return res;
+}
+
+
 
 export const getMedicineDetail = async (id: string)  => {
     const res : any = await axios.get(URL + GET_MEDICINE + `/${id}`);
@@ -68,13 +83,4 @@ export const deleteWhits = async (token : string, id : number) => {
   }
 }
 
-export const getUploadImage = async (formData : FormData) => {
-    const response = await fetch(MODEL + '/prescription', {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-        },
-        body: formData,
-      });
-    return response;
-}
+

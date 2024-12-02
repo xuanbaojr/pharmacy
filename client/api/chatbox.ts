@@ -1,7 +1,7 @@
 'use client'
 
 import axios from "axios";
-import { CHAT, CHAT_IMAGE } from "./constants";
+import { CHAT, CHAT_IMAGE, GET_DON } from "./constants";
 
 export const chatMessageAI = async ( message : string) => {
     try {
@@ -30,4 +30,15 @@ export const chatImageAI = async ( formData : FormData) => {
         console.error('Lỗi khi gọi API:', error); // Ghi lại lỗi để kiểm tra
         throw error; // Ném lại lỗi để xử lý ở nơi khác
     }
+}
+
+export const getUploadImage = async (formData : FormData) => {
+    const response = await fetch(CHAT + GET_DON, {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+        },
+        body: formData,
+      });
+    return response;
 }

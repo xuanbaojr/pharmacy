@@ -5,20 +5,26 @@ import { FiShoppingCart } from "react-icons/fi";
 import { postCrat } from "@/api/cart";
 import { useRouter } from "next/navigation";
 import { postWhits } from "@/api/medicine";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 interface Props {
     id : number
 }
 
 const ExploreProduct = ({id} : Props) => {
     const router = useRouter()
+    const toastOptions = {
+        autoClose: 1000,
+    };
     const handleWhist = async () => {
         try {
             const token = localStorage.getItem("token")
             if (!token) return
             console.log(id)
-            await postWhits(token, id,)
+            await postWhits(token, id)
+            toast.success("Đã thêm vào yêu thích", toastOptions);
         } catch {
-
+            toast.error("Thêm thất bại", toastOptions);
         }
     }
 
@@ -28,8 +34,9 @@ const ExploreProduct = ({id} : Props) => {
             if (!token) return
             console.log(id)
             await postCrat(token, id, 1)
+            toast.success("Đã thêm vào giỏ hàng", toastOptions);
         } catch {
-
+            toast.error("Thêm thất bại", toastOptions);
         }
     }
 

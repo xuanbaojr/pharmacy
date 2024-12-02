@@ -1,5 +1,4 @@
 'use client'
-import { getUploadImage } from "@/api/medicine";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
@@ -8,6 +7,7 @@ import Image from "next/image";
 import { Ellipsis } from 'react-spinners-css';
 import { convertDrug, convertSearchName } from "./DataDrug";
 import { useRouter } from "next/navigation";
+import { getUploadImage } from "@/api/chatbox";
 interface Props {
     close : (change : boolean) => void
 }
@@ -34,14 +34,13 @@ const ImageUpload  = ({close} : Props) => {
         const response = await getUploadImage(formData);
         setLoad(true)
         close(false)
-        const data : any[] = await response.json();
-        const newData = convertDrug(data)
-        const searchName = convertSearchName(newData);
+        console.log(response)
+        // const data : any[] = await response.json();
+        // const newData = convertDrug(data)
+        // const searchName = convertSearchName(newData);
 
-        // console.log(data);
-        // console.log(searchName)
         
-        router.push(`/shop?search_name=${searchName}`);
+        // router.push(`/shop?search_name=${searchName}`);
         
       } catch (error) {
         console.error('Có lỗi xảy ra:', error);
