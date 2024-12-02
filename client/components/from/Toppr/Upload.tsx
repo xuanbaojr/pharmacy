@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "@/public/assets/image/home1.png";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Location } from "@/app/(root)/(user)/shop/page";
+import { Location } from "@/app/(root)/(user)/shop/[id]/page";
 
 const Upload = () => {
   const router = useRouter();

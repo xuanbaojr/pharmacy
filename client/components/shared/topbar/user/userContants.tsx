@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { FaFacebookMessenger } from "react-icons/fa6";
 import ChatBox from './UserOption/Chatbox';
 import { MdLocalShipping } from "react-icons/md";
+import { useRouter } from 'next/navigation';
 export interface UserItem {
     icon: React.ReactNode;
     link: string;
@@ -26,6 +27,14 @@ const UserIconWithClick = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { isAuthenticated, token, logout } = useAuth();
     const [userName, setUsername] = useState("");
+    const router = useRouter()
+
+    const shipperRouter = () => {
+        router.push("/ship")
+    }
+    const adminRouter = () => {
+        router.push('/recep')
+    }
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -68,6 +77,8 @@ const UserIconWithClick = () => {
                         <>
                             <DropdownMenuLabel className='w-full flex bg-gray-200 cursor-pointer' >{username}</DropdownMenuLabel>
                             <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={shipperRouter}>Vận chuyển</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={adminRouter}>Điều hành</DropdownMenuLabel>
                         </>
                     ) : (
                         <>

@@ -1,4 +1,4 @@
-export const  URL = 'https://6a47-2405-4803-fd63-ad40-f17b-b3cc-e28-9aed.ngrok-free.app';
+export const  URL = 'http://pharmacy.com';
 export const MODEL = "http://localhost:8000"
 export const CHAT = "http://localhost:8001"
 
@@ -14,6 +14,8 @@ export const POST_USER = '/api/UUI01'
 export const LOGIN = '/api/account/login';
 export const REGISTER = '/api/account/register';
 export const GET_MEDICINE = '/api/RMD01';
+
+export const GET_MEDICINE_SORT = '/api/RMD02'
 
 export const GET_WHITS_LIST = '/api/RWL01'
 export const POST_WHITS = '/api/RWL01/IWL01'

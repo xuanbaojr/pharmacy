@@ -1,18 +1,13 @@
+import { Location } from "@/app/(root)/(user)/shop/[id]/page"
 import { mainWindow } from "@/app/layout"
 
 interface Props {
-
+    user : Location
 }
 
 
-const SideBar = () => {
-
-    // const getcheck =  async ()=> {
-    //     const data = await instance.get(`/api/RMD01`)
-    //     console.log(data.data.map((item : any) => 
-    //         item.id + " " + item.name
-    //     ))
-    // }
+const SideBar = ({user} : Props) => {
+    mainWindow.updateParams(user)
 
     return (
         <>

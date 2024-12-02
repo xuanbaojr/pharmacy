@@ -8,22 +8,29 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import PaginationProduct from "../card/product/PaginationProduct";
 interface Props {
-
+    page : number,
+    min : number | null,
+    max : number | null,
+    category : string | null
 }
 
-const TopBar = () => {
+const TopBar = ({page, min, max, category} : Props) => {
 
     return (
         <>
-        <div className="w-full  rounded-lg flex p-2 justify-between">
-            {/* option */}
-            <div className="pl-5 ">
-                <InSort />
+        <div className="w-full bg-gray-200  rounded-lg flex p-2 justify-between">
+            <div className="flex-1 ">
+
             </div>
             {/* chuyen trang */}
             <div>
-                <Page />
+                <PaginationProduct 
+                page={page}
+                min={min}
+                max= {max}
+                category={category} />
                 
             </div>
 

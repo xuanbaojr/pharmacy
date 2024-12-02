@@ -24,8 +24,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const mainWindow = new MainWindow([], [])
 
-const pluginsidebar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/sidebar'; // Đường dẫn đến thư mục chứa các plugin
-const pluginrightbar : string = 'E:/code/file code/code web/Pharmacyweb/pharmacy/client/Plugin/rightbar'; // Đường dẫn đến thư mục chứa các plugin
+const pluginsidebar : string = 'D:/BTL-Pharmacy/pharmacy/client/Plugin/sidebar'; // Đường dẫn đến thư mục chứa các plugin
+const pluginrightbar : string = 'D:/BTL-Pharmacy/pharmacy/client/Plugin/rightbar'; // Đường dẫn đến thư mục chứa các plugin
 
 const sideBar = MainManager(pluginsidebar);
 const rightBar = LoadRPlugin(pluginrightbar)

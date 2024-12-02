@@ -39,3 +39,15 @@ const LoadRPlugin = (dir: string): RPlugin[] => {
 }
 
 export default LoadRPlugin
+
+export const createFile = (inputFile: Buffer, outputPath: string): void => {
+    // Đảm bảo rằng đường dẫn là hợp lệ
+    const dir = path.dirname(outputPath);
+    
+    // Tạo thư mục nếu nó không tồn tại
+    fs.mkdirSync(dir, { recursive: true });
+
+    // Ghi nội dung vào tệp mới
+    fs.writeFileSync(outputPath, inputFile);
+    console.log(`Tệp đã được tạo tại: ${outputPath}`);
+};

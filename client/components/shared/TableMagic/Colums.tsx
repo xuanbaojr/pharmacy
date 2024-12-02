@@ -12,71 +12,38 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { TableDataType } from "./Data"
+import { fiterColumn, TableDataType } from "./Data"
+import { formatNumber } from "@/utils/mixin"
 
 export const TableColumns: ColumnDef<TableDataType>[] = [
     {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
       accessorKey: "status",
-      header: "Status",
+      header: "Trạng thái",
       cell: ({ row }) => (
         <div className="capitalize">{row.getValue("status")}</div>
       ),
     },
     {
-      accessorKey: "email",
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Email
-            <ArrowUpDown />
-          </Button>
-        )
-      },
-      cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+      accessorKey: "name",
+      header: 'Người nhận',
+      cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
+    },
+    {
+      accessorKey: "address",
+      header: 'Địa chỉ',
+      cell: ({ row }) => <div className="lowercase">{row.getValue("address")}</div>,
     },
     {
       accessorKey: "amount",
-      header: () => <div className="text-right">Amount</div>,
+      header: () => <div className="text-right">Số tiền </div>,
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("amount"))
   
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(amount)
-  
-        return <div className="text-right font-medium">{formatted}</div>
+        return <div className="text-right font-medium">{formatNumber(row.getValue("amount"))}</div>
       },
     },
     {
       id: "actions",
-      enableHiding: false,
+      header: "Cập nhật",
       cell: ({ row }) => {
         const payment = row.original
   
@@ -88,16 +55,22 @@ export const TableColumns: ColumnDef<TableDataType>[] = [
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(payment.id)}
-              >
-                Copy payment ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuContent align="end" className="bg-slate-300">
+              <DropdownMenuLabel>Trạng thái đơn hàng</DropdownMenuLabel>
+              {
+                fiterColumn.map((item, index) => {
+                  return (
+                  <DropdownMenuItem
+                    key={index}
+                    className=" hover:bg-gray-200 rounded-lg"
+                    // onClick={() => navigator.clipboard.writeText(payment.id)}
+                  >
+                    {item.status}
+                  </DropdownMenuItem>
+                  )
+                })
+              }
+              
             </DropdownMenuContent>
           </DropdownMenu>
         )
