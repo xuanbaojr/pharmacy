@@ -214,5 +214,66 @@ namespace pharmacy.Controllers
                 return StatusCode(500, _res);
             }
         }
+        [HttpPost("UOD01/{id}")]
+        public async Task<IActionResult> UpdateStatusOrder(int id, OrderDto.UpdateOrderRequest request)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "User is not authenticated.", string.Empty));
+                return Unauthorized(_res);
+            }
+            try
+            {
+                var givenName = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname")?.Value;
+                if (string.IsNullOrEmpty(givenName))
+                {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "Given name not found.", string.Empty));
+                    return Unauthorized(_res);
+                }
+
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == givenName);
+                if (user == null)
+                {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "User not found.", string.Empty));
+                    return Unauthorized(_res);
+                }
+
+                var RoleID = await _context.UserRoles.FirstOrDefaultAsync(u => u.UserId == user.Id);
+                var Role = await _context.Roles.FirstOrDefaultAsync(r => r.Id == RoleID.RoleId);
+                if (Role == null) {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "Role not found.", string.Empty));
+                    return Unauthorized(_res);
+                }
+                if (Role.Name != "Shipper")
+                {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "User is not Shipper.", string.Empty));
+                    return Unauthorized(_res);
+                }
+                var order = await _context.Orders.FindAsync(id);
+                   
+                if (order == null) {
+                    _res.Status = StatusCodes.Status404NotFound.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "Order not found.", string.Empty));
+                    return NotFound(_res);
+                }
+                order.Status = request.Status;
+                _context.Orders.Update(order);
+                await _context.SaveChangesAsync();
+                _res.Status = StatusCodes.Status200OK.ToString();
+                _res.Data = order;
+                return Ok(_res);
+            }
+            catch (System.Exception ex)
+            {
+                _res.Status = StatusCodes.Status500InternalServerError.ToString();
+                _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, ex.Message, string.Empty));
+                return StatusCode(500, _res);
+            }
+        }
     }
 }

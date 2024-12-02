@@ -6,6 +6,10 @@ namespace pharmacy.Dtos.Order
 {
     public class OrderDto
     {
+        public class UpdateOrderRequest
+        {
+            public string? Status { get; set; }
+        }
         public class OrderRequest
         {
             [Required]

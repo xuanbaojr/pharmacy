@@ -42,6 +42,11 @@ namespace pharmacy.Data
                     Name = "User",
                     NormalizedName = "USER"
                 },
+                new IdentityRole
+                {
+                    Name = "Shipper",
+                    NormalizedName = "SHIPPER"
+                },
             };
             builder.Entity<IdentityRole>().HasData(roles);
         }
