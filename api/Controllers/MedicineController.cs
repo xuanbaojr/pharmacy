@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using pharmacy.Data;
 using pharmacy.Dtos.Medicine;
 using pharmacy.Models;
@@ -19,21 +20,25 @@ namespace pharmacy.Controllers.Medicine
             _res = new BaseResponse<object>();
         }
 
-        [HttpGet("RMD01")]
-        public IActionResult GetAll()
+        [HttpPost("RMD01")]
+        public IActionResult GetAll([FromBody] MedicineDto.GetMedicineRequest request)
         {
             try
             {
-                var medicines = _context.Medicines.Select(m => new
-                {
-                    id = m.MedicineID,
-                    name = m.Name,
-                    stock = m.Stock,
-                    price = m.Price,
-                    specification = m.Specification,
-                    mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
-                    numberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
-                }).ToList();
+                var medicines = _context.Medicines
+                    .Select(m => new
+                    {
+                        id = m.MedicineID,
+                        name = m.Name,
+                        stock = m.Stock,
+                        price = m.Price,
+                        specification = m.Specification,
+                        mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
+                        numberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
+                    })
+                    .Skip((request.Page - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
 
                 _res.Status = StatusCodes.Status200OK.ToString();
                 _res.Data = medicines;
@@ -124,15 +129,19 @@ namespace pharmacy.Controllers.Medicine
                     query = query.Where(m => m.Price <= searchRequest.MaxPrice.Value);
                 }
 
-                var medicines = query.Select(m => new MedicineDto.MedicineResponse
-                {
-                    Id = m.MedicineID,
-                    Name = m.Name,
-                    Price = m.Price,
-                    Stock = m.Stock,
-                    Specification = m.Specification,
-                    NumberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
-                }).ToList();
+                var medicines = query
+                    .Select(m => new MedicineDto.MedicineResponse
+                    {
+                        Id = m.MedicineID,
+                        Name = m.Name,
+                        Price = m.Price,
+                        Stock = m.Stock,
+                        Specification = m.Specification,
+                        NumberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
+                    })
+                    .Skip((searchRequest.Page - 1) * searchRequest.PageSize)
+                    .Take(searchRequest.PageSize)
+                    .ToList();
 
                 _res.Status = StatusCodes.Status200OK.ToString();
                 _res.Data = medicines;

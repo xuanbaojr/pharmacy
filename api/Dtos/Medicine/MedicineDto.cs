@@ -1,14 +1,24 @@
-﻿namespace pharmacy.Dtos.Medicine
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using pharmacy.Models;
+
+namespace pharmacy.Dtos.Medicine
 {
     public class MedicineDto
     {
         public class MedicineSearchRequest
         {
+            public int Page { get; set; }
+            public int PageSize { get; set; }
             public string? Category { get; set; }
             public decimal? MinPrice { get; set; }
             public decimal? MaxPrice { get; set; }
         }
-
+        
+        public class GetMedicineRequest
+        {
+            public int Page { get; set; }
+            public int PageSize { get; set; }
+        }
         public class MedicineResponse
         {
             public int Id { get; set; }
