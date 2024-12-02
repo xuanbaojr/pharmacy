@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { pharmacy } from "../product/DataProduct";
 import useEmblaCarousel from 'embla-carousel-react'
 import { viewPharmacy } from "./ViewDataProduct";
-import { formatNumber } from "@/utils/formatNumber";
+import { formatNumber } from "@/utils/mixin";
 interface Props {
     product : viewPharmacy
 }

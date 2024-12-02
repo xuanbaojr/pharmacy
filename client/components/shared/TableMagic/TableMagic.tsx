@@ -22,27 +22,24 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import SelectBox from "./Option/Select/Select"
+// import { SearchColumns, Status } from "@/client/contants/enum"
 // import DropBox from "../cards/DropBox"
 // import { MenuDropBox, SelectStatusBox } from "@/client/util/DataType"
 // import Search from "../cards/search"
 // import SelectBox from "../cards/SelectBox"
 
-interface SelectStatusBox {
-    title : string,
-    parentPoint : string | null,
-    workPlace : string,
-    // status : Status,
-  }
+
 
 interface Props {
     listOrder: any[],
     columns : ColumnDef<any>[],
-    selectBox : SelectStatusBox| null ,
+    // searchColumns : SearchColumns | null,
+    // dropMenu : MenuDropBox[] | null,
+    // selectBox : SelectStatusBox| null ,
 }
   
 
-const TableMagic =  ({listOrder, columns, selectBox} : Props) => {
+const TableMagic =  ({listOrder, columns} : Props) => {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
       []
@@ -73,17 +70,19 @@ const TableMagic =  ({listOrder, columns, selectBox} : Props) => {
     return (
     <>
     <div className="w-full">
-
+      <div className="flex justify-between">
+        {/*  */}
+      </div>
       
 
       
 
       {/* cái bảng thôi, kẹ mẹ nó  */}
-      <div className="rounded-md ">
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow className=" bg-blue-100 my-4 text-lg" key={headerGroup.id}>
+              <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -97,13 +96,13 @@ const TableMagic =  ({listOrder, columns, selectBox} : Props) => {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className=" ">
+          <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className=" py-10  my-10 border-none"
+                  
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -130,13 +129,9 @@ const TableMagic =  ({listOrder, columns, selectBox} : Props) => {
           </TableBody>
         </Table>
       </div>
+      
 
-      {selectBox != null &&
-        <SelectBox 
-          table={table} 
-          select={selectBox}
-        />
-      }
+      
 
     </div>
         

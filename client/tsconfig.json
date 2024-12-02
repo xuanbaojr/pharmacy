@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "api/a"  ],
   "exclude": [
     "node_modules"
   ]

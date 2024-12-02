@@ -20,7 +20,7 @@ app.add_middleware(
 
 @app.get("/")
 async def hello_world():
-    return {"hello:": "world !"}
+    return {"hello:": "world !!"}
 
 @app.post("/prescription")
 async def upload_file(file: UploadFile = File(...)):
