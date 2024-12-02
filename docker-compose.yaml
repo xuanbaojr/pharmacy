@@ -2,9 +2,16 @@ version: "3.9"
 
 services:
   prescription:
-    build: ./Model
+    build: ./Model           # bug thi ong thay bang image: xuanbao01/prescription nhu hien tai nhe
     ports:
       - "8000:8000"
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    working_dir: /app/Model
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
-      - ./images:/app/images # Ánh xạ file test.py từ máy vào container
+      - .:/app 
+
+  chatbot:
+    image: xuanbao01/chatbot
+    ports:
+      - "8001:8001"
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload

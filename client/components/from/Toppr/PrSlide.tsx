@@ -25,9 +25,9 @@ const PrSlide = ({pr} : Props) => {
                 loop : true,
             }}
             plugins={[
-                // Autoplay({
-                //   delay: 10000,
-                // }),
+                Autoplay({
+                  delay: 7000,
+                }),
               ]}
             className="w-full h-full rounded-2xl overflow-hidden bg-slate-100 "
         >

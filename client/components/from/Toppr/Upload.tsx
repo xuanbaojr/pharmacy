@@ -1,9 +1,18 @@
+'use client'
 import { IoArrowForward } from "react-icons/io5";
 import Image from "next/image";
-import Link from "next/link";
 import logo from "@/public/assets/image/home1.png";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { Location } from "@/app/(root)/(user)/shop/page";
 
 const Upload = () => {
+  const router = useRouter();
+
+  const navigateToPage = () => {
+    const variable = 'gia-tri-bien';
+    router.push(`/shop`);
+  };
   return (
     <div className="bg-green-800 h-full py-8 px-4 sm:px-6 lg:px-8 rounded-2xl">
       <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between">
@@ -23,16 +32,16 @@ const Upload = () => {
               & thực phẩm chức năng
             </h2>
           </div>
-          <p className="text-gray-300 mb-3">
+          <p className="text-gray-300 mb-6">
             Chúng tôi cung cấp các sản phẩm chất lượng, uy tín và an toàn cho
             sức khỏe của bạn.
           </p>
-          <Link
-            href="/shop"
+          <Button
+            onClick={navigateToPage}
             className="inline-flex items-center bg-white text-green-900 font-medium px-6 py-3 rounded-md hover:bg-gray-200 transition-colors"
           >
             Mua ngay <IoArrowForward className="ml-2" />
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

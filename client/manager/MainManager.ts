@@ -8,21 +8,21 @@ interface Props {
 
 }
 
-const  MainManager = (dir: string): IPlugin[] => {
+const  MainManager = (dir: string) : IPlugin[] => {
     const plugins: IPlugin[] = [];
     // Đọc tất cả các thư mục trong thư mục gốc
     const folders = fs.readdirSync(dir).filter(file => 
-        fs.statSync(path.join(dir, file)).isDirectory()
+        fs.statSync(path.posix.join(dir, file)).isDirectory()
     );
     // Duyệt qua từng thư mục
     folders.forEach(folder => {
         const folderPath = path.join(dir, folder);
-    
+
         // Đọc tất cả các tệp trong thư mục
         fs.readdirSync(folderPath).forEach(file => {
             if (file === "index.tsx") {
             //     // Nhập tệp plugin
-                const pluginModule : any =  require(`../Plugin/sidebar/${folder}/index.tsx`)
+                const pluginModule : any =  require(`../Plugin/sideBar/${folder}/index.tsx`)
                 
             //     // // Kiểm tra xem có lớp nào kế thừa từ Plugin không
                 for (const key in pluginModule) {
@@ -39,7 +39,7 @@ const  MainManager = (dir: string): IPlugin[] => {
         });
     });
 
-    return plugins;
+    return plugins
 }
 
 export default MainManager

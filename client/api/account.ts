@@ -1,4 +1,4 @@
-import axiosClient from './axios';
+import axiosClient from './axios-client';
 import {
     LOGIN,
     RAW_JSON,

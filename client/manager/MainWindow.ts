@@ -48,5 +48,3 @@ export class MainWindow {
 
 
 }
-
-export const mainWindow = new MainWindow([], [])

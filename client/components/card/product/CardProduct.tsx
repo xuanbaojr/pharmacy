@@ -1,9 +1,10 @@
 import { pharmacy } from "@/components/card/product/DataProduct";
-import { convertComment } from "@/utils/comment";
 import Image from "next/image";
 import Link from "next/link";
 import image from "@/public/assets/image/anhho.jpg";
-import { formatNumber } from "@/utils/formatNumber";
+import { Button } from "@/components/ui/button";
+import ExploreProduct from "./ExploreProduct";
+import { convertComment, formatNumber } from "@/utils/mixin";
 interface Props {
     pharmacy : pharmacy
 }
@@ -16,8 +17,9 @@ const CardProduct = ({pharmacy} : Props) => {
     // console.log("imagePath:", imagePath);
     return (
         <>
-        <div className="flex justify-center h-full ">
-            <Link href={`/phamacy/${pharmacy.id}`} className="flex-col  hover:border hover:rounded-xl hover:shadow-xl ">
+        <div className="flex justify-center h-full relative hover:border hover:rounded-xl hover:shadow-xl">
+            
+            <Link href={`/phamacy/${pharmacy.id}`} className={`flex-col   ` }>
             <div className="flex-col w-full h-full bg-[#edf2fb] rounded-xl">
                 <div className="bg-white flex h-64 items-center justify-center rounded-xl overflow-hidden border shadow-sm">
                     <Image src={imagePath} alt={pharmacy.alt} width={200} height={200} className="object-cover w-full"/>
@@ -30,7 +32,7 @@ const CardProduct = ({pharmacy} : Props) => {
                     </div> 
                     {/* loai san pham */}
                     <div className="row-span-1 text-sm flex items-end">
-                         {pharmacy.specification}
+                         {}
                     </div>
                         {/* gia ban cung da ban */}
                     <div className="flex items-end row-span-1 justify-between mx-2 ">
@@ -45,6 +47,9 @@ const CardProduct = ({pharmacy} : Props) => {
                 </div>
             </div>
             </Link>
+            <div className=" absolute hover:translate-y-3 w-full h-full hover:opacity-90 opacity-0 transition-opacity flex justify-end py-10 px-2">
+                <ExploreProduct id={pharmacy.id}/>
+            </div> 
         </div>
         </>
     )

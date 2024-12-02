@@ -1,4 +1,4 @@
-import { mainWindow } from "@/manager/MainWindow"
+import { mainWindow } from "@/app/layout"
 
 
 interface Props {
@@ -18,9 +18,6 @@ const RightBar = () => {
                     </div>
                 )
             })
-        }
-        {
-            mainWindow.getLeR()
         }
         </div>
         </>

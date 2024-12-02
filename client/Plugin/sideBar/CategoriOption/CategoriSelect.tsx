@@ -11,6 +11,7 @@ import {
   } from "@/components/ui/collapsible"
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
   
 interface Props {
     value : string
@@ -68,9 +69,9 @@ const Item = ({type, indexs} : {type : "hide"|"show", indexs : number}) => {
             }
             
             return (
-                <div key={item.value} className="text-sm">
+                <Link href={'/'} key={item.value} className="text-sm">
                     {item.label}
-                </div>
+                </Link>
             )
             })
         }
