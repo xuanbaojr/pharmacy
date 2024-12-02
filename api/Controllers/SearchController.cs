@@ -7,6 +7,7 @@ using pharmacy.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using Azure.Core;
 
 namespace pharmacy.Controllers
 {
@@ -67,6 +68,8 @@ namespace pharmacy.Controllers
                         mainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
                         numberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity),
                     })
+                    .Skip((searchRequest.Page - 1) * searchRequest.PageSize)
+                    .Take(searchRequest.PageSize)
                     .ToListAsync();
 
                 if (!medicines.Any())

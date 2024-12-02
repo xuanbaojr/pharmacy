@@ -9,6 +9,8 @@ namespace pharmacy.Dtos.Search
         public class SearchRequest
         {   
             public string? SearchQuery { get; set; }
+            public int Page { get; set; }
+            public int PageSize { get; set; }
         }
         public class SearchResponse
         {

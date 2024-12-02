@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace pharmacy.Models
 {
     public class Medicine
     {
-        public required int MedicineID { get; set; }
-        public required string Name { get; set; }
+        [Key]
+        public  int MedicineID { get; set; }
+        public  string Name { get; set; }
         public string? Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public required decimal Price { get; set; }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pharmacy.Data;
 using pharmacy.Dtos.Order;
+using pharmacy.Extensions;
 using pharmacy.Models;
 using System;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace pharmacy.Controllers
             }
             try
             {
-                var givenName = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname")?.Value;
+                var givenName = User.GetUsername();
                 if (string.IsNullOrEmpty(givenName))
                 {
                     _res.Status = StatusCodes.Status401Unauthorized.ToString();
@@ -215,6 +216,7 @@ namespace pharmacy.Controllers
             }
         }
         [HttpPost("UOD01/{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateStatusOrder(int id, OrderDto.UpdateOrderRequest request)
         {
             if (!User.Identity.IsAuthenticated)
@@ -225,7 +227,7 @@ namespace pharmacy.Controllers
             }
             try
             {
-                var givenName = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname")?.Value;
+                var givenName = User.GetUsername();
                 if (string.IsNullOrEmpty(givenName))
                 {
                     _res.Status = StatusCodes.Status401Unauthorized.ToString();
