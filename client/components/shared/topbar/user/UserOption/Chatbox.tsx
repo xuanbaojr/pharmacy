@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { DataChat, ImageChat, listChat } from "./DataChat";
 // import { getChatbot } from "@/api/medicine";
 import { Ellipsis } from "lucide-react";
-import { chatMessageAI } from "@/api/chatbox";
+import { chatImageAI, chatMessageAI } from "@/api/chatbox";
 import { TbXboxX } from "react-icons/tb";
 import ChatImage from "./ChatImage";
 import Image from "next/image";
@@ -24,17 +24,14 @@ const ChatBox = ({change} : Props) => {
     const handleUp = (file : any) => {
         setFile(file)
     }
-
     const handleDown = () => {
         setFile(null)
     }
-
     const scrollToBottom = () => {
       if (chatContainerRef.current) {
         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
       }
     };
-  
     useEffect(() => {
       scrollToBottom();
     }, [messages]);
@@ -72,8 +69,14 @@ const ChatBox = ({change} : Props) => {
             }
             handleDown()
             setMessages((prevMessages) => [...prevMessages, newMes]);
+            setLoad(false)
+            const formData = new FormData();
+            formData.append('file', file);
 
-            
+            const response = await chatImageAI(formData)
+            console.log(response)
+
+            setLoad(true)
             
         }
       };

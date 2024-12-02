@@ -1,21 +1,9 @@
 'use client'
-import { MODEL } from "@/api/constants";
-import { getUploadImage } from "@/api/medicine";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { IoMdSend } from "react-icons/io";
-import { FaUpload } from "react-icons/fa6";
 import Image from "next/image";
-import { Circle, Ellipsis, Heart } from 'react-spinners-css';
 import Link from "next/link";
 interface Props {
-
-
 }
-
 const LoadImage = () => {
-
- 
     return (
         <div className=" h-full w-full bg-blue-500 rounded-xl grid grid-cols-3 gap-0 px-2">
             <div className=" col-span-1 flex flex-1 items-center text-white ml-4 font-medium">
@@ -41,11 +29,4 @@ const LoadImage = () => {
       
     )
 }
-
 export default LoadImage
-
-const SpinnerLoad = () => {
-    return (
-      <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-    );
-  };
