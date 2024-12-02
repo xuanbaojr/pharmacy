@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { order } from "./test";
-import { formatNumber } from "@/utils/mixin";
+import { convertDate, formatNumber } from "@/utils/mixin";
 
 interface Props {
     follow : order,
@@ -15,11 +15,11 @@ const FollowItem = ({follow} : Props) => {
                     {follow.orderer}
                 </div>
                 <div className=" flex-1">
-                    {follow.consignee === follow.orderer ? "" : follow.consignee}
+                    {follow.consignee}
                 </div>
                 <div className="flex-1 text-left flex justify-evenly px-2 gap-2">
                     <div className=" flex-1 ">
-                        {convertDate(follow.createdAt) }
+                        {follow.createdAt}
                     </div>
                     <div className=" flex-1 text-center">
                         {formatNumber(follow.totalAmount)} đ
@@ -39,30 +39,39 @@ interface stateProps {
     state : string
 }
 
+
 const State = ({state} : stateProps) => {
-    if (state === "done") {
+    if (state === "Delivered") {
         return (
             <div className="text-green-600">
-                {state}
+                Đã giao hàng
             </div>
         )
-    } else if (state === "do") {
+    } else if (state === "Shipped") {
         return (
-            <div className=" text-yellow-600">
-                {state}
-            </div>
-        )
-    } else {
-        return (
-            <div className=" text-red-500">
-                {state}
+            <div className=" text-blue-500">
+                Đang vận chuyển
             </div>
         )
     }
-}
-
-const convertDate = (formattedDate : Date ) => {
- 
-    const s = formattedDate ? formattedDate.toLocaleDateString() : "";
-    return s
+    else if (state === "Processing") {
+        return (
+            <div className=" text-orange-500">
+                Đang xử lý
+            </div>
+        )
+    } 
+    else if (state === "Pending") {
+        return (
+            <div className=" text-yellow-400">
+                Chờ xử lý
+            </div>
+        )
+    }  else {
+        return (
+            <div className=" text-red-500">
+                Đã hủy đơn
+            </div>
+        )
+    }
 }

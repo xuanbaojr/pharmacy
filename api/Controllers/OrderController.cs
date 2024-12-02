@@ -122,7 +122,7 @@ namespace pharmacy.Controllers
                 {
                     OrderID = order.OrderID,
                     Status = order.Status,
-                    CreatedAt = order.CreatedAt,
+                    CreatedAt = order.CreatedAt.ToString("yyyy-MM-dd"),
                     ShippingAddress = order.ShippingAddress,
                     Orderer = order.Orderer,
                     Consignee = order.Consignee,
@@ -201,8 +201,22 @@ namespace pharmacy.Controllers
             try
             {
                 var orders = await _context.Orders
-                    .Where(o => o.IsBuy)
-                    .ToListAsync();
+                .Where(o => o.IsBuy)
+                .Select(o => new OrderDto.OrderResponse
+                {
+                    OrderID = o.OrderID,
+                    Status = o.Status,
+                    CreatedAt = o.CreatedAt.ToString("dd-MM-yyyy"), 
+                    ShippingAddress = o.ShippingAddress,
+                    Orderer = o.Orderer,
+                    Consignee = o.Consignee,
+                    OrderPhoneNum = o.OrderPhoneNum,
+                    ReceivePhoneNum = o.ReceivePhoneNum,
+                    Note = o.Note,
+                    PaymentMethod = o.PaymentMethod,
+                    TotalAmount = o.TotalAmount
+                })
+                .ToListAsync();
 
                 _res.Status = StatusCodes.Status200OK.ToString();
                 _res.Data = orders;

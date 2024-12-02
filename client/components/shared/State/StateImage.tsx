@@ -4,22 +4,21 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import StateNote from "./StateNote";
 import { status } from "./data";
 interface Props {
-    state : "done"|"do"|"get",
     status : status
 }
 
-const StateImage = ({state, status} : Props) => {
+const StateImage = ({status} : Props) => {
 
     const green = '#16a34a'
     const gray = '#4b5563'
     let tick=''
     let ship=''
     let title = ''
-    if (state === 'done') {
+    if (status.status === 'Delivered') {
         tick = green
         ship = green
         title = "Đơn hàng đã được giao đến"
-    } else if (state === "do") {
+    } else if (status.status === "Shipped") {
         tick = gray
         ship = green
         title = "Đơn hàng đang được vận chuyển"
