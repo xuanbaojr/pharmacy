@@ -237,7 +237,7 @@ namespace pharmacy.Controllers.Medicine
                 var imageUrls = new List<string>();
                 var images = new List<Image>();
 
-                var frontendImagePath = Path.Combine("D:\\BTL-Pharmacy\\pharmacy\\client\\public\\assets\\images");
+                var frontendImagePath = Path.Combine("D:\\BTL-Pharmacy\\pharmacy\\client\\public\\assets\\image");
 
                 if (!Directory.Exists(frontendImagePath))
                 {
@@ -255,7 +255,7 @@ namespace pharmacy.Controllers.Medicine
                         await image.CopyToAsync(stream);
                     }
 
-                    var imageUrl = $"/assets/images/{fileName}";
+                    var imageUrl = $"/assets/image/{fileName}";
                     imageUrls.Add(imageUrl);
 
                     images.Add(new Image

@@ -39,10 +39,10 @@ const InforProduct = ({product} : Props) => {
                     </div>
                     <div className="grid grid-cols-3 ">
                         <div className="col-span-1">
-                            Dạng bào chế
+                            Quy cách
                         </div>
                         <div  className="col-span-2">
-                            {product.ingredient}
+                            {product.specification}
                         </div>
                     </div>
                     <div className="grid grid-cols-3 ">

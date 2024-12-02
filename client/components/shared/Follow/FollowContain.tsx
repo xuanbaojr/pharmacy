@@ -48,7 +48,7 @@ const FollowContain = () => {
                     Ngày gửi
                     </div>
                     <div className=" flex-1 text-center ">
-                        số tiền
+                        Số tiền
                     </div>
                     <div className=" flex-1 text-center">
                         Trạng thái

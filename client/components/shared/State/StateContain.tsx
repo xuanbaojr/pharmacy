@@ -31,7 +31,7 @@ const StateContain = ({id} : Props) => {
 
     return (
         <div className=" space-y-4">
-            <StateImage state="do" status={status} />
+            <StateImage status={status} />
             <CheckoutList list={convertProduct(status.orderItems)}/>
 
             

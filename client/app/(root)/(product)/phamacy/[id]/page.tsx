@@ -11,8 +11,8 @@ interface Props {}
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
   // Lấy dữ liệu từ JSON
-  const productData = testJson.find((item) => item.Id.includes(params.id));
-  if (!productData) return;
+  // const productData = testJson.find((item) => item.Id.includes(params.id));
+  // if (!productData) return;
 
   const res = await getMedicineDetail(params.id);
 
@@ -23,7 +23,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
       <div className="mx-32 px-4 my-5 bg-[white] rounded-lg">
         <ViewProduct product={product} />
       </div>
-      <div className="mx-32 px-4 my-5 bg-[white] rounded-lg">
+      {/* <div className="mx-32 px-4 my-5 bg-[white] rounded-lg">
         <div className="my-4">
           <h2 className="text-2xl font-bold mb-2">Thành phần</h2>
           <div>
@@ -50,7 +50,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
         <div className="my-4">
           <div dangerouslySetInnerHTML={{ __html: productData.preservation }} />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
