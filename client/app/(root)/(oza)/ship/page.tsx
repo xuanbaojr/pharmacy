@@ -14,12 +14,13 @@ const ShipPage =   () => {
     // const orders = passOrderToClient(listOrder, "")
     const orders = listOrders
     return (
-        <div className="px-32 ">
+        <div className="px-32 mt-4 ">
+            <div className="w-full bg-white py-2 space-y-2">
             <TableMagic 
                 listOrder={data}
                 columns={TableColumns}
             />
-            
+            </div>
         </div>
     )
 }

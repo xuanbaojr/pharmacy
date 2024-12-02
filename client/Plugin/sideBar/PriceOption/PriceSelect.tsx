@@ -1,11 +1,37 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { linkPathPlugin } from "."
 
 interface Props {
-    value : string,
+    category : string | undefined,
+    minx : number | undefined,
+    maxx : number | undefined
 }
 
-export const PriceSelect = ({value} : Props) => {
+export const PriceSelect = ({category, minx, maxx} : Props) => {
+    const router  = useRouter()
+    const [min, setMin] = useState<number>(minx === undefined ? 0 : minx)
+    const [max, setMax] = useState<number>(maxx === undefined ? 0 : maxx)
+
+    const handlMin = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMin(Number(event.target.value))
+    }
+    const handlMax= (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMax(Number(event.target.value))
+    }
+
+    const click = () => {
+        if (min ===0 || max === 0) {
+            return 
+        } else if (min >= max) {
+            return 
+        } else {
+            router.push(`/shop/${linkPathPlugin(category, min, max)}`);
+        }
+    }
 
     return (
         <>
@@ -17,10 +43,10 @@ export const PriceSelect = ({value} : Props) => {
             </div>
             <div className="">
                 <div className="flex justify-between gap-3">
-                    <Input placeholder="từ"/>
-                    <Input placeholder="đến"/>
+                    <Input value={min} onChange={handlMin} placeholder="từ"/>
+                    <Input value={max} onChange={handlMax} placeholder="đến"/>
                 </div>
-                <Button className="w-full rounded-lg bg-blue-500 flex justify-center items-center mt-3 ">
+                <Button onClick={click} className="w-full rounded-lg bg-blue-500 flex justify-center items-center mt-3 ">
                     <div>
                         Áp dụng
                     </div>

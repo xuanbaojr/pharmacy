@@ -5,9 +5,10 @@ export interface pharmacy {
     image : string,
     alt : string,
     name : string,
-    sale : string,
+    sale : number,
     price : number,
-
+    stock : number,
+    specification : string
 }
 
 
@@ -20,7 +21,8 @@ export const convertPharmacyList = (data : any[]) : pharmacy[] => {
             name : item.name,
             sale : item.numberOfSale,
             price : item.price,
-
+            specification : item.specification,
+            stock : item.stock,
         }
     })
 
@@ -34,6 +36,8 @@ export const convertPharmacy = (data : any) : pharmacy => {
             name : data.name,
             sale : data.sale,
             price : data.price,
+            specification : data.specification,
+            stock : data.stock,
         }
     
 

@@ -1,17 +1,21 @@
 import CardProduct from "./CardProduct"
 import { convertPharmacyList, pharmacy } from "./DataProduct"
 import { getMedicine } from "@/api/medicine"
-
+import PaginationProduct from "./PaginationProduct"
 
 interface Props {
     // sort: string
+    page : number,
+    min : number | null,
+    max : number | null,
+    category : string | null
 }
 
 
-const GridProduct = async () =>  {
+const GridProduct = async ({page, min, max, category} : Props ) =>  {
 
 
-    const res : any = await getMedicine()
+    const res : any = await getMedicine(page, min, max , category )
     const newdata : pharmacy[] = convertPharmacyList(res.data.data);
     
     return (
@@ -27,6 +31,16 @@ const GridProduct = async () =>  {
                     })
                 }
             </div>
+            <div className=" w-full flex justify-center items-center my-4">
+            <PaginationProduct 
+            page={page}
+            category={category}
+            min={min}
+            max={max}
+
+            />
+            </div>
+      
         </div>
         
         </>

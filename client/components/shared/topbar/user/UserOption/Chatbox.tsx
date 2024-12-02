@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { IoMdSend } from "react-icons/io";
 import UserChat from "./UserChat";
 import { useEffect, useRef, useState } from 'react';
-import { DataChat, listChat } from "./DataChat";
+import { DataChat, ImageChat, listChat } from "./DataChat";
 // import { getChatbot } from "@/api/medicine";
 import { Ellipsis } from "lucide-react";
 import { chatMessageAI } from "@/api/chatbox";
 import { TbXboxX } from "react-icons/tb";
+import ChatImage from "./ChatImage";
+import Image from "next/image";
 interface Props {
     change : (change : boolean) => void
 }
@@ -17,6 +19,15 @@ const ChatBox = ({change} : Props) => {
     const [messages, setMessages] = useState<DataChat[]>(listChat);
     const [inputValue, setInputValue] = useState<string>('');
     const [load, setLoad] = useState(true);
+    const [file, setFile] = useState(null);
+
+    const handleUp = (file : any) => {
+        setFile(file)
+    }
+
+    const handleDown = () => {
+        setFile(null)
+    }
 
     const scrollToBottom = () => {
       if (chatContainerRef.current) {
@@ -28,23 +39,42 @@ const ChatBox = ({change} : Props) => {
       scrollToBottom();
     }, [messages]);
 
+    useEffect(() => {
+        scrollToBottom();
+      }, [file]);
+
     const addMessage = async() => {
         if (inputValue.trim() !== '') {
             const newMes : DataChat = {
                 type : "right",
-                title: inputValue
+                title: inputValue,
+                image : null
             }
+            setInputValue(''); // Xóa input sau khi gửi
             setMessages((prevMessages) => [...prevMessages, newMes]);
             setLoad(false)
             const respone : any = await chatMessageAI(inputValue);
             const res : DataChat = {
                 type: 'left',
-                title : respone.data.answer
+                title : respone.data.answer,
+                image : null
             }
             console.log(res)
             setMessages((prevMessages) => [...prevMessages, res]);
             setLoad(true)
-            setInputValue(''); // Xóa input sau khi gửi
+        }
+
+        if (file !== null) {
+            const newMes : DataChat = {
+                type : "right",
+                title: '',
+                image : <ImageChat file={file} />
+            }
+            handleDown()
+            setMessages((prevMessages) => [...prevMessages, newMes]);
+
+            
+            
         }
       };
     
@@ -73,11 +103,11 @@ const ChatBox = ({change} : Props) => {
                 
             </div>
             <div className="  h-96 flex overflow-y-scroll  " ref={chatContainerRef}>
-                <div className=" space-y-3  w-full h-full px-2 ">
+                <div className=" w-full h-full px-2 ">
                     {
                         messages.map((item, index) => {
                             return (
-                                <UserChat type={item.type} title={item.title} key={index} />
+                                <UserChat type={item.type} title={item.title} image={item.image} key={index} />
                             )
                         })
                     }
@@ -87,10 +117,25 @@ const ChatBox = ({change} : Props) => {
                             <Ellipsis color="gray" size={30}/>
                         </div>
                     }
+                    {file && 
+                        <div className="py-2 px-2 flex justify-start bg-gray-200 border shadow-sm h-20">
+                            <div className="h-full relative">
+                                <div className=" absolute -top-2 -right-2 p-0 border" onClick={handleDown}>
+                                    <TbXboxX />
+                                </div>
+                                <Image src={URL.createObjectURL(file)} width={50} height={50} className="object-cover h-full border" alt="as"/>
+                            </div>
+                        </div>
+                    }
                 
                 </div>
             </div>
             <div className="px-1 py-1 flex-none  flex justify-between items-center border-t border-gray-200 shadow-xl">
+                <ChatImage 
+                    file={file}
+                    setFile={handleUp}
+                    keyDown={handleKeyPress}
+                />
                 <input
                     type="text"
                     value={inputValue}
