@@ -10,7 +10,7 @@ export const ListCategoriOption : CategoriOption[] = [
         value : "thuocbo",
     },
     {
-        label : "Thú y",
+        label : "Thuốc giảm đau hạ sốt",
         value : "thuy",
     },
     {

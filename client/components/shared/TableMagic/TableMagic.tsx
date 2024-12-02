@@ -15,6 +15,15 @@ import {
 } from "@tanstack/react-table"
 
 import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
   Table,
   TableBody,
   TableCell,
@@ -22,6 +31,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
+import { ChevronDown } from "lucide-react"
+import { fiterColumn } from "./Data"
 // import { SearchColumns, Status } from "@/client/contants/enum"
 // import DropBox from "../cards/DropBox"
 // import { MenuDropBox, SelectStatusBox } from "@/client/util/DataType"
@@ -70,10 +82,57 @@ const TableMagic =  ({listOrder, columns} : Props) => {
     return (
     <>
     <div className="w-full">
-      <div className="flex justify-between">
+    
+      <div className=" flex justify-between gap-4 items-center my-3 mx-10 ">
         {/*  */}
+        <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" className="">
+            Bộ lọc <ChevronDown />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className=" bg-white">
+          <DropdownMenuCheckboxItem
+                  className=""
+                  onCheckedChange={() => table.getColumn("status")?.setFilterValue("")}
+                >
+                  Tất cả
+                </DropdownMenuCheckboxItem>
+          {
+            fiterColumn.map((item, index) => {
+              return (
+                <DropdownMenuCheckboxItem
+                  className=""
+                  key={index}
+                  onCheckedChange={() => table.getColumn("status")?.setFilterValue("Đang gửi")}
+                >
+                  {item.status}
+                </DropdownMenuCheckboxItem>
+              )
+            })
+          }
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+        <div className="space-x-2 flex items-center  ">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Trước
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Sau 
+            </Button>
+        </div>
       </div>
-      
 
       
 
@@ -122,7 +181,7 @@ const TableMagic =  ({listOrder, columns} : Props) => {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Không có đơn hàng nào
                 </TableCell>
               </TableRow>
             )}
@@ -130,7 +189,25 @@ const TableMagic =  ({listOrder, columns} : Props) => {
         </Table>
       </div>
       
-
+    
+      <div className="space-x-2 flex items-center justify-end py-4 mr-10">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Trước
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Sau 
+          </Button>
+      </div>
       
 
     </div>

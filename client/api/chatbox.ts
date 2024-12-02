@@ -6,7 +6,7 @@ import { CHAT } from "./constants";
 export const chatMessageAI = async ( message : string) => {
     try {
         const response = await axios.post(CHAT + "/default_llm/single_forward/1", {
-            'human' : message
+            'question' : message
         }, );
         return response; // Trả về dữ liệu từ phản hồi
     } catch (error) {

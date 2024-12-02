@@ -8,7 +8,8 @@ export interface Location {
     searchName : string
 }
 
-const ShopPage = ({searchParams} : any  ) => {
+const ShopPage = () => {
+
     return (
         <>
         <div className="flex gap-5 mt-3 px-10 rounded-lg">
@@ -21,7 +22,7 @@ const ShopPage = ({searchParams} : any  ) => {
                 </div>
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
-                    <GridProduct />
+                    {/* <GridProduct /> */}
                     
                 </div>
             </div>
@@ -29,7 +30,7 @@ const ShopPage = ({searchParams} : any  ) => {
         </div>
         
         </>
-    )
-}
+        )
+    } 
 
 export default ShopPage;

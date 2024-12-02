@@ -12,12 +12,17 @@ import {
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Location } from "@/app/(root)/(user)/shop/[id]/page";
+import { linkPathPlugin } from ".";
   
 interface Props {
-    value : string
+    category : string | undefined,
+    minx : number | undefined,
+    maxx : number | undefined
 }
 
-const CategoriSelect = ({value} : Props) => {
+
+const CategoriSelect = ({category, minx, maxx} : Props) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <>
@@ -35,10 +40,10 @@ const CategoriSelect = ({value} : Props) => {
                     className="w-[350px] space-y-2"
                 >
                     {/* show */}
-                    <Item type="show" indexs={3}/>
+                    <Item type="show" indexs={3} category={category} min={minx} max={maxx}/>
                     <CollapsibleContent className="space-y-2">
                         {/* hide */}
-                        <Item type="hide" indexs={3}/>
+                        <Item type="hide" indexs={3} category={category}  min={minx} max={maxx}/>
                     </CollapsibleContent>
                         
                     <CollapsibleTrigger asChild>
@@ -57,7 +62,8 @@ const CategoriSelect = ({value} : Props) => {
 
 export default CategoriSelect;
 
-const Item = ({type, indexs} : {type : "hide"|"show", indexs : number}) => {
+const Item = ({type, indexs, category ,min, max} : {type : "hide"|"show", indexs : number, category : string | undefined,min : number | undefined, max: number|undefined }) => {
+
     return (
         <>
         {
@@ -69,9 +75,11 @@ const Item = ({type, indexs} : {type : "hide"|"show", indexs : number}) => {
             }
             
             return (
-                <Link href={'/'} key={item.value} className="text-sm">
-                    {item.label}
+                <div className={`w-full h-full py-1 px-2  ${category === item.label ? "bg-blue-300 rounded-lg" : ""}`} key={item.value}>
+                 <Link href={`/shop/${linkPathPlugin(item.label, min, max)}`}  className="text-sm">
+                        {item.label}
                 </Link>
+                </div>    
             )
             })
         }

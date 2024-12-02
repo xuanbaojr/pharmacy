@@ -1,4 +1,5 @@
 
+import { Location } from "@/app/(root)/(user)/shop/[id]/page";
 import { IPlugin } from "./plugin/IPlugin";
 import { RPlugin } from "./plugin/RPlugin";
 
@@ -7,11 +8,15 @@ export class MainWindow {
 
     private sideBar : IPlugin[];
     private rightBar : RPlugin[];
-    // private topBar : IPlugin[];
+    // private topBar : IPlugin[]
 
     constructor (sideBar : IPlugin[], rightBar : RPlugin[]) {
         this.sideBar = sideBar
         this.rightBar = rightBar
+    }
+
+    public updateParams (location : Location) {
+        this.sideBar.map((item) => item.update(location))
     }
 
     public loadPlugin (sideBar : IPlugin[], rightBar : RPlugin[] ) : void {

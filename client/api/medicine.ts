@@ -1,9 +1,20 @@
 'use server'
 import axios from 'axios';
-import { URL, GET_MEDICINE, MODEL, CHAT, GET_WHITS_LIST, DELETE_WHITS, POST_WHITS } from './constants';
+import { URL, GET_MEDICINE, MODEL, GET_WHITS_LIST, DELETE_WHITS, POST_WHITS, GET_MEDICINE_SORT } from './constants';
 
-export const getMedicine = async ()  => {
-    const res : any = await axios.get(URL + GET_MEDICINE);
+export const getMedicine = async (
+    page: number , 
+    min : number | null, 
+    max : number | null , 
+    category : string | null )  => {
+    const res : any = await axios.post(URL + GET_MEDICINE_SORT, {
+        "page": page,
+        "pageSize": 6,
+        "category" : category,
+        "minPrice" : min,
+        "maxPrice" : max,
+        
+    });
     return res;
 }
 
@@ -66,26 +77,4 @@ export const getUploadImage = async (formData : FormData) => {
         body: formData,
       });
     return response;
-}
-
-export const getChatbot = async (message : string) => {
-  const data = {
-    human : message
-  }
-  const response = await fetch(CHAT + "/default_llm/single_forward/1", {
-    method: 'POST',
-    headers: {
-      "Content-Type": 'application/json',
-    },
-    body: JSON.stringify(data)
-  }).then(res => {
-    if(!res.ok) {
-      console.log("Problem")
-      return
-    }
-    return res.json()
-  })
-  // const response = await axiosClient.post("localhost:8001/default_llm/single_forward/1", hello)
-  // return response;
-
 }
