@@ -1,14 +1,14 @@
 import Link from "next/link";
 import SlideRe from "./SlideRe";
-import { Pharmacy } from "../../card/product/DataProduct";
 import { FiChevronsRight } from "react-icons/fi";
+import { pharmacy } from "@/components/card/product/DataProduct";
 
 interface Props {
     name : string,
-
+    data : pharmacy[]
 }
 
-const FormRe = ({name} : Props) => {
+const FormRe = ({name, data} : Props) => {
 
     return (
         <>
@@ -29,7 +29,7 @@ const FormRe = ({name} : Props) => {
 
             {/* bottom view */}
             <div className="py-1 ">
-                <SlideRe slide={Pharmacy} />
+                <SlideRe slide={data} />
             </div>
 
 

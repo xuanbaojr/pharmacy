@@ -5,9 +5,10 @@ import { IPlugin, linkPath } from '@/manager/plugin/IPlugin';
 export class Price extends IPlugin {
 
     constructor () {
-        super ()
+        super ("Lọc theo giá cả")
         this.setDes(<PriceSelect category={''} minx={0} maxx={0} />) 
     }
+
 
     update(location: Location): void {
         this.setDes(<PriceSelect category={location.searchName} minx={location.min} maxx={location.max} />)

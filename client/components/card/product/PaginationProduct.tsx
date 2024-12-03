@@ -9,13 +9,16 @@ interface Props {
     min : number | null,
     max : number | null,
     category : string | null
+    aiSearch ? : string
+    pageSize : number
 }
 
-const PaginationProduct = ({page, min, max, category} : Props) => {
+const PaginationProduct = ({page, min, max, category, aiSearch, pageSize} : Props) => {
     const router = useRouter()
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         const path : Location = {
             page : value,
+            aiSearch : aiSearch,
             min :min !== null ? min : undefined,
             max : max !== null ? max : undefined,
             searchName : category !== null ? category : undefined
@@ -25,7 +28,7 @@ const PaginationProduct = ({page, min, max, category} : Props) => {
     };
     return (
         <div>
-            <Pagination count={10} page={page} onChange={handleChange} />
+            <Pagination count={pageSize} page={page} onChange={handleChange} />
         </div>
     )
 }

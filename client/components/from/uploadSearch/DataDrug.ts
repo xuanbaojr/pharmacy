@@ -2,7 +2,7 @@
 export interface Drug {
     name : string,
     quanlity : string,
-    usage : string,
+    usage : string[],
 }
 
 

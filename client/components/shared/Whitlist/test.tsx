@@ -1,43 +1,27 @@
-import { pharmacy } from "@/components/card/product/DataProduct";
+
+export interface whitlist {
+    wishlistId : number,
+    medicineId : number,
+    image : string,
+    price : number,
+    name : string
+}
+
+export const convertWishlist = (data : any[]) : whitlist[] => {
+    const newData : whitlist[] = data.map((item : any) => {
+        return {
+            wishlistId : item.wishlistID,
+            medicineId : item.medicineID,
+            image : item.mainImage,
+            price : item.price,
+            name : item.name,
+        }
+    })
+
+    return newData
+}
 
 
 
-export const data : pharmacy[] = [
-    {
-        id : 1,
-        image : '/assets/image/acetab_1.png',
-        alt : 'string',
-        name : 'string name adasd ahausfn asn ',
-        sale : "asda ",
-        price : 122023, 
-    }
-    ,{
-        id : 1,
-        image : '/assets/image/acetab_1.png',
-        alt : 'string',
-        name : 'string name adasd ahausfn asn ',
-        sale : "asda ",
-        price : 122023, 
-    },{
-        id : 1,
-        image : '/assets/image/acetab_1.png',
-        alt : 'string',
-        name : 'string name adasd ahausfn asn ',
-        sale : "asda ",
-        price : 122023, 
-    },{
-        id : 1,
-        image : '/assets/image/acetab_1.png',
-        alt : 'string',
-        name : 'string name adasd ahausfn asn ',
-        sale : "asda ",
-        price : 122023, 
-    },{
-        id : 1,
-        image : '/assets/image/acetab_1.png',
-        alt : 'string',
-        name : 'string name adasd ahausfn asn ',
-        sale : "asda ",
-        price : 122023, 
-    }
-]
+
+

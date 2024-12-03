@@ -15,10 +15,15 @@ import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { formSchema } from "./zodContact"
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 interface Props {
 
 }
+const toastOptions = {
+  autoClose: 2000,
+};
 
 const FormContact = () => {
 
@@ -32,7 +37,11 @@ const FormContact = () => {
 
 
     const  onSubmit = (values: z.infer<typeof formSchema>) => {
-      
+        toast.success("Cảm ơn bạn đã liên hệ " + form.getValues('yourname'), toastOptions);
+        form.setValue('email', '')
+        form.setValue('yourname', '')
+        form.setValue('message', '')
+        
         console.log(values)
       }
     return (

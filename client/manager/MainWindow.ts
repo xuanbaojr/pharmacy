@@ -5,7 +5,6 @@ import { RPlugin } from "./plugin/RPlugin";
 
 
 export class MainWindow {
-
     private sideBar : IPlugin[];
     private rightBar : RPlugin[];
     // private topBar : IPlugin[]
@@ -13,6 +12,7 @@ export class MainWindow {
     constructor (sideBar : IPlugin[], rightBar : RPlugin[]) {
         this.sideBar = sideBar
         this.rightBar = rightBar
+
     }
 
     public updateParams (location : Location) {
@@ -32,6 +32,11 @@ export class MainWindow {
     public setRightBar (rightbar : RPlugin[]) : void {
         this.rightBar = rightbar
         console.log("rightbar done")
+    }
+
+    public getIPlugin (name : string) : IPlugin {
+        const plugin = this.sideBar.filter((item) => item.getName() === name)
+        return plugin[0]
     }
 
 

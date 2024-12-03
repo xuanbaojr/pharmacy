@@ -5,7 +5,6 @@ import GridProduct from "@/components/card/product/GridProduct";
 
 export interface Location {
     aiSearch? : string,
-
     searchName? : string,
     min? : number ,
     max? : number,
@@ -23,14 +22,16 @@ const ShopPage = ({ params }: { params: { id: string } }) => {
                 <SideBar user={user}/>
             </div>
             <div className="w-5/6">
-                <div>
+                {/* <div>
                     <TopBar 
                     page={user.page ? user.page : 1}
+                    aiSearch={user.aiSearch}
                     min={user.min? user.min : null}
                     max= {user.max? user.max : null}
                     category={user.searchName ? user.searchName: null}
+                    pageSize={}
                     />
-                </div>
+                </div> */}
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
                     <GridProduct 

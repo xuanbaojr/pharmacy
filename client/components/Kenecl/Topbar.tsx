@@ -13,10 +13,12 @@ interface Props {
     page : number,
     min : number | null,
     max : number | null,
-    category : string | null
+    category : string | null,
+    aiSearch? : string,
+    pageSize : number,
 }
 
-const TopBar = ({page, min, max, category} : Props) => {
+const TopBar = ({page, min, max, category, aiSearch, pageSize} : Props) => {
 
     return (
         <>
@@ -28,9 +30,12 @@ const TopBar = ({page, min, max, category} : Props) => {
             <div>
                 <PaginationProduct 
                 page={page}
+                aiSearch={aiSearch}
                 min={min}
                 max= {max}
+                pageSize={pageSize}
                 category={category} />
+
                 
             </div>
 

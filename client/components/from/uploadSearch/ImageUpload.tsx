@@ -8,6 +8,7 @@ import { Ellipsis } from 'react-spinners-css';
 import { convertDrug, convertSearchName } from "./DataDrug";
 import { useRouter } from "next/navigation";
 import { getUploadImage } from "@/api/chatbox";
+import { Location } from "@/app/(root)/(user)/shop/[id]/page";
 interface Props {
     close : (change : boolean) => void
 }
@@ -31,16 +32,17 @@ const ImageUpload  = ({close} : Props) => {
   
       try {
         setLoad(false)
-        const response = await getUploadImage(formData);
+        const response: any = await getUploadImage(formData);
         setLoad(true)
         close(false)
-        console.log(response)
-        // const data : any[] = await response.json();
-        // const newData = convertDrug(data)
-        // const searchName = convertSearchName(newData);
-
+        const newData = convertDrug(response['res'])
         
-        // router.push(`/shop?search_name=${searchName}`);
+        const searchName = convertSearchName(newData);
+        const location : Location = {
+            aiSearch : searchName
+        }
+        const userString = encodeURIComponent(JSON.stringify(location));
+        router.push(`/shop/${userString}`);
         
       } catch (error) {
         console.error('Có lỗi xảy ra:', error);

@@ -9,6 +9,7 @@ import { FaDisease } from "react-icons/fa6";
 import { GiNightSleep } from "react-icons/gi";
 import { BiSolidBabyCarriage } from "react-icons/bi";
 import { BiSolidBone } from "react-icons/bi";
+import { Location } from "@/app/(root)/(user)/shop/[id]/page";
 export interface CategoriItem {
     link : string,
     name : string,
@@ -18,54 +19,64 @@ export interface CategoriItem {
 
 export const ListCategori : CategoriItem[] = [
     {
-        link : "asdas",
+        link : "thuốc theo đơn",
         name : "thuốc theo đơn",
         icon : (size, color) => <FaPrescriptionBottleMedical size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Không theo đơn",
         name : "Không theo đơn",
         icon : (size, color) => <FaBriefcaseMedical size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Thuốc bổ",
         name : "Thuốc bổ",
         icon : (size, color) => <IoIosNutrition size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Thuốc đặc biệt",
         name : "Thuốc đặc biệt",
         icon : (size, color) => <MdOutlineHive size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Chăm sóc sức khỏe",
         name : "Chăm sóc sức khỏe",
         icon : (size, color) => <RiMentalHealthLine size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Vaccine",
         name : "Vaccine",
         icon : (size, color) => <MdOutlineVaccines size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Nhiễm trùng",
         name : "Nhiễm trùng",
         icon : (size, color) => <FaDisease size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Cải thiện giấc ngủ",
         name : "Cải thiện giấc ngủ",
         icon : (size, color) => <GiNightSleep size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Trẻ nhỏ",
         name : "Trẻ nhỏ",
         icon : (size, color) => <BiSolidBabyCarriage size={size} color={color}/>
     },
     {
-        link : "asdas",
+        link : "Thú cưng",
         name : "Thú cưng",
         icon : (size, color) => <BiSolidBone size={size} color={color}/>
     },
 
 ]
+
+export const convertLink =(link : string) => {
+    const location : Location= {
+        searchName : link
+    }
+    const userString = encodeURIComponent(JSON.stringify(location));
+
+    return userString
+
+}

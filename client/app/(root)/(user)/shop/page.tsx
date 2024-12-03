@@ -1,7 +1,6 @@
 import TopBar from "@/components/Kenecl/Topbar";
 import SideBar from "@/components/Kenecl/SideBar";
 import GridProduct from "@/components/card/product/GridProduct";
-import { getMedicine } from "@/api/medicine";
 import { Location } from "./[id]/page";
 
 
@@ -16,12 +15,12 @@ const ShopPage = () => {
             </div>
             <div className="w-5/6">
                 <div>
-                    <TopBar
+                    {/* <TopBar
                     page={user.page ? user.page : 1}
                     min={user.min? user.min : null}
                     max= {user.max? user.max : null}
                     category={user.searchName ? user.searchName: null}
-                    />
+                    /> */}
                 </div>
                 {/* prodcut here */}
                 <div className=" px-2 mt-1">
