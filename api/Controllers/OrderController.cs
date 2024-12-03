@@ -229,6 +229,65 @@ namespace pharmacy.Controllers
                 return StatusCode(500, _res);
             }
         }
+
+        [HttpGet("ROD02")]
+        [Authorize]
+        public async Task<IActionResult> GetOrdersByUser()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "User is not authenticated.", string.Empty));
+                return Unauthorized(_res);
+            }
+            try
+            {
+                var givenName = User.GetUsername();
+                if (string.IsNullOrEmpty(givenName))
+                {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "Given name not found.", string.Empty));
+                    return Unauthorized(_res);
+                }
+
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == givenName);
+                if (user == null)
+                {
+                    _res.Status = StatusCodes.Status401Unauthorized.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "User not found.", string.Empty));
+                    return Unauthorized(_res);
+                }
+
+                var orders = await _context.Orders
+                .Where(o => o.IsBuy && o.UserID == user.Id)
+                .Select(o => new OrderDto.OrderResponse
+                {
+                    OrderID = o.OrderID,
+                    Status = o.Status,
+                    CreatedAt = o.CreatedAt.ToString("dd-MM-yyyy"),
+                    ShippingAddress = o.ShippingAddress,
+                    Orderer = o.Orderer,
+                    Consignee = o.Consignee,
+                    OrderPhoneNum = o.OrderPhoneNum,
+                    ReceivePhoneNum = o.ReceivePhoneNum,
+                    Note = o.Note,
+                    PaymentMethod = o.PaymentMethod,
+                    TotalAmount = o.TotalAmount
+                })
+                .ToListAsync();
+
+                _res.Status = StatusCodes.Status200OK.ToString();
+                _res.Data = orders;
+                return Ok(_res);
+            }
+            catch (System.Exception ex)
+            {
+                _res.Status = StatusCodes.Status500InternalServerError.ToString();
+                _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, ex.Message, string.Empty));
+                return StatusCode(500, _res);
+            }
+        }
+
         [HttpPost("UOD01/{id}")]
         [Authorize]
         public async Task<IActionResult> UpdateStatusOrder(int id, OrderDto.UpdateOrderRequest request)

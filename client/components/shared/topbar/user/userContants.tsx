@@ -27,6 +27,7 @@ const UserIconWithClick = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const { isAuthenticated, token, logout } = useAuth();
     const [userName, setUsername] = useState("");
+    const [role, setRole] = useState("");
     const router = useRouter()
 
     const shipperRouter = () => {
@@ -42,8 +43,14 @@ const UserIconWithClick = () => {
             setUsername(storedUserName || "");
         }
     }, []);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedRole = localStorage.getItem('Role');
+            setRole(storedRole || "");
+        }
+    }, []);
     const username = token ? userName : "";
-
+    const roleUser = token ? role : "";
     const handleIconClick = () => {
         setIsModalVisible(!isModalVisible);
     };
@@ -73,14 +80,21 @@ const UserIconWithClick = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="border border-gray-300 bg-white p-0 rounded-xl overflow-hidden">
                 
-                    {isAuthenticated ? (
+                    {isAuthenticated && roleUser === "Admin" ? (
+                        <>
+                            <DropdownMenuLabel className='w-full flex bg-gray-200 cursor-pointer' >{username}</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
+                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={adminRouter}>Điều hành</DropdownMenuLabel>
+                        </>
+                    ) :
+                    isAuthenticated && roleUser === "Shipper" ? (
                         <>
                             <DropdownMenuLabel className='w-full flex bg-gray-200 cursor-pointer' >{username}</DropdownMenuLabel>
                             <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={handleLogout}>Rời khỏi</DropdownMenuLabel>
                             <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={shipperRouter}>Vận chuyển</DropdownMenuLabel>
-                            <DropdownMenuLabel className='hover:bg-gray-100 w-full cursor-pointer' onClick={adminRouter}>Điều hành</DropdownMenuLabel>
                         </>
-                    ) : (
+                    ) :
+                    (
                         <>
                             <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={() => window.location.href = '/login'}>Đăng nhập</DropdownMenuLabel>
                             <DropdownMenuLabel className='hover:bg-gray-100 w-full' onClick={() => window.location.href = '/register'}>Đăng ký</DropdownMenuLabel>
@@ -121,7 +135,7 @@ const ChatIcon = () => {
 export const UserContants: UserItem[] = [
     {
         icon : <Link href="/follow">
-                    <MdLocalShipping className='hover:shadow-2xl rounded-lg' color="gray" size={28} />
+                    <MdLocalShipping className='hover:col rounded-lg' size={28} />
                 </Link>,
         link : "#"
     },

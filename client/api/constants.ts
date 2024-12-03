@@ -1,8 +1,8 @@
-export const  URL = 'https://2e48-42-113-16-18.ngrok-free.app';
+export const  URL = 'http://pharmacy.com';
 export const CHAT = "https://0b73-14-232-232-166.ngrok-free.app"
 export const CHAT_IMAGE = "https://0b73-14-232-232-166.ngrok-free.app"
 
-export const PAGE_SIZE =6
+export const PAGE_SIZE = 10
 
 
 // ai cua bao 

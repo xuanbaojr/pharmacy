@@ -12,6 +12,9 @@ namespace pharmacy.Dtos.Medicine
             public string? Category { get; set; }
             public decimal? MinPrice { get; set; }
             public decimal? MaxPrice { get; set; }
+            public Boolean? SellWell { get; set; }
+            public Boolean? PriceEsc { get; set; }
+            public Boolean? PriceDesc { get; set; }
         }
         
         public class GetMedicineRequest
@@ -28,6 +31,9 @@ namespace pharmacy.Dtos.Medicine
             public string? Specification { get; set; }
             public string? MainImage { get; set; }
             public int NumberOfSale { get; set; }
+            public int Total { get; set; }
+            public int TotalPage { get; set; }
+
         }
         public class UploadMedicineImagesRequest
         {

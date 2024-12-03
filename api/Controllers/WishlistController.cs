@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace pharmacy.Controllers
 {
-    [Route("api/RWL01")]
+    [Route("api")]
     [ApiController]
     public class WishlistController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace pharmacy.Controllers
             _res = new BaseResponse<object>();
         }
 
-        [HttpGet]
+        [HttpGet("RWL01")]
         [Authorize]
         public async Task<IActionResult> GetWishlist()
         {
@@ -39,7 +39,6 @@ namespace pharmacy.Controllers
                     return Unauthorized(_res);
                 }
 
-                // Lấy Id từ given_name
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == givenName);
                 if (user == null)
                 {
@@ -52,14 +51,16 @@ namespace pharmacy.Controllers
 
                 var wishlist = await _context.Wishlist
                     .Where(w => w.UserID == userId)
-                    .Select(w => new
+                    .Select(w => new WishlistResponse
                     {
-                        w.WishlistID,
-                        w.MedicineID,
-                        w.AddedDate
+                        WishlistID = w.WishlistID,
+                        MedicineID = w.MedicineID,
+                        Name = _context.Medicines.Where(m => m.MedicineID == w.MedicineID).Select(m => m.Name).FirstOrDefault(),
+                        Price = _context.Medicines.Where(m => m.MedicineID == w.MedicineID).Select(m => m.Price).FirstOrDefault(),
+                        MainImage = _context.Images.Where(i => i.MedicineID == w.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault()
                     })
                     .ToListAsync();
-
+               
                 _res.Status = StatusCodes.Status200OK.ToString();
                 _res.Data = wishlist;
                 return Ok(_res);
@@ -78,9 +79,8 @@ namespace pharmacy.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("IWL01")]
         [Authorize]
-        [Route("IWL01")]
         public async Task<IActionResult> AddToWishlist([FromBody] WishlistDto wishlistDto)
         {
             if (!User.Identity.IsAuthenticated)
@@ -121,6 +121,16 @@ namespace pharmacy.Controllers
                     return NotFound(_res);
                 }
 
+                var existingWishlistItem = await _context.Wishlist
+                    .FirstOrDefaultAsync(w => w.UserID == userId && w.MedicineID == medicineId);
+
+                if (existingWishlistItem != null)
+                {
+                    _res.Status = StatusCodes.Status400BadRequest.ToString();
+                    _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "The wishlist already has this medicine", string.Empty));
+                    return BadRequest(_res);
+                }
+
                 var wishlistItem = new Wishlist
                 {
                     UserID = userId,
@@ -149,9 +159,9 @@ namespace pharmacy.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DWL01/{id}")]
         [Authorize]
-        [Route("DWL01/{id}")]
+   
         public async Task<IActionResult> DeleteFromWishlist(int id)
         {
             if (!User.Identity.IsAuthenticated)

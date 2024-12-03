@@ -14,13 +14,13 @@ const ViewArticle = ({article} : Props ) => {
             <span>May 24, 2024   / admin</span>
             </div>
             <div className="text-5xl font-semibold text-wrap p-2 my-2 ">
-                {article.description}
+                {article.label}
             </div>
             <div className="w-full overflow-hidden rounded-3xl my-1">
                 <Image src={article.image} alt={article.alt} className=" object-cover w-full hover:scale-105 duration-700" />
             </div>
             <div className="text-xl my-3 px-4 ">
-                {article.label}
+                {article.description}
             </div>
 
             

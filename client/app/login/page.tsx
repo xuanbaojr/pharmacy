@@ -28,8 +28,9 @@ const LoginPage = () => {
       await successReponse(response);
       if(response.status === 200)
       {   
-          const { token, userName } = response.data.data;
+          const { token, userName, roles } = response.data.data;
           localStorage.setItem('Username', userName);
+          localStorage.setItem('Role', roles[0]);
           authLogin(token);
           toast.success("Đăng nhập thành công!", toastOptions);
           setTimeout(() => {

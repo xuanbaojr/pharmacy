@@ -25,10 +25,10 @@ const CardArticle = ({article} : Props) => {
                     <span>May 24, 2024   / admin</span>
                 </div>
                 <div className=" line-clamp-2 text-3xl font-semibold mt-4   ">
-                    <Link href={`/article/${article.alt}`} className="hover:text-blue-500"> {article.description}</Link>
+                    <Link href={`/article/${article.alt}`} className="hover:text-blue-500"> {article.label}</Link>
                 </div>
                 <div className=" line-clamp-3 text-sm mt-2 ">
-                    { article.label}
+                    { article.description}
                 </div>
             </div>
         </div>

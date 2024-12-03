@@ -74,9 +74,9 @@ namespace pharmacy.Controllers
 
                 if (!medicines.Any())
                 {
-                    _res.Status = StatusCodes.Status404NotFound.ToString();
+                    _res.Status = StatusCodes.Status400BadRequest.ToString();
                     _res.Messages.Add(Message.CreateErrorMessage("API_CODE", _res.Status, "No medicines found for the given search query.", string.Empty));
-                    return NotFound(_res);
+                    return Ok(_res);
                 }
                 _res.Status = StatusCodes.Status200OK.ToString();
                 _res.Data = medicines;

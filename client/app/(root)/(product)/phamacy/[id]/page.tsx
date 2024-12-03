@@ -10,7 +10,7 @@ import testJson from "@/utils/testJson.json";
 interface Props {}
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
-  // Lấy dữ liệu từ JSON
+  //Lấy dữ liệu từ JSON
   // const productData = testJson.find((item) => item.Id.includes(params.id));
   // if (!productData) return;
 

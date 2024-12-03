@@ -15,8 +15,8 @@ interface Props {
 
 const GridProduct = async ({aiSearch, page, min, max, category} : Props ) =>  {
 
-
-const res : any = aiSearch? await getMedicineAISearch(page,aiSearch) :  await getMedicine(page, min, max , category )
+ 
+    const res : any = aiSearch? await getMedicineAISearch(page,aiSearch) :  await getMedicine(page, min, max , category )
     const newdata : pharmacy[] = convertPharmacyList(res.data.data);
     
     return (

@@ -1,3 +1,5 @@
+import { toast, type ToastOptions } from 'react-toastify';
+
 export function formatNumber(input: number): string {
     const numberString = input.toString();
     const parts = numberString.split('.');
@@ -23,10 +25,16 @@ export const convertComment = (content : string, subLength : number) => {
     }
     return content
 }
-export const convertDate = (dateTime: string): string => {
-    const date = new Date(dateTime);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-};
+
+export function notify(data: any){
+    if(data.status == 200) {
+        toast.success('Thành công', {
+            autoClose: 5000,
+        } as ToastOptions);
+    }
+    else if(data.status == 400) {
+        toast.error(data.messages[0].messageText, {
+            autoClose: 5000,
+        } as ToastOptions);
+    }
+}

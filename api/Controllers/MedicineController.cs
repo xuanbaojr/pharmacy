@@ -131,6 +131,24 @@ namespace pharmacy.Controllers.Medicine
                     query = query.Where(m => m.Price <= searchRequest.MaxPrice.Value);
                 }
 
+                if (searchRequest.SellWell.HasValue && searchRequest.SellWell.Value)
+                {
+                    query = query.OrderByDescending(m => _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity));
+                }
+
+                if (searchRequest.PriceEsc.HasValue && searchRequest.PriceEsc.Value)
+                {
+                    query = query.OrderBy(m => m.Price);
+                }
+
+                if (searchRequest.PriceDesc.HasValue && searchRequest.PriceDesc.Value)
+                {
+                    query = query.OrderByDescending(m => m.Price);
+                }
+
+                var totalItems = query.Count();
+                var totalPages = (int)Math.Ceiling(totalItems / (double)searchRequest.PageSize);
+
                 var medicines = query
                     .Select(m => new MedicineDto.MedicineResponse
                     {
@@ -140,7 +158,9 @@ namespace pharmacy.Controllers.Medicine
                         Stock = m.Stock,
                         Specification = m.Specification,
                         MainImage = _context.Images.Where(i => i.MedicineID == m.MedicineID && i.isMainImage == true).Select(i => i.Url).FirstOrDefault(),
-                        NumberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity)
+                        NumberOfSale = _context.OrderItems.Where(oi => oi.MedicineID == m.MedicineID).Sum(oi => oi.Quantity),
+                        Total = totalItems,
+                        TotalPage = totalPages
                     })
                     .Skip((searchRequest.Page - 1) * searchRequest.PageSize)
                     .Take(searchRequest.PageSize)
