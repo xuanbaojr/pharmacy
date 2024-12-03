@@ -1,5 +1,5 @@
 export type TableDataType = {
-    id: string
+    id: number
     amount: number
     status: "pending" | "processing" | "success" | "failed"
     name: string
@@ -8,176 +8,57 @@ export type TableDataType = {
 
 type Status = {
     status : string
+    value : string
 }
 
 
-export const data: TableDataType[] = [
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    name: "ken99@yahoo.com",
-    address : "ha nọi"
-},
-{
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    name: "Abe45@gmail.com",
-     address : "ha nọi"
-},
-{
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    name: "Monserrat44@gmail.com",
-     address : "ha nọi"
-},
-{
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    name: "Silas22@gmail.com",
-     address : "ha nọi"
-},
-{
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    name: "carmella@hotmail.com",
-     address : "ha nọi"
-},
-]
 export const fiterColumn : Status[] =[
     {
-        status : "Đang gửi"
+        status : "Chờ xử lý",
+        value : "Pending"
+    }, {
+        status : "Đang xử lý",
+        value : "Processing"
+    } ,{
+        status : "Đang vận chuyển",
+        value : "Shipped"
     }, 
     {
-        status : "Hoàn thành"
-    } ,
+        status : "Đã giao hàng",
+        value : "Delivered"
+    },
     {
-        status : "Bị hủy"
-    }, {
-        status : "Lấy hàng"
+        status : "Hủy",
+        value : "Cancelled"
     }
 ]
 
 export const convertMacgicTable = (data : any[]) : TableDataType[] => {
     const newData : TableDataType[] = data.map((item) => {
         return {
-            id: item ,
-            amount: item ,
-            status: item,
-            name: item,
-            address : item,
+            id: item.orderID ,
+            amount: item.totalAmount ,
+            status: item.status,
+            name: item.consignee,
+            address : item.shippingAddress,
         }
     })
 
     return newData
+}
+
+
+export const convertStatus = (status: string ) : React.ReactNode => {
+    if (status === 'Pending') {
+        return <div className=" text-yellow-400">Chờ xử lý</div>
+    } else if (status === 'Processing') {
+        return <div className=" text-orange-500">Đang xử lý</div>
+    } else if (status === 'Shipped') {
+        return <div className=" text-blue-500">Đang vận chuyển</div>
+    } else if (status === 'Delivered') {
+        return <div className=" text-green-600">Đã giao hàng</div>
+    } else if (status === 'Cancelled') {
+        return <div className="text-red-500">Hủy</div>
+    } 
 }
 

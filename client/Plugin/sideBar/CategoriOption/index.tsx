@@ -5,7 +5,7 @@ import { IPlugin, linkPath } from "@/manager/plugin/IPlugin";
 export class Categori extends IPlugin {
     
     constructor () {
-        super()
+        super("Lọc theo phân loại thuốc")
         this.setDes(<CategoriSelect 
             category="" 
             minx={0}

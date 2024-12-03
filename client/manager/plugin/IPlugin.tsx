@@ -1,13 +1,22 @@
 import { Location } from "@/app/(root)/(user)/shop/[id]/page";
 
 export abstract class IPlugin {
-    private name : string = "iPlugin" ;
+    private name : string  ;
     protected des : React.ReactNode;
+    private isRun : boolean = true;
 
     protected location : Location;
 
-    constructor  ( ) {
+    constructor  (name : string ) {
         this.location = {}
+        this.name = name;
+    }
+
+    public getIsRun () : boolean {
+        return this.isRun
+    }
+    public setIsRun (run : boolean) : void {
+        this.isRun = run
     }
 
     public  getName () :string {

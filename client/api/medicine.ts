@@ -7,13 +7,20 @@ export const getMedicine = async (
     page: number , 
     min : number | null, 
     max : number | null , 
-    category : string | null )  => {
+    category : string | null,
+    pageSize? : number,
+    sellWell? : boolean,
+    priceDesc? : boolean,
+    priceEsc? :boolean )  => {
     const res : any = await axios.post(URL + GET_MEDICINE_SORT, {
         "page": page,
-        "pageSize": PAGE_SIZE,
+        "pageSize": pageSize? pageSize : PAGE_SIZE,
         "category" : category,
         "minPrice" : min,
         "maxPrice" : max,
+        "sellWell": sellWell,
+        "priceEsc": priceEsc,
+        "priceDesc": priceDesc,
         
     });
     return res;
@@ -23,13 +30,18 @@ export const getMedicineAISearch = async (
     page: number , 
     search : string
     )  => {
-    const res : any = await axios.post(URL + GET_MEDICINE_SORT_AI, {
-        "page": page,
-        "pageSize": PAGE_SIZE,
-        "searchQuery" : search
-        
-    });
+    try {
+        const res : any = await axios.post(URL + GET_MEDICINE_SORT_AI, {
+            "searchQuery" : search,
+            "page": page,
+            "pageSize": PAGE_SIZE,
+            
+        });
     return res;
+    } catch {
+        // return res
+    }
+
 }
 
 
@@ -64,6 +76,7 @@ export const postWhits = async (token : string, id :number) => {
               'Accept': 'application/json' // Thêm header Accept
           }
       });
+      return response
   } catch (error) {
       console.error('Lỗi khi gọi API:', error); // Ghi lại lỗi để kiểm tra
       throw error; // Ném lại lỗi để xử lý ở nơi khác

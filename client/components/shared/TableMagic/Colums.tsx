@@ -12,15 +12,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { fiterColumn, TableDataType } from "./Data"
+import { convertStatus, fiterColumn, TableDataType } from "./Data"
 import { formatNumber } from "@/utils/mixin"
+import {  postUpdateStatus } from "@/api/order"
+import { useRouter } from "next/navigation"
 
 export const TableColumns: ColumnDef<TableDataType>[] = [
     {
       accessorKey: "status",
       header: "Trạng thái",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("status")}</div>
+        <div className="capitalize">{convertStatus(row.getValue("status"))}</div>
       ),
     },
     {
@@ -45,8 +47,18 @@ export const TableColumns: ColumnDef<TableDataType>[] = [
       id: "actions",
       header: "Cập nhật",
       cell: ({ row }) => {
+        const router = useRouter()
         const payment = row.original
-  
+        const handleChange = async (item : string) => {
+          try {
+            const token = localStorage.getItem("token")
+            if (!token) return
+            const respone = await postUpdateStatus(token, payment.id, item);
+            // router.replace('/ship')
+          } catch {
+
+          }
+        }
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -63,14 +75,13 @@ export const TableColumns: ColumnDef<TableDataType>[] = [
                   <DropdownMenuItem
                     key={index}
                     className=" hover:bg-gray-200 rounded-lg"
-                    // onClick={() => navigator.clipboard.writeText(payment.id)}
+                    onClick={() =>handleChange(item.value)}
                   >
                     {item.status}
                   </DropdownMenuItem>
                   )
                 })
               }
-              
             </DropdownMenuContent>
           </DropdownMenu>
         )

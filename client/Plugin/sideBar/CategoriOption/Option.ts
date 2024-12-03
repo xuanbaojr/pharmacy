@@ -11,11 +11,11 @@ export const ListCategoriOption : CategoriOption[] = [
     },
     {
         label : "Thuốc giảm đau hạ sốt",
-        value : "thuy",
+        value : "Thuốc giảm đau hạ sốt",
     },
     {
         label : "Chăm sóc sức khỏe",
-        value : "chamsocsuckhoe",
+        value : "Chăm sóc sức khỏe",
     },
     {
         label : "Vaccine",
@@ -23,6 +23,6 @@ export const ListCategoriOption : CategoriOption[] = [
     },
     {
         label : "Nhiễm trùng",
-        value : "nhiemtrung"
+        value : "Nhiễm trùng"
     }
 ] 

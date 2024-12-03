@@ -104,7 +104,7 @@ const TableMagic =  ({listOrder, columns} : Props) => {
                 <DropdownMenuCheckboxItem
                   className=""
                   key={index}
-                  onCheckedChange={() => table.getColumn("status")?.setFilterValue("Đang gửi")}
+                  onCheckedChange={() => table.getColumn("status")?.setFilterValue(item.value)}
                 >
                   {item.status}
                 </DropdownMenuCheckboxItem>

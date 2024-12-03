@@ -7,7 +7,7 @@ import ImageSearch from "./ImageSearch";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Location } from "@/app/(root)/(user)/shop/[id]/page";
-
+import { Ellipsis, Circle } from 'react-spinners-css';
   
 interface Props {
 
@@ -16,6 +16,7 @@ interface Props {
 const SearchTop = () => {
     const router = useRouter()
     const [search, setSearch] = useState<string>('')
+    const [load, setLoad] = useState(false)
     const hanldClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value)
     }
@@ -27,11 +28,13 @@ const SearchTop = () => {
         
     }
     const searchName = async () => {
+        setLoad(true)
         const location : Location = {
             aiSearch : search
         }
         const userString = encodeURIComponent(JSON.stringify(location));
         router.push(`/shop/${userString}`)
+        setLoad(false)
     }
 
     return (
@@ -43,9 +46,14 @@ const SearchTop = () => {
                 <Input type="text" onKeyPress={enterPress}  value={search} onChange={hanldClick} placeholder="Tìm kiếm .. " className="bg-[#d9d9d9] border-0 " />
             </div>
             <div className="flex items-center ">
-                <Button onClick={searchName} className="flex justify-center items-center border-l rounded-none border-black">
+                {
+                    load? 
+                    <Circle size={20}/>
+                    :
+                    <Button onClick={searchName} className="flex justify-center items-center border-l rounded-none border-black">
                     <FaSearch />
                 </Button>
+                }
             </div>
         </div>
         </div>

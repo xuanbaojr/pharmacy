@@ -10,16 +10,18 @@ import { chatImageAI, chatMessageAI } from "@/api/chatbox";
 import { TbXboxX } from "react-icons/tb";
 import ChatImage from "./ChatImage";
 import Image from "next/image";
+import NoneMessage from "./NoneMessage";
 interface Props {
     change : (change : boolean) => void
 }
 
 const ChatBox = ({change} : Props) => {
     const chatContainerRef = useRef<HTMLDivElement | null>(null);
-    const [messages, setMessages] = useState<DataChat[]>(listChat);
+    const [messages, setMessages] = useState<DataChat[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
     const [load, setLoad] = useState(true);
     const [file, setFile] = useState(null);
+    const [name, setName] = useState('')
 
     const handleUp = (file : any) => {
         setFile(file)
@@ -50,7 +52,7 @@ const ChatBox = ({change} : Props) => {
             setInputValue(''); // Xóa input sau khi gửi
             setMessages((prevMessages) => [...prevMessages, newMes]);
             setLoad(false)
-            const respone : any = await chatMessageAI(inputValue);
+            const respone : any = await chatMessageAI(inputValue, name);
             const res : DataChat = {
                 type: 'left',
                 title : respone.data.answer,
@@ -75,7 +77,14 @@ const ChatBox = ({change} : Props) => {
 
             const response = await chatImageAI(formData)
             console.log(response)
-
+            const res : DataChat = {
+                type: 'left',
+                title : response['res'],
+                image : null
+            }
+            setName(res.title)
+            setMessages((prevMessages) => [...prevMessages, res]);
+            setFile(null)
             setLoad(true)
             
         }
@@ -107,6 +116,10 @@ const ChatBox = ({change} : Props) => {
             </div>
             <div className="  h-96 flex overflow-y-scroll  " ref={chatContainerRef}>
                 <div className=" w-full h-full px-2 ">
+
+                    {
+                        messages.length <= 2 && <NoneMessage />
+                    }
                     {
                         messages.map((item, index) => {
                             return (

@@ -14,17 +14,24 @@ interface Props {
 const ExploreProduct = ({id} : Props) => {
     const router = useRouter()
     const toastOptions = {
-        autoClose: 1000,
+        autoClose: 10200,
     };
     const handleWhist = async () => {
         try {
             const token = localStorage.getItem("token")
             if (!token) return
             console.log(id)
-            await postWhits(token, id)
+            const response= await postWhits(token, id)
+            
             toast.success("Đã thêm vào yêu thích", toastOptions);
-        } catch {
-            toast.error("Thêm thất bại", toastOptions);
+        } catch (error : any){
+            if(error.message === 'Request failed with status code 400') {
+                toast.warning("Sản phẩm đã có" + error.message, toastOptions);
+                console.log(error)
+            } else {
+                toast.error("Thêm thất bại" + error.message, toastOptions);
+            }
+            
         }
     }
 

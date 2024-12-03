@@ -6,22 +6,31 @@ import { MdDelete } from "react-icons/md"
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link"
 import { postCrat } from "@/api/cart"
-import { formatNumber } from "@/utils/mixin"
 import { deleteWhits } from "@/api/medicine"
+import { whitlist } from "./test"
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 interface Props{
-    whits : pharmacy
+    whits : whitlist
+    setLoad : () => void
 }
 
-const WhitlistItem = ({whits} : Props) => {
+const toastOptions = {
+    autoClose: 1000,
+    
+};
+
+const WhitlistItem = ({whits, setLoad} : Props) => {
 
     const handAddCart = async () => {
         try {
             const token = localStorage.getItem("token")
             if (!token) return
-            console.log(whits.id)
-            await postCrat(token, whits.id, 1)
+            console.log(whits.medicineId)
+            await postCrat(token, whits.medicineId, 1)
+            toast.success("Đã thêm vào giỏ hàng", toastOptions);
         } catch {
-
+            toast.error("Thêm thất bại", toastOptions);
         }
     }
 
@@ -29,10 +38,12 @@ const WhitlistItem = ({whits} : Props) => {
         try {
             const token = localStorage.getItem("token")
             if (!token) return
-            console.log(whits.id)
-            await deleteWhits(token, whits.id)
+            console.log(whits.wishlistId)
+            await deleteWhits(token, whits.wishlistId)
+            setLoad()
+            toast.success("Đã xóa khỏi yêu thích", toastOptions);
         } catch {
-
+            toast.error("Xóa thất bại", toastOptions);
         }
     }
 

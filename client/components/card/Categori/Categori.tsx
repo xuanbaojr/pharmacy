@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { CategoriItem } from "./ItemCategori"
+import { CategoriItem, convertLink } from "./ItemCategori"
 
 interface Props {
     categoriItem : CategoriItem
@@ -12,7 +12,7 @@ const Categori = ({categoriItem} : Props) => {
         <div className="flex justify-center">
             <div className="flex-col justify-center items-center hover:text-[#1364FF] font-medium">
 
-                <Link href={categoriItem.link}>
+                <Link href={`/shop/${convertLink(categoriItem.link)}`}>
                 <div className="flex justify-center items-center">
                     <div className="bg-[#E8F3FF] p-6  rounded-full flex items-center justify-center">
                         {categoriItem.icon (28, "#1364FF")}
